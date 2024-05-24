@@ -1,0 +1,116 @@
+@model DemoMongoDB.Models.Banners
+
+@{
+    ViewData["Title"] = "Thông tin Banner" + Model.BannerName;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
+                    class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminPosts" asp-action="Index">Danh sách
+                Banner</a>
+            <span class="breadcrumb-item active">Thông tin Banner: @Model.BannerName</span>
+        </nav>
+    </div>
+</div>
+
+<div class="card-body">
+    <h4 class="card-title">Thông tin: @Model.BannerName</h4>
+    <div class="table-responsive">
+        <div class="container-fluid p-0 pb-5 mb-5">
+            <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" style="min-height: 300px;">
+                        <img class="position-relative w-100" src="~/images/banners/@Model.Thumb"
+                            style="min-height: 300px; object-fit: cover;">
+                        <div class="carousel-caption d-flex align-items-center justify-content-center">
+                            <div class="p-5" style="width: 100%; max-width: 900px">
+                                <h5 class="text-white text-uppercase mb-md-3">@Model.BannerHeaderText</h5>
+                                <h1 class="display-3 text-white mb-md-4">@Model.BannerText</h1>
+                                @if (Model.ActiveButton)
+                                {
+                                    <a href=""
+                                        class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">@Model.ButtonText</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model._id</td>
+                </tr>
+                <tr>
+                    <td>Tên banner:</td>
+                    <td>@Model.BannerName</td>
+                </tr>
+                <tr>
+                    <td>Thứ tự:</td>
+                    <td>@Model.OrderIndex</td>
+                </tr>
+                <tr>
+                    <td>Active:</td>
+                    <td>
+                        @if (Model.Active)
+                        {
+                            <div class="switch m-r-10">
+                                <input type="checkbox" id="switch-1" checked="" disabled>
+                                <label for="switch-1"></label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="switch m-r-10">
+                                <input type="checkbox" id="switch-2" disabled>
+                                <label for="switch-2"></label>
+                            </div>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>Banner Header Text:</td>
+                    <td>@Model.BannerHeaderText</td>
+                </tr>
+                <tr>
+                    <td>Banner Text:</td>
+                    <td>@Model.BannerText</td>
+                </tr>
+                <tr>
+                    <td>Active Button:</td>
+                    <td>
+                        @if (Model.ActiveButton)
+                        {
+                            <div class="switch m-r-10">
+                                <input type="checkbox" id="switch-1" checked="" disabled>
+                                <label for="switch-1"></label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="switch m-r-10">
+                                <input type="checkbox" id="switch-2" disabled>
+                                <label for="switch-2"></label>
+                            </div>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>Button Text:</td>
+                    <td>@Model.ButtonText</td>
+                </tr>
+                <tr>
+                    <td>Ngày sửa:</td>
+                    <td>@Model.DateModified</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

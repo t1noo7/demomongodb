@@ -1,0 +1,101 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/duongt1l0.ch0co/Projects/DemoMongoDB-Last/DemoMongoDB.csproj": {}
+  },
+  "projects": {
+    "/Users/duongt1l0.ch0co/Projects/DemoMongoDB-Last/DemoMongoDB.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/duongt1l0.ch0co/Projects/DemoMongoDB-Last/DemoMongoDB.csproj",
+        "projectName": "DemoMongoDB",
+        "projectPath": "/Users/duongt1l0.ch0co/Projects/DemoMongoDB-Last/DemoMongoDB.csproj",
+        "packagesPath": "/Users/duongt1l0.ch0co/.nuget/packages/",
+        "outputPath": "/Users/duongt1l0.ch0co/Projects/DemoMongoDB-Last/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/duongt1l0.ch0co/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.Facebook": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "MongoDB.Driver": {
+              "target": "Package",
+              "version": "[2.25.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "PagedList.Core.Mvc": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[8.0.2, 8.0.2]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.osx-arm64",
+              "version": "[8.0.2, 8.0.2]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[8.0.2, 8.0.2]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.100-preview.3.24204.13/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,151 @@
+@model DemoMongoDB.Models.Categories
+
+@{
+    ViewData["Title"] = "Chỉnh sửa danh mục: " + Model.Title;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Adminassets/summernote/summernote-bs4.css" rel="stylesheet" />
+    <link href="~/Adminassets/summernote/summernote.css" rel="stylesheet" />
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item">
+                <i class="anticon anticon-home m-r-5"></i>Home
+            </a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminPosts" asp-action="Index">
+                Danh sách danh mục : page @ViewBag.CurrentPage
+            </a>
+            <span class="breadcrumb-item active">Chỉnh sửa danh mục</span>
+        </nav>
+    </div>
+</div>
+
+<form asp-controller="AdminCategories" asp-action="Edit" asp-route-id="@Model._id" method="post"
+    enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="_id" />
+    <input type="hidden" asp-for="Thumb" />
+    <div class="page-header no-gutters has-tab">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+            </div>
+            <div class="m-b-15">
+                <button class="btn btn-primary">
+                    <i class="anticon anticon-save"></i>
+                    <span>Save</span>
+                </button>
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#product-edit-basic">Thông tin danh mục</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="CatName">Tên danh mục</label>
+                        <input type="text" class="form-control" asp-for="CatName" />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="LinkAddress">Link address</label>
+                        <input type="text" class="form-control" asp-for="LinkAddress" />
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="font-weight-semibold" for="Thumb">Ảnh đại diện</label>
+                            <input name="fThumb" type="file" class="form-control-file" asp-for="Thumb" />
+                            <span asp-validation-for="Thumb" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="m-t-25">
+                            <div class="form-group d-flex align-items-center">
+                                <div class="switch m-r-10">
+                                    <input type="checkbox" asp-for="Published" />
+                                    <label asp-for="Published"></label>
+                                </div>
+                                <label>Public</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sub Categories Section -->
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="SubCat">Sub Categories</label>
+                        <div id="subcat-container">
+                            @for (var i = 0; i < (Model.SubCat?.Count ?? 0); i++)
+                            {
+                                <div class="subcat-item" data-index="@i">
+                                    <input type="text" name="SubCat[@i].Name" value="@Model.SubCat[i].Name"
+                                        placeholder="Sub Category Name" class="form-control m-2" />
+                                    <input type="text" name="SubCat[@i].Link" value="@Model.SubCat[i].Link"
+                                        placeholder="Sub Category Link" class="form-control m-2" />
+                                    <input type="number" name="SubCat[@i].Order" value="@Model.SubCat[i].Order"
+                                        placeholder="Order" class="form-control m-2" />
+                                    <input type="hidden" name="SubCat[@i].IsActive"
+                                        value="@Model.SubCat[i].IsActive.ToString().ToLower()" />
+                                    <input type="checkbox" name="SubCat[@i].IsActive" onchange="updateHiddenInput(this, @i)"
+                                    @(Model.SubCat[i].IsActive ? "checked" : "") /> Active
+                                    <button type="button" class="btn btn-danger remove-subcat m-2">Remove</button>
+                                </div>
+                            }
+                        </div>
+                        <button type="button" id="add-subcat" class="btn btn-secondary m-2">Add Sub Category</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/Adminassets/vendors/select2/select2.min.js"></script>
+    <script src="~/Adminassets/js/pages/e-commerce-product-edit.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="~/Adminassets/summernote/summernote-bs4.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $('.summnernote').summernote({
+                fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                height: 200,
+                minHeight: null,
+                maxHeight: null,
+                focus: true
+            });
+
+            let subCatIndex = @Model.SubCat?.Count ?? 0;
+            $('#add-subcat').on('click', function () {
+                const subCatItem = `
+                                            <div class="subcat-item" data-index="${subCatIndex}">
+                                                <input type="text" name="SubCat[${subCatIndex}].Name" placeholder="Sub Category Name" class="form-control m-2" />
+                                                <input type="text" name="SubCat[${subCatIndex}].Link" placeholder="Sub Category Link" class="form-control m-2" />
+                                                <input type="number" name="SubCat[${subCatIndex}].Order" placeholder="Order" class="form-control m-2" />
+                                                <input type="hidden" name="SubCat[${subCatIndex}].IsActive" value="false" />
+                                                <input type="checkbox" name="SubCat[${subCatIndex}].IsActive" value="true" onchange="updateHiddenInput(this, ${subCatIndex})"/> Active
+                                                <button type="button" class="btn btn-danger remove-subcat m-2">Remove</button>
+                                            </div>`;
+                $('#subcat-container').append(subCatItem);
+                subCatIndex++;
+            });
+
+            $(document).on('click', '.remove-subcat', function () {
+                $(this).closest('.subcat-item').remove();
+            });
+        });
+
+        function updateHiddenInput(checkbox, index) {
+            var hiddenInput = document.querySelector('input[name="SubCat[' + index + '].IsActive"]');
+            hiddenInput.value = checkbox.checked ? "true" : "false";
+        }
+    </script>
+}

@@ -1,0 +1,87 @@
+@model DemoMongoDB.Models.UserAccounts
+
+@{
+    ViewData["Title"] = "Thông tin người dùng" + Model.FullName;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminPosts" asp-action="Index">Danh sách người dùng</a>
+            <span class="breadcrumb-item active">Thông tin người dùng: @Model.FullName</span>
+        </nav>
+    </div>
+</div>
+
+<div class="card-body">
+    <h4 class="card-title">Thông tin: @Model.FullName</h4>
+    <div class="table-responsive">
+        <table class="product-info-table m-t-20">
+            <tbody>
+                <tr>
+                    <td>ID:</td>
+                    <td class="text-dark font-weight-semibold">@Model._id</td>
+                </tr>
+                <tr>
+                    <td>Tên người dùng:</td>
+                    <td>@Model.FullName</td>
+                </tr>
+                <tr>
+                    <td>Ngày sinh:</td>
+                    <td>@Model.Birthday</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>@Model.Email</td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại:</td>
+                    <td>@Model.Phone</td>
+                </tr>
+                <tr>
+                    <td>Địa chỉ:</td>
+                    <td>@Model.Address</td>
+                </tr>
+                <tr>
+                    <td>Ngày tạo:</td>
+                    <td>@Model.CreateDate</td>
+                </tr>
+                <tr>
+                    <td>Lần đăng nhập cuối:</td>
+                    <td>@Model.LastLogin</td>
+                </tr>
+                <tr>
+                    <td>Active:</td>
+                    <td>
+                        @if (Model.Active)
+                        {
+                            <div class="switch m-r-10">
+                                <input type="checkbox" id="switch-1" checked="" disabled>
+                                <label for="switch-1"></label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="switch m-r-10">
+                                <input type="checkbox" id="switch-2" disabled>
+                                <label for="switch-2"></label>
+                            </div>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>Ngày tạo:</td>
+                    <td>@Model.CreateDate</td>
+                </tr>
+                <tr>
+                    <td>Ảnh đại diện:</td>
+                    <td>
+                        <img width="200" height="200" src="~/images/avatars/@Model.Avatar" alt="@Model.FullName" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
