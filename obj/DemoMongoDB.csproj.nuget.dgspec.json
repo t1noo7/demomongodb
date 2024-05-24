@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/duongt1l0.ch0co/Projects/DemoMongoDB-Last/DemoMongoDB.csproj": {}
+    "D:\\Codes\\demomongodb\\DemoMongoDB.csproj": {}
   },
   "projects": {
-    "/Users/duongt1l0.ch0co/Projects/DemoMongoDB-Last/DemoMongoDB.csproj": {
+    "D:\\Codes\\demomongodb\\DemoMongoDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/duongt1l0.ch0co/Projects/DemoMongoDB-Last/DemoMongoDB.csproj",
+        "projectUniqueName": "D:\\Codes\\demomongodb\\DemoMongoDB.csproj",
         "projectName": "DemoMongoDB",
-        "projectPath": "/Users/duongt1l0.ch0co/Projects/DemoMongoDB-Last/DemoMongoDB.csproj",
-        "packagesPath": "/Users/duongt1l0.ch0co/.nuget/packages/",
-        "outputPath": "/Users/duongt1l0.ch0co/Projects/DemoMongoDB-Last/obj/",
+        "projectPath": "D:\\Codes\\demomongodb\\DemoMongoDB.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\Codes\\demomongodb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/duongt1l0.ch0co/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -71,20 +68,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.2, 8.0.2]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.osx-arm64",
-              "version": "[8.0.2, 8.0.2]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.2, 8.0.2]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -93,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.100-preview.3.24204.13/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

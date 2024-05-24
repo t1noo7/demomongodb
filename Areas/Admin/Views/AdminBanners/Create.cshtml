@@ -10,23 +10,48 @@
     <link href="~/Adminassets/summernote/summernote.css" rel="stylesheet" />
 }
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+</head>
+
+</html>
+
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
-            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i class="anticon anticon-home m-r-5"></i>Home</a>
-            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminPosts" asp-action="Index">Danh sách Baner : page @ViewBag.CurrentPage</a>
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
+                    class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminPosts" asp-action="Index">Danh sách Banner :
+                page @ViewBag.CurrentPage</a>
             <span class="breadcrumb-item active">Tạo mới Banner</span>
         </nav>
     </div>
 </div>
 <form asp-controller="AdminBanners" asp-action="Create" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="page-header no-gutters has-tab">
+    <div class="page-header1 no-gutters has-tab">
         <div class="d-md-flex m-b-15 align-items-center justify-content-between">
             <div class="media align-items-center m-b-15">
             </div>
             <div class="m-b-15">
-                <button class="btn btn-primary">
+                <button class="btn btn-primary1">
                     <i class="anticon anticon-save"></i>
                     <span>Save</span>
                 </button>
@@ -38,6 +63,7 @@
             </li>
         </ul>
     </div>
+
     <div class="tab-content m-t-15">
         <div class="tab-pane fade show active" id="product-edit-basic">
             <div class="card">
@@ -45,18 +71,23 @@
                     <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active" style="min-height: 300px;">
-                                <img id="bannerImage" class="position-relative w-100" src="~/images/banners/default.jpg" style="min-height: 300px; object-fit: cover;">
+                                <img id="bannerImage" class="position-relative w-100" src="~/images/banners/default.jpg"
+                                    style="min-height: 300px; object-fit: cover;">
                                 <div class="carousel-caption d-flex align-items-center justify-content-center">
                                     <div class="p-5" style="width: 100%; max-width: 900px">
-                                        <h1 id="bannerHeaderText" class="display-3 text-white mb-md-4">Preview Header Text</h1>
+                                        <h1 id="bannerHeaderText" class="display-3 text-white mb-md-4">Preview Header
+                                            Text</h1>
                                         <h5 id="bannerText" class="text-white mb-md-3">Preview Banner Text</h5>
-                                        <a id="bannerButton" href="" class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2" style="display:none;">Button Text</a>
+                                        <a id="bannerButton" href=""
+                                            class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2"
+                                            style="display:none;">Button Text</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="card-body">
                     <div class="form-group">
                         <label class="font-weight-semibold" for="bannerNameInput">Tên banner</label>
@@ -142,18 +173,18 @@
             });
 
             // Update preview text dynamically
-            document.getElementById('bannerHeaderTextInput').addEventListener('input', function() {
+            document.getElementById('bannerHeaderTextInput').addEventListener('input', function () {
                 document.getElementById('bannerHeaderText').innerText = this.value;
             });
-            document.getElementById('bannerTextInput').addEventListener('input', function() {
+            document.getElementById('bannerTextInput').addEventListener('input', function () {
                 document.getElementById('bannerText').innerText = this.value;
             });
-            document.getElementById('buttonTextInput').addEventListener('input', function() {
+            document.getElementById('buttonTextInput').addEventListener('input', function () {
                 var button = document.getElementById('bannerButton');
                 button.innerText = this.value;
                 button.style.display = this.value ? 'inline-block' : 'none';
             });
-            document.getElementById('activeButtonInput').addEventListener('change', function() {
+            document.getElementById('activeButtonInput').addEventListener('change', function () {
                 document.getElementById('bannerButton').style.display = this.checked ? 'inline-block' : 'none';
             });
         });

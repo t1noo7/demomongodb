@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using DemoMongoDB.Models;
 using PagedList.Core;
 using DemoMongoDB.Helper;
+using DemoMongoDB.ModelViews;
 
 namespace DemoMongoDB.Controllers
 {
@@ -84,9 +85,23 @@ namespace DemoMongoDB.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Preview()
+        {
+            HomeViewVM model = new HomeViewVM();
+
+            var database = _client.GetDatabase("DemoMongoDb");
+            var BannersCollection = database.GetCollection<Banners>("Banners");
+
+            List<Banners> BannersDetails = BannersCollection.Find(x => x.Active == true).SortBy(x => x.OrderIndex).ToList();
+
+            model.Banners = BannersDetails;
+
+            return View(model);
+        }
 
 
-        public ActionResult Details(string id)
+
+            public ActionResult Details(string id)
         {
             if (string.IsNullOrEmpty(id))
             {

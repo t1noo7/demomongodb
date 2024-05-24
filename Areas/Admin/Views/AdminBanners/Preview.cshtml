@@ -1,0 +1,85 @@
+@model DemoMongoDB.ModelViews.HomeViewVM
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ECOURSES - Online Courses HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="~/assets/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="~/assets/css/style.css" rel="stylesheet">
+</head>
+
+</html>
+<div class="container-fluid p-0 pb-5 mb-5">
+    <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+        <ol class="carousel-indicators">
+            @for (int i = 1; i < Model.Banners.Count(); i++)
+            {
+                if (i == 1)
+                {
+                    <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
+                }
+                <li data-target="#header-carousel" data-slide-to="@i"></li>
+            }
+        </ol>
+        <div class="carousel-inner">
+            @foreach (var item in Model.Banners)
+            {
+                @if (item.OrderIndex == 1)
+                {
+                    <div class="carousel-item active" style="min-height: 300px;">
+                        <img class="position-relative w-100" src="~/images/banners/@item.Thumb"
+                            style="min-height: 300px; object-fit: cover;">
+                        <div class="carousel-caption d-flex align-items-center justify-content-center">
+                            <div class="p-5" style="width: 100%; max-width: 900px">
+                                <h5 class="text-white text-uppercase mb-md-3">@item.BannerHeaderText</h5>
+                                <h1 class="display-3 text-white mb-md-4">@item.BannerText</h1>
+                                @if (item.ActiveButton)
+                                {
+                                    <a href=""
+                                        class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">@item.ButtonText</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="carousel-item " style="min-height: 300px;">
+                        <img class="position-relative w-100" src="~/images/banners/@item.Thumb"
+                            style="min-height: 300px; object-fit: cover;">
+                        <div class="carousel-caption d-flex align-items-center justify-content-center">
+                            <div class="p-5" style="width: 100%; max-width: 900px">
+                                <h5 class="text-white text-uppercase mb-md-3">@item.BannerHeaderText</h5>
+                                <h1 class="display-3 text-white mb-md-4">@item.BannerText</h1>
+                                @if (item.ActiveButton)
+                                {
+                                    <a href=""
+                                        class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">@item.ButtonText</a>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>
