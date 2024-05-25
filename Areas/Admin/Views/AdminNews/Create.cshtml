@@ -99,7 +99,6 @@
 </form>
 
 @section Scripts {
-
     <!-- page js -->
     <script src="~/Adminassets/vendors/select2/select2.min.js"></script>
     <script src="~/Adminassets/js/pages/e-commerce-product-edit.js"></script>
@@ -115,7 +114,12 @@
                 height: 200, // set editor height
                 minHeight: null, // set minimum height of editor
                 maxHeight: null, // set maximum height of editor
-                focus: true // set focus to editable area after intitializing summernote
+                focus: true, // set focus to editable area after initializing summernote
+            });
+
+            $('form').on('submit', function () {
+                var cleanText = $('.summnernote').summernote('code').replace(/(<([^>]+)>)/ig, ""); // Loại bỏ tất cả thẻ HTML
+                $('.summnernote').val(cleanText); // Cập nhật nội dung summernote trước khi gửi form
             });
         });
     </script>

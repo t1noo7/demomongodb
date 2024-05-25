@@ -128,7 +128,7 @@ namespace DemoMongoDB.Controllers
         // POST: Admin/AdminNews/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(string id, News news, Microsoft.AspNetCore.Http.IFormFile fThumb)
+        public async Task<ActionResult> Edit(string id, News news, Microsoft.AspNetCore.Http.IFormFile? fThumb)
         {
             if (string.IsNullOrEmpty(id))
             {

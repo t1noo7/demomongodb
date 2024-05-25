@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wCznNo1tZgIPw/k5mpWN+XnTDNUGTGrdXskfP9GBPBI=",
+  "Hash": "Tss4cFQc1p1tGSFrdIeN43gwMef6Xh3LV1483kjL8Xc=",
   "Source": "DemoMongoDB",
   "BasePath": "_content/DemoMongoDB",
   "Mode": "Default",
@@ -19756,6 +19756,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\categories\\danh-muc-2.jpg"
+    },
+    {
+      "Identity": "D:\\Codes\\demomongodb\\wwwroot\\images\\news\\danh-tinh-14-nan-nhan-tu-vong-trong-vu-chay-nha-tro-o-ha-noi.webp",
+      "SourceId": "DemoMongoDB",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Codes\\demomongodb\\wwwroot\\",
+      "BasePath": "_content/DemoMongoDB",
+      "RelativePath": "images/news/danh-tinh-14-nan-nhan-tu-vong-trong-vu-chay-nha-tro-o-ha-noi.webp",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\news\\danh-tinh-14-nan-nhan-tu-vong-trong-vu-chay-nha-tro-o-ha-noi.webp"
     },
     {
       "Identity": "D:\\Codes\\demomongodb\\wwwroot\\images\\news\\dien-bien-vu-zidane-man-utd.jpg",
