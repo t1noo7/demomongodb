@@ -32,6 +32,7 @@ public class HomeController : Controller
         model.News = NewsDetails;
         model.Categories = CategoriesDetails;
 
+        ViewBag.Categories = CategoriesDetails;
         return View(model);
     }
 

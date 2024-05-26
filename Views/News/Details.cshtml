@@ -9,7 +9,7 @@
                     <h1 class="mb-5">@Model.Title</h1>
                     <img class="img-fluid rounded w-100 mb-4" src="~/images/news/@Model.Thumb" alt="@Model.Title">
                     <br>
-                    @Model.Contents
+                    @Html.Raw(Model.Contents)
                 </div>
             </div>
         </div>
