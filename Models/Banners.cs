@@ -28,4 +28,12 @@ public partial class Banners
     public string? BannerHeaderText { get; set; }
 
     public int OrderIndex { get; set; }
+
+    // Positions
+    public string BannerHeaderTextTop { get; set; }
+    public string BannerHeaderTextLeft { get; set; }
+    public string BannerTextTop { get; set; }
+    public string BannerTextLeft { get; set; }
+    public string BannerButtonTop { get; set; }
+    public string BannerButtonLeft { get; set; }
 }

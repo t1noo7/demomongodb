@@ -8,25 +8,49 @@
 @section Styles {
     <link href="~/Adminassets/summernote/summernote-bs4.css" rel="stylesheet" />
     <link href="~/Adminassets/summernote/summernote.css" rel="stylesheet" />
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+
+    <style>
+        #header-carousel {
+            position: relative;
+        }
+
+        #bannerHeaderText,
+        #bannerText,
+        #bannerButton {
+            position: absolute;
+            cursor: move;
+        }
+
+        #bannerHeaderText {
+            cursor: move;
+            /* Text cursor */
+        }
+
+        #bannerText {
+            cursor: move;
+            /* Text cursor */
+        }
+
+        #bannerButton {
+            cursor: pointer;
+            /* Pointer cursor */
+        }
+    </style>
+
 }
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-
-
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
     <!-- Libraries Stylesheet -->
     <link href="~/assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
     <!-- Customized Bootstrap Stylesheet -->
     <link href="~/assets/css/style.css" rel="stylesheet">
 </head>
@@ -38,7 +62,8 @@
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
                     class="anticon anticon-home m-r-5"></i>Home</a>
-            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminPosts" asp-action="Index">Danh sách Banner :
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminPosts" asp-action="Index">Danh sách Banner
+                :
                 page @ViewBag.CurrentPage</a>
             <span class="breadcrumb-item active">Tạo mới Banner</span>
         </nav>
@@ -75,12 +100,14 @@
                                     style="min-height: 300px; object-fit: cover;">
                                 <div class="carousel-caption d-flex align-items-center justify-content-center">
                                     <div class="p-5" style="width: 100%; max-width: 900px">
-                                        <h1 id="bannerHeaderText" class="display-3 text-white mb-md-4">Preview Header
+                                        <h1 id="bannerHeaderText" class="display-3 text-white mb-md-4"
+                                            style="cursor: move;">Preview Header
                                             Text</h1>
-                                        <h5 id="bannerText" class="text-white mb-md-3">Preview Banner Text</h5>
+                                        <h5 id="bannerText" class="text-white mb-md-3" style="cursor: move;">Preview
+                                            Banner Text</h5>
                                         <a id="bannerButton" href=""
                                             class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2"
-                                            style="display:none;">Button Text</a>
+                                            style="display:none; cursor: pointer;">Button Text</a>
                                     </div>
                                 </div>
                             </div>
@@ -109,46 +136,68 @@
                                 </div>
                                 <label>Active</label>
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-semibold" for="bannerHeaderTextInput">Banner Header Text</label>
-                        <input type="text" class="form-control" asp-for="BannerHeaderText" id="bannerHeaderTextInput">
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-semibold" for="bannerTextInput">Banner Text</label>
-                        <input type="text" class="form-control" asp-for="BannerText" id="bannerTextInput">
-                    </div>
-                    <div class="row">
-                        <div class="m-t-25">
-                            <div class="form-group d-flex align-items-center">
-                                <div class="switch m-r-10">
-                                    <input type="checkbox" asp-for="ActiveButton" id="activeButtonInput" checked="">
-                                    <label for="ActiveButton"></label>
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label class="font-weight-semibold" for="bannerHeaderTextInput">Banner Header
+                                        Text</label>
+                                    <input id="bannerHeaderTextInput" type="text" class="form-control"
+                                        asp-for="BannerHeaderText">
                                 </div>
-                                <label>Active Button</label>
+                                <div class="form-group col-sm-4">
+                                    <label class="font-weight-semibold" for="bannerTextInput">Banner Text</label>
+                                    <input id="bannerTextInput" type="text" class="form-control" asp-for="BannerText">
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="font-weight-semibold" for="buttonTextInput">Button Text</label>
+                                    <input id="buttonTextInput" type="text" class="form-control" asp-for="ButtonText">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="font-weight-semibold" for="buttonTextInput">Button Text</label>
-                        <input type="text" class="form-control" asp-for="ButtonText" id="buttonTextInput">
+                        <label class="font-weight-semibold" for="headerTextPosX">Header Text Position X</label>
+                        <input id="headerTextPosX" type="text" class="form-control" readonly />
+                        <input type="hidden" name="BannerHeaderTextLeft" />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="headerTextPosY">Header Text Position Y</label>
+                        <input id="headerTextPosY" type="text" class="form-control" readonly />
+                        <input type="hidden" name="BannerHeaderTextTop" />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="bannerTextPosX">Banner Text Position X</label>
+                        <input id="bannerTextPosX" type="text" class="form-control" readonly />
+                        <input type="hidden" name="BannerTextLeft" />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="bannerTextPosY">Banner Text Position Y</label>
+                        <input id="bannerTextPosY" type="text" class="form-control" readonly />
+                        <input type="hidden" name="BannerTextTop" />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="buttonPosX">Button Position X</label>
+                        <input id="buttonPosX" type="text" class="form-control" readonly />
+                        <input type="hidden" name="BannerButtonLeft" />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="buttonPosY">Button Position Y</label>
+                        <input id="buttonPosY" type="text" class="form-control" readonly />
+                        <input type="hidden" name="BannerButtonTop" />
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
-
 @section Scripts {
-
     <!-- page js -->
     <script src="~/Adminassets/vendors/select2/select2.min.js"></script>
     <script src="~/Adminassets/js/pages/e-commerce-product-edit.js"></script>
-
-    <!-- Core js -->
+    <script src="~/Adminassets/js/vendors.min.js"></script>
+    <script src="~/Adminassets/js/app.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
     <script src="~/Adminassets/summernote/summernote-bs4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         jQuery(document).ready(function () {
             $('.summnernote').summernote({
@@ -158,6 +207,27 @@
                 minHeight: null, // set minimum height of editor
                 maxHeight: null, // set maximum height of editor
                 focus: true // set focus to editable area after intitializing summernote
+            });
+
+            function updatePositionFields() {
+                $("#headerTextPosX").val($("#bannerHeaderText").position().left);
+                $("#headerTextPosY").val($("#bannerHeaderText").position().top);
+                $("#bannerTextPosX").val($("#bannerText").position().left);
+                $("#bannerTextPosY").val($("#bannerText").position().top);
+                $("#buttonPosX").val($("#bannerButton").position().left);
+                $("#buttonPosY").val($("#bannerButton").position().top);
+
+                $("input[name='BannerHeaderTextLeft']").val($("#bannerHeaderText").position().left);
+                $("input[name='BannerHeaderTextTop']").val($("#bannerHeaderText").position().top);
+                $("input[name='BannerTextLeft']").val($("#bannerText").position().left);
+                $("input[name='BannerTextTop']").val($("#bannerText").position().top);
+                $("input[name='BannerButtonLeft']").val($("#bannerButton").position().left);
+                $("input[name='BannerButtonTop']").val($("#bannerButton").position().top);
+            }
+
+            $("#bannerHeaderText, #bannerText, #bannerButton").draggable({
+                containment: ".carousel-inner",
+                stop: updatePositionFields
             });
 
             // Function to handle file input change and update the image preview

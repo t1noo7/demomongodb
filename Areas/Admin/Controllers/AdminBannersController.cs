@@ -148,20 +148,14 @@ namespace DemoMongoDB.Controllers
             return View(Banners);
         }
 
-        // POST: Admin/AdminBanners/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(string id, Banners Banners, Microsoft.AspNetCore.Http.IFormFile fThumb)
+        public async Task<ActionResult> Edit(string id, Banners Banners, Microsoft.AspNetCore.Http.IFormFile fThumb, string bannerHeaderTextPosition, string bannerTextPosition, string bannerButtonPosition)
         {
             if (string.IsNullOrEmpty(id))
             {
                 return BadRequest("Banners ID is required.");
             }
-
-            // if (!ModelState.IsValid)
-            // {
-            //     return View(Banners);
-            // }
 
             var database = _client.GetDatabase("DemoMongoDb");
             var BannersCollection = database.GetCollection<Banners>("Banners");
@@ -176,22 +170,32 @@ namespace DemoMongoDB.Controllers
 
             int newOrderIndex = Banners.OrderIndex;
 
-            // Kiểm tra xem có bản ghi khác có OrderIndex trùng với OrderIndex mới không
             var filterOtherBanner = Builders<Banners>.Filter.Where(b => b._id != id && b.OrderIndex == newOrderIndex);
             var otherBanner = await BannersCollection.Find(filterOtherBanner).FirstOrDefaultAsync();
 
             if (otherBanner != null)
             {
-                // Nếu có, swap giá trị OrderIndex của hai bản ghi
                 int oldOrderIndex = Convert.ToInt32(Request.Form["oldOrderIndex"]);
                 otherBanner.OrderIndex = Banners.OrderIndex;
 
-
-                // Cập nhật bản ghi vào cơ sở dữ liệu
                 var updateOtherBanner = Builders<Banners>.Update.Set("OrderIndex", oldOrderIndex);
                 var updateResult = await BannersCollection.UpdateOneAsync(filterOtherBanner, updateOtherBanner);
             }
             if (string.IsNullOrEmpty(Banners.Thumb)) Banners.Thumb = "default.jpg";
+
+            // Parse the position strings
+            var headerTextPosition = bannerHeaderTextPosition.Split(',');
+            var textPosition = bannerTextPosition.Split(',');
+            var buttonPosition = bannerButtonPosition.Split(',');
+
+            // Update the model with the positions
+            Banners.BannerHeaderTextTop = headerTextPosition[0];
+            Banners.BannerHeaderTextLeft = headerTextPosition[1];
+            Banners.BannerTextTop = textPosition[0];
+            Banners.BannerTextLeft = textPosition[1];
+            Banners.BannerButtonTop = buttonPosition[0];
+            Banners.BannerButtonLeft = buttonPosition[1];
+
             var update = Builders<Banners>.Update
                 .Set("BannerName", Banners.BannerName)
                 .Set("BannerHeaderText", Banners.BannerHeaderText)
@@ -201,7 +205,13 @@ namespace DemoMongoDB.Controllers
                 .Set("ButtonText", Banners.ButtonText)
                 .Set("Active", Banners.Active)
                 .Set("OrderIndex", Banners.OrderIndex)
-                .Set("Thumb", Banners.Thumb);
+                .Set("Thumb", Banners.Thumb)
+                .Set("BannerHeaderTextTop", Banners.BannerHeaderTextTop)
+                .Set("BannerHeaderTextLeft", Banners.BannerHeaderTextLeft)
+                .Set("BannerTextTop", Banners.BannerTextTop)
+                .Set("BannerTextLeft", Banners.BannerTextLeft)
+                .Set("BannerButtonTop", Banners.BannerButtonTop)
+                .Set("BannerButtonLeft", Banners.BannerButtonLeft);
 
             var result = BannersCollection.UpdateOne(filter, update);
             if (result.ModifiedCount == 0)
