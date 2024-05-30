@@ -64,9 +64,12 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="_id" />
     <input type="hidden" asp-for="Thumb" />
-    <input type="hidden" id="bannerHeaderTextPosition" name="bannerHeaderTextPosition" value="@Model.BannerHeaderTextTop,@Model.BannerHeaderTextLeft" />
-    <input type="hidden" id="bannerTextPosition" name="bannerTextPosition" value="@Model.BannerTextTop,@Model.BannerTextLeft" />
-    <input type="hidden" id="bannerButtonPosition" name="bannerButtonPosition" value="@Model.BannerButtonTop,@Model.BannerButtonLeft" />
+    <input type="hidden" id="bannerHeaderTextPosition" name="bannerHeaderTextPosition"
+        value="@Model.BannerHeaderTextTop,@Model.BannerHeaderTextLeft" />
+    <input type="hidden" id="bannerTextPosition" name="bannerTextPosition"
+        value="@Model.BannerTextTop,@Model.BannerTextLeft" />
+    <input type="hidden" id="bannerButtonPosition" name="bannerButtonPosition"
+        value="@Model.BannerButtonTop,@Model.BannerButtonLeft" />
     <div class="page-header1 no-gutters has-tab">
         <div class="d-md-flex m-b-15 align-items-center justify-content-between">
             <div class="media align-items-center m-b-15"></div>
@@ -95,10 +98,11 @@
                                 <div class="carousel-caption d-flex align-items-center justify-content-center">
                                     <div id="bannerHeaderText" class="p-5 draggable"
                                         style="width: 100%; max-width: 900px">
-                                        <h5 class="text-white text-uppercase mb-md-3">@Model.BannerHeaderText</h5>
+                                        <h1 class="display-3 text-white text-uppercase mb-md-4">@Model.BannerHeaderText
+                                        </h1>
                                     </div>
                                     <div id="bannerText" class="p-5 draggable" style="width: 100%; max-width: 900px">
-                                        <h1 class="display-3 text-white mb-md-4">@Model.BannerText</h1>
+                                        <h6 class="text-white mb-md-3">@Model.BannerText</h6>
                                     </div>
                                     @if (Model.ActiveButton)
                                     {
@@ -133,7 +137,7 @@
                         <div class="m-t-25">
                             <div class="form-group d-flex align-items-center">
                                 <div class="switch m-r-10">
-                                    <input type="checkbox" asp-for="Active" checked="">
+                                    <input type="checkbox" asp-for="Active">
                                     <label for="Active"></label>
                                 </div>
                                 <label>Active</label>
@@ -152,7 +156,7 @@
                         <div class="m-t-25">
                             <div class="form-group d-flex align-items-center">
                                 <div class="switch m-r-10">
-                                    <input type="checkbox" asp-for="ActiveButton" checked="">
+                                    <input type="checkbox" asp-for="ActiveButton">
                                     <label for="ActiveButton"></label>
                                 </div>
                                 <label>Active Button</label>

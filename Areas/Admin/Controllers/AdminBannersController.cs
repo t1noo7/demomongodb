@@ -63,27 +63,40 @@ namespace DemoMongoDB.Controllers
         {
             var database = _client.GetDatabase("DemoMongoDb");
             var BannersCollection = database.GetCollection<Banners>("Banners");
+
             if (fThumb != null)
             {
                 string extension = Path.GetExtension(fThumb.FileName);
                 string image = Utilities.SEOUrl(Banners.BannerName) + extension;
                 Banners.Thumb = await Utilities.UploadFile(fThumb, @"banners", image.ToLower());
             }
-            if (string.IsNullOrEmpty(Banners.Thumb)) Banners.Thumb = "default.jpg";
-            // Find the document with the highest OrderIndex
+
+            if (string.IsNullOrEmpty(Banners.Thumb))
+                Banners.Thumb = "default.jpg";
+
             var maxOrderIndexDocument = await BannersCollection.Find(Builders<Banners>.Filter.Empty)
-                                                            .SortByDescending(b => b.OrderIndex)
-                                                            .Limit(1)
-                                                            .FirstOrDefaultAsync();
+                                                               .SortByDescending(b => b.OrderIndex)
+                                                               .Limit(1)
+                                                               .FirstOrDefaultAsync();
             int maxOrderIndex = maxOrderIndexDocument != null ? maxOrderIndexDocument.OrderIndex : 0;
 
-            // Increment the maxOrderIndex by 1 for the new Banner
             Banners.OrderIndex = maxOrderIndex + 1;
             Banners.DateModified = DateTime.Now;
             Banners._id = null;
+
+            // Ensure position data is in "px" format
+            Banners.BannerHeaderTextTop += "px";
+            Banners.BannerHeaderTextLeft += "px";
+            Banners.BannerTextTop += "px";
+            Banners.BannerTextLeft += "px";
+            Banners.BannerButtonTop += "px";
+            Banners.BannerButtonLeft += "px";
+
             BannersCollection.InsertOne(Banners);
+
             return RedirectToAction("Index");
         }
+
 
         public ActionResult Preview()
         {
@@ -101,7 +114,7 @@ namespace DemoMongoDB.Controllers
 
 
 
-            public ActionResult Details(string id)
+        public ActionResult Details(string id)
         {
             if (string.IsNullOrEmpty(id))
             {
