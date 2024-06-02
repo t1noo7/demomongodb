@@ -9,8 +9,9 @@
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
-            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
-                    class="anticon anticon-home m-r-5"></i>Home</a>
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item">
+                <i class="anticon anticon-home m-r-5"></i>Home
+            </a>
             <span class="breadcrumb-item active">Danh sách banner : page @CurrentPage</span>
         </nav>
     </div>
@@ -20,17 +21,22 @@
         <div class="row m-b-30">
             <div class="col-lg-8">
                 <div class="d-md-flex">
-                    <div class="m-b-10 m-r-15">
-                    </div>
+                    <div class="m-b-10 m-r-15"></div>
                 </div>
             </div>
-
             <div class="col-lg-4 text-right">
-                <a class="btn btn-primary show-banner-preview"><i
-                        class="anticon anticon-plus-circle m-r-5 "></i> <span>Preview
-                        Banner</span></a>
-                <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminBanners" asp-action="Create"><i
-                        class="anticon anticon-plus-circle m-r-5"></i> <span>Add Banner</span></a>
+                @* Thay đổi nút Preview Banner để sử dụng id và href *@
+                @{
+                    var previewUrl = Url.Action("Preview", "AdminBanners", new { area = "Admin" });
+                }
+                <a id="showBannerPreview" class="btn btn-primary" href="@previewUrl">
+                    <i class="anticon anticon-plus-circle m-r-5"></i>
+                    <span>Preview Banner</span>
+                </a>
+                <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminBanners" asp-action="Create">
+                    <i class="anticon anticon-plus-circle m-r-5"></i>
+                    <span>Add Banner</span>
+                </a>
             </div>
         </div>
         <div class="table-responsive">
@@ -76,8 +82,6 @@
                                     }
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminBanners"
-                                        asp-action="Details" asp-route-id="@item._id">View</a>
                                     <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminBanners"
                                         asp-action="Edit" asp-route-id="@item._id">Edit</a>
                                     <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminBanners"
@@ -110,13 +114,17 @@
     </div>
 </div>
 
+<!-- jQuery and Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
 <script>
     $(document).ready(function () {
-        $(".show-banner-preview").click(function () {
+        $("#showBannerPreview").click(function (e) {
+            e.preventDefault(); // Ngăn chặn hành động mặc định của liên kết
             // Sử dụng hàm ajax để gọi action "Preview" trong controller "AdminBanners"
             $.ajax({
-                url: '@Url.Action("Preview", "AdminBanners")',
+                url: '@Url.Action("Preview", "AdminBanners", new { area = "Admin" })',
                 type: 'GET',
                 success: function (data) {
                     // Thêm dữ liệu nhận được từ action vào modal content
@@ -160,9 +168,8 @@
         width: 100%;
         height: auto;
         margin: 10% auto;
-        padding: 20px;
         border: 1px solid #888;
-        max-width: 600px;
+        max-width: 1600px;
         border-radius: 5px;
         position: relative;
     }

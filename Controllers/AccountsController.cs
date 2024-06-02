@@ -40,6 +40,10 @@ namespace DemoMongoDB.Controllers
         [Route("register.html", Name = "Register")]
         public IActionResult RegisterAccount()
         {
+            var database = _client.GetDatabase("DemoMongoDb");
+            var CategoriesCollection = database.GetCollection<Categories>("Categories");
+            var CategoriesDetails = CategoriesCollection.Find(_ => true).ToList();
+            ViewBag.Categories = CategoriesDetails;
             return View();
         }
 
@@ -105,6 +109,10 @@ namespace DemoMongoDB.Controllers
         [Route("login.html", Name = "Login")]
         public IActionResult Login(string returnUrl = null)
         {
+            var database = _client.GetDatabase("DemoMongoDb");
+            var CategoriesCollection = database.GetCollection<Categories>("Categories");
+            var CategoriesDetails = CategoriesCollection.Find(_ => true).ToList();
+            ViewBag.Categories = CategoriesDetails;
             var accountID = HttpContext.Session.GetString("_id");
             if (accountID != null)
             {
@@ -233,6 +241,9 @@ namespace DemoMongoDB.Controllers
             if (accountID != null)
             {
                 var database = _client.GetDatabase("DemoMongoDb");
+                var CategoriesCollection = database.GetCollection<Categories>("Categories");
+                var CategoriesDetails = CategoriesCollection.Find(_ => true).ToList();
+                ViewBag.Categories = CategoriesDetails;
                 var cusCollection = database.GetCollection<UserAccounts>("UserAccounts");
                 var customer = cusCollection.Find(x => x._id == accountID).SingleOrDefault();
                 if (customer != null)

@@ -26,62 +26,83 @@
     <link href="~/assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="~/assets/css/style.css" rel="stylesheet">
+    <link href="~/adminassets/css/app.min.css" rel="stylesheet">
+
+    <!-- Custom CSS for Carousel -->
+    <style>
+        .container-fluid {
+            padding: 0;
+            margin: 0;
+        }
+
+        .carousel-item {
+            width: 100%;
+            height: 100vh;
+            background-size: cover;
+            background-repeat: repeat;
+            background-position: center;
+        }
+
+        .carousel-item img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: contain !important;
+        }
+    </style>
 </head>
 
-</html>
-<div class="container-fluid p-0 pb-5 mb-5">
-    <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
-        <ol class="carousel-indicators">
-            @for (int i = 1; i < Model.Banners.Count(); i++)
-            {
-                if (i == 1)
+<body>
+    <div class="container-fluid">
+        <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+            <ol class="carousel-indicators">
+                @for (int i = 0; i < Model.Banners.Count(); i++)
                 {
-                    <li data-target="#header-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#header-carousel" data-slide-to="@i" class="@(i == 0 ? "active" : "")"></li>
                 }
-                <li data-target="#header-carousel" data-slide-to="@i"></li>
-            }
-        </ol>
-        <div class="carousel-inner">
-            @foreach (var item in Model.Banners)
-            {
-                @if (item.OrderIndex == 1)
+            </ol>
+            <div class="carousel-inner">
+                @foreach (var item in Model.Banners)
                 {
-                    <div class="carousel-item active" style="min-height: 300px;">
-                        <img class="position-relative w-100" src="~/images/banners/@item.Thumb"
-                            style="min-height: 300px; object-fit: cover;">
+                    <div class="carousel-item @(item.OrderIndex == 1 ? "active" : "")" style="min-height: 300px;">
+                        <img class="position-relative w-100" src="~/images/banners/@item.Thumb" style="min-height: 300px;">
                         <div class="carousel-caption d-flex align-items-center justify-content-center">
-                            <div class="p-5" style="width: 100%; max-width: 900px">
-                                <h5 class="text-white text-uppercase mb-md-3">@item.BannerHeaderText</h5>
-                                <h1 class="display-3 text-white mb-md-4">@item.BannerText</h1>
-                                @if (item.ActiveButton)
-                                {
-                                    <a href=""
-                                        class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">@item.ButtonText</a>
-                                }
+                            <div id="bannerHeaderText-@item.OrderIndex" class="p-5"
+                                style="width: 100%; max-width: 900px; position: absolute; top: @item.BannerHeaderTextTop; left: @item.BannerHeaderTextLeft;">
+                                <h1 class="display-3 text-white text-uppercase mb-md-4">@item.BannerHeaderText</h1>
                             </div>
+                            <div id="bannerText-@item.OrderIndex" class="p-5"
+                                style="width: 100%; max-width: 900px; position: absolute; top: @item.BannerTextTop; left: @item.BannerTextLeft;">
+                                <h6 class="text-white mb-md-3">@item.BannerText</h6>
+                            </div>
+                            @if (item.ActiveButton)
+                            {
+                                <div id="bannerButton-@item.OrderIndex" class="p-5"
+                                    style="width: 100%; max-width: 900px; position: absolute; top: @item.BannerButtonTop; left: @item.BannerButtonLeft;">
+                                    <a href=""
+                                        class="btn btn-primary1 py-md-2 px-md-4 font-weight-semi-bold mt-2">@item.ButtonText</a>
+                                </div>
+                            }
                         </div>
                     </div>
                 }
-                else
-                {
-                    <div class="carousel-item " style="min-height: 300px;">
-                        <img class="position-relative w-100" src="~/images/banners/@item.Thumb"
-                            style="min-height: 300px; object-fit: cover;">
-                        <div class="carousel-caption d-flex align-items-center justify-content-center">
-                            <div class="p-5" style="width: 100%; max-width: 900px">
-                                <h5 class="text-white text-uppercase mb-md-3">@item.BannerHeaderText</h5>
-                                <h1 class="display-3 text-white mb-md-4">@item.BannerText</h1>
-                                @if (item.ActiveButton)
-                                {
-                                    <a href=""
-                                        class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">@item.ButtonText</a>
-                                }
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
+            </div>
         </div>
     </div>
-</div>
+
+    <!-- jQuery and Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS for Carousel -->
+    <script>
+        $(document).ready(function () {
+            // Khởi tạo và cấu hình carousel
+            $('#header-carousel').carousel({
+                interval: 5000, // Đặt thời gian trượt tự động (trong mili giây)
+                pause: 'hover' // Tạm dừng trượt khi rê chuột vào carousel
+            });
+        });
+    </script>
+</body>
+
+</html>

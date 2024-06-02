@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qiOYP6J8PsJJp3FEnnUGIjrOcMJ1CmL26+WRQipIH1o=",
+  "Hash": "oktwC2jBNIbYS9hzKu8+OlPXLBiypcmYkbA51iqJgIk=",
   "Source": "DemoMongoDB",
   "BasePath": "_content/DemoMongoDB",
   "Mode": "Default",
@@ -19680,6 +19680,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\banners\\mischief-jerry.jpg"
+    },
+    {
+      "Identity": "D:\\Codes\\demomongodb\\wwwroot\\images\\banners\\sdfsdfsadf.png",
+      "SourceId": "DemoMongoDB",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Codes\\demomongodb\\wwwroot\\",
+      "BasePath": "_content/DemoMongoDB",
+      "RelativePath": "images/banners/sdfsdfsadf.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\banners\\sdfsdfsadf.png"
     },
     {
       "Identity": "D:\\Codes\\demomongodb\\wwwroot\\images\\banners\\sleepy.jpeg",

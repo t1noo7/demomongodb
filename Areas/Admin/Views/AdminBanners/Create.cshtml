@@ -36,6 +36,10 @@
             cursor: pointer;
             /* Pointer cursor */
         }
+
+        .hidden {
+            display: none;
+        }
     </style>
 
 }
@@ -161,36 +165,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="font-weight-semibold" for="headerTextPosX">Header Text Position X</label>
-                        <input id="headerTextPosX" type="text" class="form-control" readonly />
-                        <input type="hidden" name="BannerHeaderTextLeft" />
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-semibold" for="headerTextPosY">Header Text Position Y</label>
-                        <input id="headerTextPosY" type="text" class="form-control" readonly />
-                        <input type="hidden" name="BannerHeaderTextTop" />
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-semibold" for="bannerTextPosX">Banner Text Position X</label>
-                        <input id="bannerTextPosX" type="text" class="form-control" readonly />
-                        <input type="hidden" name="BannerTextLeft" />
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-semibold" for="bannerTextPosY">Banner Text Position Y</label>
-                        <input id="bannerTextPosY" type="text" class="form-control" readonly />
-                        <input type="hidden" name="BannerTextTop" />
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-semibold" for="buttonPosX">Button Position X</label>
-                        <input id="buttonPosX" type="text" class="form-control" readonly />
-                        <input type="hidden" name="BannerButtonLeft" />
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-semibold" for="buttonPosY">Button Position Y</label>
-                        <input id="buttonPosY" type="text" class="form-control" readonly />
-                        <input type="hidden" name="BannerButtonTop" />
-                    </div>
+                    <input type="hidden" id="headerTextPosX" name="BannerHeaderTextLeft" />
+                    <input type="hidden" id="headerTextPosY" name="BannerHeaderTextTop" />
+                    <input type="hidden" id="bannerTextPosX" name="BannerTextLeft" />
+                    <input type="hidden" id="bannerTextPosY" name="BannerTextTop" />
+                    <input type="hidden" id="buttonPosX" name="BannerButtonLeft" />
+                    <input type="hidden" id="buttonPosY" name="BannerButtonTop" />
                 </div>
             </div>
         </div>
@@ -236,13 +216,6 @@
                 $("#bannerTextPosY").val($("#bannerText").position().top);
                 $("#buttonPosX").val($("#bannerButton").position().left);
                 $("#buttonPosY").val($("#bannerButton").position().top);
-
-                $("input[name='BannerHeaderTextLeft']").val($("#bannerHeaderText").position().left);
-                $("input[name='BannerHeaderTextTop']").val($("#bannerHeaderText").position().top);
-                $("input[name='BannerTextLeft']").val($("#bannerText").position().left);
-                $("input[name='BannerTextTop']").val($("#bannerText").position().top);
-                $("input[name='BannerButtonLeft']").val($("#bannerButton").position().left);
-                $("input[name='BannerButtonTop']").val($("#bannerButton").position().top);
             }
 
             $("#bannerHeaderText, #bannerText, #bannerButton").draggable({

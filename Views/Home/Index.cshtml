@@ -17,15 +17,15 @@
             {
                 <div class="carousel-item @(item.OrderIndex == 1 ? "active" : "")" style="min-height: 300px;">
                     <img class="position-relative w-100" src="~/images/banners/@item.Thumb"
-                        style="min-height: 300px; object-fit: cover;">
+                        style="min-height: 300px; object-fit: contain;">
                     <div class="carousel-caption d-flex align-items-center justify-content-center">
                         <div id="bannerHeaderText-@item.OrderIndex" class="p-5"
                             style="width: 100%; max-width: 900px; position: absolute; top: @item.BannerHeaderTextTop; left: @item.BannerHeaderTextLeft;">
-                            <h5 class="text-white text-uppercase mb-md-3">@item.BannerHeaderText</h5>
+                            <h1 class="display-3 text-white text-uppercase mb-md-4">@item.BannerHeaderText</h1>
                         </div>
                         <div id="bannerText-@item.OrderIndex" class="p-5"
                             style="width: 100%; max-width: 900px; position: absolute; top: @item.BannerTextTop; left: @item.BannerTextLeft;">
-                            <h1 class="display-3 text-white mb-md-4">@item.BannerText</h1>
+                            <h1 class="text-white mb-md-3">@item.BannerText</h1>
                         </div>
                         @if (item.ActiveButton)
                         {
@@ -473,13 +473,13 @@
 @if (Model.News != null && Model.News.Count() > 0)
 {
     <div class="container-fluid py-5">
-    <div class="container pt-5 pb-3">
-        <div class="text-center mb-5">
-            <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Our Blog</h5>
-            <h1>Latest From Our Blog</h1>
-        </div>
-        <div class="row pb-3">
-            @foreach (var item in Model.News)
+        <div class="container pt-5 pb-3">
+            <div class="text-center mb-5">
+                <h5 class="text-primary text-uppercase mb-3" style="letter-spacing: 5px;">Our Blog</h5>
+                <h1>Latest From Our Blog</h1>
+            </div>
+            <div class="row pb-3">
+                @foreach (var item in Model.News)
                 {
                     string url = $"/news/{item.Alias}";
                     <div class="col-lg-4 mb-4">
