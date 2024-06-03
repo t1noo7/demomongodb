@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace DemoMongoDB.Helper
 {
@@ -163,6 +166,67 @@ namespace DemoMongoDB.Helper
             {
                 return null;
             }
+        }
+
+        public static async Task<string> ResizeAndUploadImage(Microsoft.AspNetCore.Http.IFormFile file, string sDirectory, int desiredWidth, int desiredHeight, string newname = null)
+        {
+            try
+            {
+                if (newname == null) newname = file.FileName;
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", sDirectory);
+                CreateIfMissing(path);
+                string pathFile = Path.Combine(path, newname);
+
+                var supportedTypes = new[] { "jpg", "jpeg", "png", "gif", "webp" };
+                var fileExt = Path.GetExtension(file.FileName).Substring(1);
+                if (!supportedTypes.Contains(fileExt.ToLower())) // If not a supported type
+                {
+                    return null;
+                }
+
+                using (var stream = new MemoryStream())
+                {
+                    await file.CopyToAsync(stream);
+                    using (var originalImage = Image.FromStream(stream))
+                    {
+                        var resizedImage = ResizeImage(originalImage, desiredWidth, desiredHeight);
+
+                        resizedImage.Save(pathFile, originalImage.RawFormat);
+                    }
+                }
+
+                return newname;
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions
+                return null;
+            }
+        }
+
+         private static Image ResizeImage(Image image, int width, int height)
+        {
+            var destRect = new Rectangle(0, 0, width, height);
+            var destImage = new Bitmap(width, height);
+
+            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
+
+            using (var graphics = Graphics.FromImage(destImage))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                graphics.CompositingQuality = CompositingQuality.HighQuality;
+                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                graphics.SmoothingMode = SmoothingMode.HighQuality;
+                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
+
+                using (var wrapMode = new ImageAttributes())
+                {
+                    wrapMode.SetWrapMode(WrapMode.TileFlipXY);
+                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
+                }
+            }
+
+            return destImage;
         }
     }
 }

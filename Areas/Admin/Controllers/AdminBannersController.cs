@@ -68,9 +68,11 @@ namespace DemoMongoDB.Controllers
             {
                 string extension = Path.GetExtension(fThumb.FileName);
                 string image = Utilities.SEOUrl(Banners.BannerName) + extension;
-                Banners.Thumb = await Utilities.UploadFile(fThumb, @"banners", image.ToLower());
-            }
+                // Banners.Thumb = await Utilities.UploadFile(fThumb, @"banners", image.ToLower());
 
+             Banners.Thumb = await Utilities.ResizeAndUploadImage(fThumb, "banners", desiredWidth: 942, desiredHeight: 600, image.ToLower());
+            
+            }
             if (string.IsNullOrEmpty(Banners.Thumb))
                 Banners.Thumb = "default.jpg";
 
@@ -85,12 +87,12 @@ namespace DemoMongoDB.Controllers
             Banners._id = null;
 
             // Ensure position data is in "px" format
-            Banners.BannerHeaderTextTop += "px";
-            Banners.BannerHeaderTextLeft += "px";
-            Banners.BannerTextTop += "px";
-            Banners.BannerTextLeft += "px";
-            Banners.BannerButtonTop += "px";
-            Banners.BannerButtonLeft += "px";
+            Banners.BannerHeaderTextTop += "%";
+            Banners.BannerHeaderTextLeft += "%";
+            Banners.BannerTextTop += "%";
+            Banners.BannerTextLeft += "%";
+            Banners.BannerButtonTop += "%";
+            Banners.BannerButtonLeft += "%";
 
             BannersCollection.InsertOne(Banners);
 
@@ -178,7 +180,8 @@ namespace DemoMongoDB.Controllers
             {
                 string extension = Path.GetExtension(fThumb.FileName);
                 string image = Utilities.SEOUrl(Banners.BannerName) + extension;
-                Banners.Thumb = await Utilities.UploadFile(fThumb, @"banners", image.ToLower());
+                // Banners.Thumb = await Utilities.UploadFile(fThumb, @"banners", image.ToLower());
+                Banners.Thumb = await Utilities.ResizeAndUploadImage(fThumb, "banners", desiredWidth: 942, desiredHeight: 600, image.ToLower());
             }
 
             int newOrderIndex = Banners.OrderIndex;

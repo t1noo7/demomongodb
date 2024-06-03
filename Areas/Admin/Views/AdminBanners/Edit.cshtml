@@ -42,7 +42,7 @@
     <link href="~/assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="~/assets/css/style.css" rel="stylesheet">
+    @* <link href="~/assets/css/style.css" rel="stylesheet"> *@
 </head>
 
 </html>
@@ -74,7 +74,7 @@
         <div class="d-md-flex m-b-15 align-items-center justify-content-between">
             <div class="media align-items-center m-b-15"></div>
             <div class="m-b-15">
-                <button class="btn btn-primary1">
+                <button class="btn btn-primary">
                     <i class="anticon anticon-save"></i>
                     <span>Save</span>
                 </button>
@@ -108,7 +108,7 @@
                                     {
                                         <div id="bannerButton" class="p-5 draggable" style="width: 100%; max-width: 900px">
                                             <a href=""
-                                                class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2">@Model.ButtonText</a>
+                                                class="btn btn-primary1 py-md-2 px-md-4 font-weight-semi-bold mt-2">@Model.ButtonText</a>
                                         </div>
                                     }
                                 </div>
@@ -232,6 +232,15 @@
                 elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
                 elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
             }
+
+             // Convert pixel values to percentage
+                var parentWidth = elmnt.parentElement.offsetWidth;
+                var parentHeight = elmnt.parentElement.offsetHeight;
+                var leftPercentage = (elmnt.offsetLeft / parentWidth) * 100;
+                var topPercentage = (elmnt.offsetTop / parentHeight) * 100;
+
+                // Update position input value with percentage values
+                document.getElementById(positionInputId).value = `${topPercentage}%,${leftPercentage}%`;
 
             function closeDragElement() {
                 document.onmouseup = null;

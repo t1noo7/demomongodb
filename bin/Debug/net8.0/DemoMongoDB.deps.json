@@ -11,7 +11,8 @@
           "Microsoft.AspNetCore.Authentication.Facebook": "8.0.4",
           "MongoDB.Driver": "2.25.0",
           "Newtonsoft.Json": "13.0.3",
-          "PagedList.Core.Mvc": "3.0.0"
+          "PagedList.Core.Mvc": "3.0.0",
+          "System.Drawing.Common": "8.0.6"
         },
         "runtime": {
           "DemoMongoDB.dll": {}
@@ -61,6 +62,22 @@
         "dependencies": {
           "System.Security.AccessControl": "5.0.0",
           "System.Security.Principal.Windows": "5.0.0"
+        }
+      },
+      "Microsoft.Win32.SystemEvents/8.0.0": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Win32.SystemEvents.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/Microsoft.Win32.SystemEvents.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.53103"
+          }
         }
       },
       "MongoDB.Bson/2.25.0": {
@@ -177,6 +194,17 @@
         }
       },
       "System.Buffers/4.5.1": {},
+      "System.Drawing.Common/8.0.6": {
+        "dependencies": {
+          "Microsoft.Win32.SystemEvents": "8.0.0"
+        },
+        "runtime": {
+          "lib/net8.0/System.Drawing.Common.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.624.26909"
+          }
+        }
+      },
       "System.Memory/4.5.5": {},
       "System.Runtime.CompilerServices.Unsafe/5.0.0": {},
       "System.Security.AccessControl/5.0.0": {
@@ -251,6 +279,13 @@
       "path": "microsoft.win32.registry/5.0.0",
       "hashPath": "microsoft.win32.registry.5.0.0.nupkg.sha512"
     },
+    "Microsoft.Win32.SystemEvents/8.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9opKRyOKMCi2xJ7Bj7kxtZ1r9vbzosMvRrdEhVhDz8j8MoBGgB+WmC94yH839NPH+BclAjtQ/pyagvi/8gDLkw==",
+      "path": "microsoft.win32.systemevents/8.0.0",
+      "hashPath": "microsoft.win32.systemevents.8.0.0.nupkg.sha512"
+    },
     "MongoDB.Bson/2.25.0": {
       "type": "package",
       "serviceable": true,
@@ -320,6 +355,13 @@
       "sha512": "sha512-Rw7ijyl1qqRS0YQD/WycNst8hUUMgrMH4FCn1nNm27M4VxchZ1js3fVjQaANHO5f3sN4isvP4a+Met9Y4YomAg==",
       "path": "system.buffers/4.5.1",
       "hashPath": "system.buffers.4.5.1.nupkg.sha512"
+    },
+    "System.Drawing.Common/8.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aSwRnJzz6fZ73JvWMMG0KvBwOnXsBTFtfHLriQyAPrDIZ+NrDfl15GWbO/A35k0dtH77D7jfxzEcFF7RONtU/w==",
+      "path": "system.drawing.common/8.0.6",
+      "hashPath": "system.drawing.common.8.0.6.nupkg.sha512"
     },
     "System.Memory/4.5.5": {
       "type": "package",

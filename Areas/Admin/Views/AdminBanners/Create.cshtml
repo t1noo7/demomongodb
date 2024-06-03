@@ -20,46 +20,28 @@
         #bannerButton {
             position: absolute;
             cursor: move;
+            top: 0;
+            left: 0;
+            transform: translate(0%, 0%);
         }
 
         #bannerHeaderText {
             cursor: move;
-            /* Text cursor */
         }
 
         #bannerText {
             cursor: move;
-            /* Text cursor */
         }
 
         #bannerButton {
             cursor: pointer;
-            /* Pointer cursor */
         }
 
         .hidden {
             display: none;
         }
     </style>
-
 }
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <!-- Libraries Stylesheet -->
-    <link href="~/assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="~/assets/css/style.css" rel="stylesheet">
-</head>
-
-</html>
 
 <div class="page-header">
     <div class="header-sub-title">
@@ -80,7 +62,7 @@
             <div class="media align-items-center m-b-15">
             </div>
             <div class="m-b-15">
-                <button class="btn btn-primary1">
+                <button class="btn btn-primary">
                     <i class="anticon anticon-save"></i>
                     <span>Save</span>
                 </button>
@@ -110,7 +92,7 @@
                                         <h5 id="bannerText" class="text-white mb-md-3" style="cursor: move;">Preview
                                             Banner Text</h5>
                                         <a id="bannerButton" href=""
-                                            class="btn btn-primary py-md-2 px-md-4 font-weight-semi-bold mt-2"
+                                            class="btn btn-primary1 py-md-2 px-md-4 font-weight-semi-bold mt-2"
                                             style="display:none; cursor: pointer;">Button Text</a>
                                     </div>
                                 </div>
@@ -191,13 +173,12 @@
             $('.summnernote').summernote({
                 fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
                 styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
-                height: 200, // set editor height
-                minHeight: null, // set minimum height of editor
-                maxHeight: null, // set maximum height of editor
-                focus: true // set focus to editable area after intitializing summernote
+                height: 200,
+                minHeight: null,
+                maxHeight: null,
+                focus: true
             });
 
-            // Function to handle file input change and update the image preview
             document.getElementById('fileInput').addEventListener('change', function (event) {
                 var file = event.target.files[0];
                 if (file) {
@@ -210,20 +191,60 @@
             });
 
             function updatePositionFields() {
-                $("#headerTextPosX").val($("#bannerHeaderText").position().left);
-                $("#headerTextPosY").val($("#bannerHeaderText").position().top);
-                $("#bannerTextPosX").val($("#bannerText").position().left);
-                $("#bannerTextPosY").val($("#bannerText").position().top);
-                $("#buttonPosX").val($("#bannerButton").position().left);
-                $("#buttonPosY").val($("#bannerButton").position().top);
+                var carouselInner = $(".carousel-inner");
+
+                var headerTextPosX = $("#bannerHeaderText").position().left / carouselInner.width() * 100;
+                var headerTextPosY = $("#bannerHeaderText").position().top / carouselInner.height() * 100;
+
+                var bannerTextPosX = $("#bannerText").position().left / carouselInner.width() * 100;
+                var bannerTextPosY = $("#bannerText").position().top / carouselInner.height() * 100;
+
+                var buttonPosX = $("#bannerButton").position().left / carouselInner.width() * 100;
+                var buttonPosY = $("#bannerButton").position().top / carouselInner.height() * 100;
+
+                $("#headerTextPosX").val(headerTextPosX);
+                $("#headerTextPosY").val(headerTextPosY);
+
+                $("#bannerTextPosX").val(bannerTextPosX);
+                $("#bannerTextPosY").val(bannerTextPosY);
+
+                $("#buttonPosX").val(buttonPosX);
+                $("#buttonPosY").val(buttonPosY);
             }
+
+            function applyPositionFromFields() {
+                var headerTextPosX = $("#headerTextPosX").val();
+                var headerTextPosY = $("#headerTextPosY").val();
+
+                var bannerTextPosX = $("#bannerTextPosX").val();
+                var bannerTextPosY = $("#bannerTextPosY").val();
+
+                var buttonPosX = $("#buttonPosX").val();
+                var buttonPosY = $("#buttonPosY").val();
+
+                $("#bannerHeaderText").css({
+                    left: headerTextPosX + '%',
+                    top: headerTextPosY + '%'
+                });
+
+                $("#bannerText").css({
+                    left: bannerTextPosX + '%',
+                    top: bannerTextPosY + '%'
+                });
+
+                $("#bannerButton").css({
+                    left: buttonPosX + '%',
+                    top: buttonPosY + '%'
+                });
+            }
+
+            applyPositionFromFields();
 
             $("#bannerHeaderText, #bannerText, #bannerButton").draggable({
                 containment: ".carousel-inner",
                 stop: updatePositionFields
             });
 
-            // Update preview text dynamically
             document.getElementById('bannerHeaderTextInput').addEventListener('input', function () {
                 document.getElementById('bannerHeaderText').innerText = this.value;
             });
