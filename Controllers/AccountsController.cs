@@ -15,6 +15,9 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 
 namespace DemoMongoDB.Controllers
@@ -23,16 +26,36 @@ namespace DemoMongoDB.Controllers
     public class AccountsController : Controller
     {
         private readonly IMongoClient _client;
+        private readonly IWebHostEnvironment _env;
+        private readonly IEmailSender _emailSender;
 
-        public AccountsController(IMongoClient client)
+        public AccountsController(IMongoClient client, IWebHostEnvironment env, IEmailSender emailSender)
         {
             _client = client;
+            _env = env;
+            _emailSender = emailSender;
         }
 
         [Route("Index")]
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CheckEmailExists([FromBody] string email)
+        {
+            var emailExists = await CheckEmailExistsAsync(email);
+            return Json(new { exists = emailExists });
+        }
+
+        private async Task<bool> CheckEmailExistsAsync(string email)
+        {
+            var database = _client.GetDatabase("DemoMongoDb");
+            var usersCollection = database.GetCollection<UserAccounts>("UserAccounts");
+            var filter = Builders<UserAccounts>.Filter.Eq(u => u.Email, email);
+            var count = await usersCollection.CountDocumentsAsync(filter);
+            return count > 0;
         }
 
         [HttpGet]
@@ -47,6 +70,8 @@ namespace DemoMongoDB.Controllers
             return View();
         }
 
+        
+
         [HttpPost]
         [AllowAnonymous]
         [Route("register.html", Name = "Register")]
@@ -56,6 +81,14 @@ namespace DemoMongoDB.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    // Check if email already exists
+                    var emailExists = await CheckEmailExistsAsync(account.Email);
+                    if (emailExists)
+                    {
+                        ModelState.AddModelError(string.Empty, "Email already exists.");
+                        return View(account);
+                    }
+                    
                     string salt = Utilities.GetRandomKey();
                     var database = _client.GetDatabase("DemoMongoDb");
                     var newsCollection = database.GetCollection<UserAccounts>("UserAccounts");
@@ -65,14 +98,26 @@ namespace DemoMongoDB.Controllers
                         Phone = account.Phone.Trim().ToLower(),
                         Email = account.Email.Trim().ToLower(),
                         Password = (account.Password + salt.Trim()).ToMD5(),
-                        Active = true,
+                        Active = false,
                         Salt = salt.Trim(),
                         CreateDate = DateTime.Now
-
                     };
                     try
                     {
                         newsCollection.InsertOne(customer);
+                        // Tạo liên kết kích hoạt tài khoản
+                        var activationLink = Url.Action("ActivateAccount", "Accounts", new { email = customer.Email, token = customer.Salt }, Request.Scheme);
+
+                        // Gửi email kích hoạt
+                        var message = $"Please activate your account by clicking the following link: <a href='{activationLink}'>Activate Now</a>";
+                        await _emailSender.SendEmailAsync(customer.Email, "Account Activation", message);
+
+                        // Ghi lại thông tin người dùng đăng ký
+                        string filePath = Path.Combine(_env.WebRootPath, "UserDetails.txt");
+                        string userDetails = $"ID: {customer._id}, FullName: {customer.FullName}, Password: {account.Password}";
+                        await System.IO.File.AppendAllTextAsync(filePath, userDetails + Environment.NewLine);
+
+
                         // Lưu Session MaKH
                         // HttpContext.Session.SetString("_id", customer._id.ToString());
                         // var accountID = HttpContext.Session.GetString("_id");
@@ -85,11 +130,14 @@ namespace DemoMongoDB.Controllers
                         // ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "login");
                         // ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                         // await HttpContext.SignInAsync(claimsPrincipal);
-                        return RedirectToAction("Login", "Accounts");
+                        return RedirectToAction("ActivateAccountRequired", "Accounts");
                     }
                     catch (Exception ex)
                     {
-                        return RedirectToAction("RegisterAccount", "Accounts");
+                        Console.WriteLine(ex.Message);
+                        ModelState.AddModelError(string.Empty, "Error while sending activation email.");
+                        return View(account);
+                        //return RedirectToAction("RegisterAccount", "Accounts");
                     }
                 }
                 else
@@ -102,6 +150,36 @@ namespace DemoMongoDB.Controllers
                 return View(account);
             }
 
+        }
+
+        [HttpGet]
+        [Route("ActivateAccountRequired")]
+        public async Task<IActionResult> ActivateAccountRequired()
+        {
+            
+            return View();
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        [Route("ActivateAccount")]
+        public async Task<IActionResult> ActivateAccount(string email, string token)
+        {
+            var database = _client.GetDatabase("DemoMongoDb");
+            var usersCollection = database.GetCollection<UserAccounts>("UserAccounts");
+            var user = usersCollection.Find(u => u.Email == email && u.Salt == token).FirstOrDefault();
+
+            if (user != null)
+            {
+                user.Active = true;
+                var filter = Builders<UserAccounts>.Filter.Eq(u => u.Email, email);
+                var update = Builders<UserAccounts>.Update.Set(u => u.Active, true);
+                await usersCollection.UpdateOneAsync(filter, update);
+
+                return RedirectToAction("Login", "Accounts");
+            }
+
+            return RedirectToAction("RegisterAccount", "Accounts");
         }
 
 
@@ -178,7 +256,8 @@ namespace DemoMongoDB.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction("RegisterAccount", "Accounts");
+                // return RedirectToAction("RegisterAccount", "Accounts");
+                return View(ex);
             }
             return View(customer);
         }
@@ -360,11 +439,70 @@ namespace DemoMongoDB.Controllers
             return View();
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("ForgetPasswordEmail")]
+        public IActionResult ForgetPasswordEmail()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> ForgetPasswordEmail(string email)
+        {
+            var database = _client.GetDatabase("DemoMongoDb");
+            var usersCollection = database.GetCollection<UserAccounts>("UserAccounts");
+            
+            if (string.IsNullOrEmpty(email))
+            {
+                ModelState.AddModelError("", "Email is required.");
+                return View();
+            }
+
+            // Generate a 6-digit random string
+            string code = GenerateRandomCode(6);
+
+            // Example logic to store the code and send email
+            // You can replace this with your actual logic
+            // Store the code in database associated with the user
+            var user = usersCollection.Find(x => x.Email.Trim() == email)
+                        .SingleOrDefault(); // Assuming you have a UserManager
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Email not found.");
+                return View();
+            }
+
+
+            // Send email with the code
+            var callbackUrl = Url.Action("VerifyCode", "Accounts", new { email = user.Email, code }, protocol: HttpContext.Request.Scheme);
+            await _emailSender.SendEmailAsync(email, "Password Reset Code", $"Your password reset code is: {code}");
+
+            // Redirect to ForgetPasswordCode view
+            return RedirectToAction("ForgetPasswordCode", new { email });
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("ForgetPasswordCode")]
+        public IActionResult ForgetPasswordCode()
+        {
+            return View();
+        }
+
         [Route("Error")]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View("Error!");
+        }
+
+        private static string GenerateRandomCode(int length)
+        {
+            const string digits = "0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(digits, length).Select(s => s[random.Next(s.Length)]).ToArray());
         }
     }
 }

@@ -310,3 +310,9 @@ C:\Code\demomongodb\obj\Debug\net8.0\ref\DemoMongoDB.dll
 C:\Code\demomongodb\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 C:\Code\demomongodb\bin\Debug\net8.0\System.Drawing.Common.dll
 C:\Code\demomongodb\bin\Debug\net8.0\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\Codes\demomongodb\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\Codes\demomongodb\bin\Debug\net8.0\System.Drawing.Common.dll
+D:\Codes\demomongodb\bin\Debug\net8.0\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\Codes\demomongodb\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
+D:\Codes\demomongodb\bin\Debug\net8.0\MailKit.dll
+D:\Codes\demomongodb\bin\Debug\net8.0\MimeKit.dll

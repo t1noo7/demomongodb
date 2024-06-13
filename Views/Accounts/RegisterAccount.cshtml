@@ -18,23 +18,30 @@
                         <div class="card-body rounded-bottom bg-primary p-5">
                             <form>
                                 <div class="form-group">
-                                    <input type="text" class="form-control border-0 p-4" asp-for="FullName" placeholder="Full Name"/>
+                                    <input type="text" class="form-control border-0 p-4" asp-for="FullName"
+                                        placeholder="Full Name" />
                                     <span asp-validation-for="FullName" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control border-0 p-4" asp-for="Email" placeholder="Email"/>
+                                    <input id="checkExist" type="email" class="form-control border-0 p-4"
+                                        asp-for="Email" placeholder="Email" />
                                     <span asp-validation-for="Email" class="text-danger"></span>
+                                    <span id="email-exists" class="text-danger" style="display:none;">Email already
+                                        exists.</span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="tel" class="form-control border-0 p-4" asp-for="Phone" placeholder="Phone No."/>
+                                    <input type="tel" class="form-control border-0 p-4" asp-for="Phone"
+                                        placeholder="Phone No." />
                                     <span asp-validation-for="Phone" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control border-0 p-4" asp-for="Password" placeholder="Password"/>
+                                    <input type="password" class="form-control border-0 p-4" asp-for="Password"
+                                        placeholder="Password" />
                                     <span asp-validation-for="Password" class="text-danger"></span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control border-0 p-4" asp-for="ConfirmPassword" placeholder="Confirm Password"/>
+                                    <input type="password" class="form-control border-0 p-4" asp-for="ConfirmPassword"
+                                        placeholder="Confirm Password" />
                                     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                                 </div>
                                 <div>
@@ -50,51 +57,28 @@
     </div>
 </div>
 
-
-@* <main class="main-content">
-    <div class="login-register-area section-space-y-axis-100">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 pt-10 pt-lg-0">
-                    <form asp-action="RegisterAccount" method="post">
-                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                        <div class="login-form">
-                            <h4 class="login-title">Register Account</h4>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <label>Full Name*</label>
-                                    <input type="text" asp-for="FullName" placeholder="Full Name">
-                                    <span asp-validation-for="FullName" class="text-danger"></span>
-                                </div>
-                                <div class="col-md-12">
-                                    <label>Email*</label>
-                                    <input type="email" asp-for="Email" placeholder="Email">
-                                    <span asp-validation-for="Email" class="text-danger"></span>
-                                </div>
-                                <div class="col-md-12">
-                                    <label>Phone No.*</label>
-                                    <input type="tel" asp-for="Phone" placeholder="Phone No.">
-                                    <span asp-validation-for="Phone" class="text-danger"></span>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Password</label>
-                                    <input type="password" asp-for="Password" placeholder="Password">
-                                    <span asp-validation-for="Password" class="text-danger"></span>
-                                </div>
-                                <div class="col-md-6">
-                                    <label>Confirm Password</label>
-                                    <input type="password" asp-for="ConfirmPassword" placeholder="Confirm Password">
-                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                                </div>
-                                <div class="col-12">
-                                    <button
-                                        class="btn btn-custom-size lg-size btn-secondary btn-primary-hover rounded-0">Register</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</main> *@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#checkExist').on('input', function () {
+            var email = $(this).val();
+            if (email.length > 0) {
+                $.ajax({
+                    url: '@Url.Action("CheckEmailExists", "Account")',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(email),
+                    success: function (response) {
+                        if (response.exists) {
+                            $('#email-exists').show();
+                        } else {
+                            $('#email-exists').hide();
+                        }
+                    }
+                });
+            } else {
+                $('#email-exists').hide();
+            }
+        });
+    });
+</script>

@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Account Activation Required";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2>@ViewData["Title"]</h2>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning" role="alert">
+                        Register successfully!
+                        Please check your email for the activation link.
+                        If you haven't received the email, <a
+                            href="@Url.Action("ResendActivationEmail", "Accounts")">click here</a> to resend it.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

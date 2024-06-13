@@ -102,7 +102,7 @@
                                         </h1>
                                     </div>
                                     <div id="bannerText" class="p-5 draggable" style="width: 100%; max-width: 900px">
-                                        <h6 class="text-white mb-md-3">@Model.BannerText</h6>
+                                        <h5 class="text-white mb-md-3">@Model.BannerText</h5>
                                     </div>
                                     @if (Model.ActiveButton)
                                     {
@@ -233,20 +233,22 @@
                 elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
             }
 
-             // Convert pixel values to percentage
-                var parentWidth = elmnt.parentElement.offsetWidth;
-                var parentHeight = elmnt.parentElement.offsetHeight;
-                var leftPercentage = (elmnt.offsetLeft / parentWidth) * 100;
-                var topPercentage = (elmnt.offsetTop / parentHeight) * 100;
-
-                // Update position input value with percentage values
-                document.getElementById(positionInputId).value = `${topPercentage}%,${leftPercentage}%`;
-
             function closeDragElement() {
                 document.onmouseup = null;
                 document.onmousemove = null;
-                document.getElementById(positionInputId).value = `${elmnt.style.top},${elmnt.style.left}`;
+                updatePositionInput();
             }
+
+            function updatePositionInput() {
+                var parentWidth = elmnt.parentElement.offsetWidth;
+                var parentHeight = elmnt.parentElement.offsetHeight;
+                var leftPercentage = Math.round((elmnt.offsetLeft / parentWidth) * 100);
+                var topPercentage = Math.round((elmnt.offsetTop / parentHeight) * 100);
+                document.getElementById(positionInputId).value = `${topPercentage}%,${leftPercentage}%`;
+            }
+
+            // Update position input when the dragging starts
+            updatePositionInput();
         }
 
         document.addEventListener("DOMContentLoaded", function () {
@@ -262,32 +264,40 @@
             if (headerTextElement) {
                 headerTextElement.style.top = headerTextPosition[0];
                 headerTextElement.style.left = headerTextPosition[1];
+                dragElement(headerTextElement, "bannerHeaderTextPosition");
             }
             if (textElement) {
                 textElement.style.top = textPosition[0];
                 textElement.style.left = textPosition[1];
+                dragElement(textElement, "bannerTextPosition");
             }
             if (buttonElement) {
                 buttonElement.style.top = buttonPosition[0];
                 buttonElement.style.left = buttonPosition[1];
+                dragElement(buttonElement, "bannerButtonPosition");
             }
 
-            // Apply draggable function to elements
-            dragElement(headerTextElement, "bannerHeaderTextPosition");
-            dragElement(textElement, "bannerTextPosition");
-            dragElement(buttonElement, "bannerButtonPosition");
+            // When the form is submitted, send the positions to the server via AJAX
+            document.getElementById("positionForm").addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent the default form submission
 
-            // When the form is submitted, capture the positions and set the hidden inputs
-            document.querySelector("form").addEventListener("submit", function () {
-                if (headerTextElement) {
-                    document.getElementById("bannerHeaderTextPosition").value = `${headerTextElement.style.top},${headerTextElement.style.left}`;
-                }
-                if (textElement) {
-                    document.getElementById("bannerTextPosition").value = `${textElement.style.top},${textElement.style.left}`;
-                }
-                if (buttonElement) {
-                    document.getElementById("bannerButtonPosition").value = `${buttonElement.style.top},${buttonElement.style.left}`;
-                }
+                var formData = new FormData(this);
+
+                fetch('/savePositions', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Positions saved successfully!');
+                        } else {
+                            alert('Failed to save positions.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
             });
         });
     </script>
