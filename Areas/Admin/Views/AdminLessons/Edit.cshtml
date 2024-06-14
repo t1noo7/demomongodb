@@ -1,8 +1,9 @@
-@model DemoMongoDB.Models.Courses
+@model DemoMongoDB.Models.Lessons
 
 @{
-    ViewData["Title"] = "Chỉnh sửa Khóa học" + Model.Title;
+    ViewData["Title"] = "Chỉnh sửa Bài viết " + Model.Title;
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var courses = ViewBag.lsCourse as List<DemoMongoDB.Models.Courses>;
 }
 
 @section Styles {
@@ -15,17 +16,16 @@
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
                     class="anticon anticon-home m-r-5"></i>Home</a>
-            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminCourses" asp-action="Index">Danh sách khóa
-                học : page @ViewBag.CurrentPage</a>
-            <span class="breadcrumb-item active">Chỉnh sửa lớp học</span>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminClasses" asp-action="Index">Danh sách bài
+                giảng : page @ViewBag.CurrentPage</a>
+            <span class="breadcrumb-item active">Chỉnh sửa bài giảng</span>
         </nav>
     </div>
 </div>
-<form asp-controller="AdminCourses" asp-action="Edit" asp-route-id="@Model._id" method="post"
+<form asp-controller="AdminLessons" asp-action="Edit" asp-route-id="@Model._id" method="post"
     enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="_id" />
-    <input type="hidden" asp-for="Thumb" />
     <div class="page-header no-gutters has-tab">
         <div class="d-md-flex m-b-15 align-items-center justify-content-between">
             <div class="media align-items-center m-b-15">
@@ -43,20 +43,41 @@
             <div class="card">
                 <div class="card-body">
                     <div class="form-group">
-                        <label class="font-weight-semibold" for="productName">Tiêu đề</label>
+                        <label class="font-weight-semibold" for="Title">Tiêu đề</label>
                         <input type="text" class="form-control" asp-for="Title">
                     </div>
                     <div class="form-group">
-                        <label class="font-weight-semibold" for="productName">Mô tả</label>
+                        <label class="font-weight-semibold" for="Description">Mô tả</label>
                         <div class="card-body">
                             <textarea class="summnernote" asp-for="Description"></textarea>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <label class="font-weight-semibold" for="productBrand">Ảnh đại diện</label>
-                            <input name="fThumb" type="file" class="form-control-file" asp-for="Thumb">
-                            <span asp-validation-for="Thumb" class="text-danger"></span>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="Title">Khóa học</label>
+                        <input type="text" class="form-control" asp-for="Course">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="Class">Khóa học mới</label>
+                        <select class="form-control" id="courseSelect">
+                            <option value="">-- Chọn khóa học --</option>
+                            @if (courses != null)
+                            {
+                                @foreach (var course in courses)
+                                {
+                                    <option value="@course._id">@course.Title</option>
+                                }
+                            }
+                        </select>
+                        <input type="hidden" name="idCourse" id="idCourse" />
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="YouTubeUrl">Youtube URL</label>
+                        <input type="text" class="form-control" asp-for="YouTubeUrl" id="youtube-url">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold">Preview</label>
+                        <div id="youtube-preview">
+                            <!-- Video preview iframe will be inserted here -->
                         </div>
                     </div>
                     <div class="row">
@@ -99,7 +120,32 @@
             $('form').on('submit', function () {
                 var cleanText = $('.summnernote').summernote('code').replace(/(<([^>]+)>)/ig, ""); // Loại bỏ tất cả thẻ HTML
                 $('.summnernote').val(cleanText); // Cập nhật nội dung summernote trước khi gửi form
+
+                // Set the hidden input value to the selected course ID
+                $('#idCourse').val($('#courseSelect').val());
             });
+
+            // YouTube URL input change handler
+            $('#youtube-url').on('input', function () {
+                var url = $(this).val();
+                var videoId = extractYouTubeVideoId(url);
+                if (videoId) {
+                    var iframeHtml = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>';
+                    $('#youtube-preview').html(iframeHtml);
+                } else {
+                    $('#youtube-preview').html('<span>Invalid YouTube URL</span>');
+                }
+            });
+
+            // Function to extract YouTube video ID
+            function extractYouTubeVideoId(url) {
+                var regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+                var match = url.match(regex);
+                return match ? match[1] : null;
+            }
+
+            // Trigger the input event to show preview if URL is already filled
+            $('#youtube-url').trigger('input');
         });
     </script>
 }

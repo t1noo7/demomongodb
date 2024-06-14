@@ -18,17 +18,12 @@ namespace DemoMongoDB.Models
 
         public string Description { get; set; }
 
-        public string Class { get; set; }
-
-        public string YouTubeUrl { get; set; }
-
-        public string YouTubeVideoId { get; set; }
-
         public string Thumb { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime? CreateDate { get; set; }
 
         public bool Active { get; set; }
+        public string Class { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-@model DemoMongoDB.Models.Courses
+@model DemoMongoDB.Models.Lessons
 
 @{
     ViewData["Title"] = "Delete";
@@ -25,10 +25,31 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Thumb)
+            @Html.DisplayNameFor(model => model.Course)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Thumb)
+            @Html.DisplayFor(model => model.Course)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.YouTubeUrl)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.YouTubeUrl)
+            @if (!string.IsNullOrEmpty(Model.YouTubeUrl))
+            {
+                var videoId = ExtractYouTubeVideoId(Model.YouTubeUrl);
+                if (videoId != null)
+                {
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/@videoId"
+                            allowfullscreen></iframe>
+                    </div>
+                }
+                else
+                {
+                    <span>Invalid YouTube URL</span>
+                }
+            }
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Active)
@@ -50,3 +71,13 @@
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
+
+@functions {
+    public string ExtractYouTubeVideoId(string url)
+    {
+        var regex = new
+        System.Text.RegularExpressions.Regex(@"(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})");
+        var match = regex.Match(url);
+        return match.Success ? match.Groups[1].Value : null;
+    }
+}

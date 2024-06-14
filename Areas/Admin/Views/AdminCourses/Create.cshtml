@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-    var classes = ViewBag.Classes as List<DemoMongoDB.Models.Classes>;
 }
 
 @section Styles {
@@ -16,9 +15,10 @@
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
                     class="anticon anticon-home m-r-5"></i>Home</a>
-            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminClasses" asp-action="Index">Danh sách bài giảng :
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminCourses" asp-action="Index">Danh sách khóa
+                học :
                 page @ViewBag.CurrentPage</a>
-            <span class="breadcrumb-item active">Tạo mới bài giảng</span>
+            <span class="breadcrumb-item active">Tạo mới khóa học</span>
         </nav>
     </div>
 </div>
@@ -50,19 +50,12 @@
                             <textarea class="summnernote" asp-for="Description"></textarea>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="font-weight-semibold" for="Class">Lớp học</label>
-                        <select class="form-control" asp-for="Class" asp-items="ViewBag.Classes">
-                            <option value="">-- Chọn lớp học --</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-semibold" for="YouTubeUrl">YouTube URL</label>
-                        <input type="text" class="form-control" asp-for="YouTubeUrl" id="youtubeUrl">
-                    </div>
-                    <div class="form-group">
-                        <label class="font-weight-semibold" for="YouTubePreview">YouTube Preview</label>
-                        <div id="youtubePreview"></div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="font-weight-semibold" for="productBrand">Ảnh đại diện</label>
+                            <input name="fThumb" type="file" class="form-control-file" asp-for="Thumb">
+                            <span asp-validation-for="Thumb" class="text-danger"></span>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="m-t-25">
@@ -104,23 +97,6 @@
                 var cleanText = $('.summnernote').summernote('code').replace(/(<([^>]+)>)/ig, ""); // Loại bỏ tất cả thẻ HTML
                 $('.summnernote').val(cleanText); // Cập nhật nội dung summernote trước khi gửi form
             });
-
-            $('#youtubeUrl').on('input', function () {
-                var url = $(this).val();
-                var videoId = extractYouTubeVideoId(url);
-                if (videoId) {
-                    var embedUrl = 'https://www.youtube.com/embed/' + videoId;
-                    $('#youtubePreview').html('<iframe width="1000" height="600" src="' + embedUrl + '" frameborder="0" allowfullscreen></iframe>');
-                } else {
-                    $('#youtubePreview').html('');
-                }
-            });
-
-            function extractYouTubeVideoId(url) {
-                var regex = /[\\?\\&]v=([^&#]*)/;
-                var match = url.match(regex);
-                return (match && match[1].length == 11) ? match[1] : null;
-            }
         });
     </script>
 }

@@ -4233,6 +4233,18 @@
       "PackagePath": "staticwebassets\\images\\categories\\danh-muc-2.jpg"
     },
     {
+      "Id": "D:\\Codes\\demomongodb\\wwwroot\\images\\courses\\javhub.jpg",
+      "PackagePath": "staticwebassets\\images\\courses\\javhub.jpg"
+    },
+    {
+      "Id": "D:\\Codes\\demomongodb\\wwwroot\\images\\courses\\khoa-hoc-lua-ga-phan-1.jpg",
+      "PackagePath": "staticwebassets\\images\\courses\\khoa-hoc-lua-ga-phan-1.jpg"
+    },
+    {
+      "Id": "D:\\Codes\\demomongodb\\wwwroot\\images\\courses\\khoa-hoc-lua-tien-phan-1.jpg",
+      "PackagePath": "staticwebassets\\images\\courses\\khoa-hoc-lua-tien-phan-1.jpg"
+    },
+    {
       "Id": "D:\\Codes\\demomongodb\\wwwroot\\images\\news\\danh-tinh-14-nan-nhan-tu-vong-trong-vu-chay-nha-tro-o-ha-noi.webp",
       "PackagePath": "staticwebassets\\images\\news\\danh-tinh-14-nan-nhan-tu-vong-trong-vu-chay-nha-tro-o-ha-noi.webp"
     },

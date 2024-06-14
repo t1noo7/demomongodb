@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var courses = ViewBag.Courses as List<DemoMongoDB.Models.Courses>;
 }
 
 @section Styles {
@@ -15,12 +16,13 @@
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
                     class="anticon anticon-home m-r-5"></i>Home</a>
-            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminClasses" asp-action="Index">Danh sách lớp học :
-                page @ViewBag.CurrentPage</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminClasses" asp-action="Index">Danh sách lớp
+                học : page @ViewBag.CurrentPage</a>
             <span class="breadcrumb-item active">Tạo mới lớp học</span>
         </nav>
     </div>
 </div>
+
 <form asp-controller="AdminClasses" asp-action="Create" method="post" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="page-header no-gutters has-tab">
@@ -49,11 +51,25 @@
                             <textarea class="summnernote" asp-for="Description"></textarea>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="Courses">Khóa học</label>
+                        <select class="form-control" id="courseSelect">
+                            <option value="">-- Chọn khóa học --</option>
+                            @if (courses != null)
+                            {
+                                @foreach (var course in courses)
+                                {
+                                    <option value="@course._id">@course.Title</option>
+                                }
+                            }
+                        </select>
+                        <input type="hidden" name="idCourse" id="idCourse" />
+                    </div>
                     <div class="row">
                         <div class="m-t-25">
                             <div class="form-group d-flex align-items-center">
                                 <div class="switch m-r-10">
-                                    <input type="checkbox" asp-for="Active" checked="">
+                                    <input type="checkbox" asp-for="Active">
                                     <label for="Active"></label>
                                 </div>
                                 <label>Active</label>
@@ -88,6 +104,9 @@
             $('form').on('submit', function () {
                 var cleanText = $('.summnernote').summernote('code').replace(/(<([^>]+)>)/ig, ""); // Loại bỏ tất cả thẻ HTML
                 $('.summnernote').val(cleanText); // Cập nhật nội dung summernote trước khi gửi form
+
+                // Set the hidden input value to the selected course ID
+                $('#idCourse').val($('#courseSelect').val());
             });
         });
     </script>

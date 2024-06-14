@@ -8,7 +8,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace DemoMongoDB.Models
 {
-    public class Classes
+    public class Lessons
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -18,12 +18,17 @@ namespace DemoMongoDB.Models
 
         public string Description { get; set; }
 
-        public string Courses { get; set; }
+        public string Course { get; set; }
+
+        public string YouTubeUrl { get; set; }
+
+        public string YouTubeVideoId { get; set; }
+
+        public string Thumb { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime? CreateDate { get; set; }
 
         public bool Active { get; set; }
-
     }
 }

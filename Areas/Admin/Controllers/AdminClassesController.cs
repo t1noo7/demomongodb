@@ -5,6 +5,7 @@ using MongoDB.Driver;
 using DemoMongoDB.Models;
 using PagedList.Core;
 using DemoMongoDB.Helper;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DemoMongoDB.Controllers
 {
@@ -51,22 +52,39 @@ namespace DemoMongoDB.Controllers
         // }
 
 
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
+            var database = _client.GetDatabase("DemoMongoDb");
+            var coursesCollection = database.GetCollection<Courses>("Courses");
+            var courses = await coursesCollection.Find(_ => true).ToListAsync();
+
+            // var coursesSelectList = new SelectList(courses, "Title");
+
+            ViewBag.Courses = courses;
             return View();
         }
 
         // POST: Admin/Adminclasses/Create/5
         [HttpPost]
-        public async Task<ActionResult> Create(Classes classes)
+        public async Task<ActionResult> Create(Classes classes, string idCourse)
         {
             var database = _client.GetDatabase("DemoMongoDb");
             var classesCollection = database.GetCollection<Classes>("Classes");
+            var coursesCollection = database.GetCollection<Courses>("Courses");
+
             classes.CreateDate = DateTime.Now;
-            classes._id = null;
-            classesCollection.InsertOne(classes);
+
+            var course = coursesCollection.Find(c => c._id == idCourse).FirstOrDefault();
+            if (course != null)
+            {
+                classes.Courses = course.Title;
+            }
+
+            classes._id = null; // Assuming MongoDB generates the ID
+            await classesCollection.InsertOneAsync(classes);
             return RedirectToAction("Index");
         }
+
 
 
 

@@ -5,7 +5,6 @@ using MongoDB.Driver;
 using DemoMongoDB.Models;
 using PagedList.Core;
 using DemoMongoDB.Helper;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DemoMongoDB.Controllers
 {
@@ -52,32 +51,24 @@ namespace DemoMongoDB.Controllers
         // }
 
 
-        public async Task<ActionResult> Create()
+        public ActionResult Create()
         {
-            var database = _client.GetDatabase("DemoMongoDb");
-            var classesCollection = database.GetCollection<Classes>("Classes");
-
-            var classes = await classesCollection.Find(_ => true).ToListAsync();
-
-            var classSelectList = new SelectList(classes, "_id", "Title");
-
-            ViewBag.Classes = classSelectList;
-
             return View();
         }
 
         // POST: Admin/Admincourses/Create/5
         [HttpPost]
-        public async Task<ActionResult> Create(Courses courses)
+        public async Task<ActionResult> Create(Courses courses, Microsoft.AspNetCore.Http.IFormFile? fThumb)
         {
             var database = _client.GetDatabase("DemoMongoDb");
             var coursesCollection = database.GetCollection<Courses>("Courses");
-            if (!string.IsNullOrEmpty(courses.YouTubeUrl))
+            if (fThumb != null)
             {
-                var videoId = ExtractYouTubeVideoId(courses.YouTubeUrl);
-                courses.YouTubeVideoId = videoId;
-                courses.Thumb = $"https://img.youtube.com/vi/{videoId}/hqdefault.jpg";
+                string extension = Path.GetExtension(fThumb.FileName);
+                string image = Utilities.SEOUrl(courses.Title) + extension;
+                courses.Thumb = await Utilities.UploadFile(fThumb, @"courses", image.ToLower());
             }
+            if (string.IsNullOrEmpty(courses.Thumb)) courses.Thumb = "default.jpg";
             courses.CreateDate = DateTime.Now;
             courses._id = null;
             coursesCollection.InsertOne(courses);
@@ -113,7 +104,7 @@ namespace DemoMongoDB.Controllers
         }
 
 
-        public async Task<ActionResult> Edit(string id)
+        public ActionResult Edit(string id)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -122,12 +113,6 @@ namespace DemoMongoDB.Controllers
 
             var database = _client.GetDatabase("DemoMongoDb");
             var coursesCollection = database.GetCollection<Courses>("Courses");
-            var classesCollection = database.GetCollection<Classes>("Classes");
-            var classes = await classesCollection.Find(_ => true).ToListAsync();
-
-            var classSelectList = new SelectList(classes, "_id", "Title");
-
-            ViewBag.Classes = classSelectList;
 
             var courses = coursesCollection.Find(n => n._id == id).FirstOrDefault();
 
@@ -142,30 +127,33 @@ namespace DemoMongoDB.Controllers
         // POST: Admin/Admincourses/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(string id, Courses courses)
+        public async Task<ActionResult> Edit(string id, Courses courses, Microsoft.AspNetCore.Http.IFormFile? fThumb)
         {
             if (string.IsNullOrEmpty(id))
             {
                 return BadRequest("courses ID is required.");
             }
 
+            if (!ModelState.IsValid)
+            {
+                return View(courses);
+            }
+
             var database = _client.GetDatabase("DemoMongoDb");
             var coursesCollection = database.GetCollection<Courses>("Courses");
 
             var filter = Builders<Courses>.Filter.Eq("_id", id);
-            if (!string.IsNullOrEmpty(courses.YouTubeUrl))
+            if (fThumb != null)
             {
-                var videoId = ExtractYouTubeVideoId(courses.YouTubeUrl);
-                courses.YouTubeVideoId = videoId;
-                courses.Thumb = $"https://img.youtube.com/vi/{videoId}/hqdefault.jpg";
+                string extension = Path.GetExtension(fThumb.FileName);
+                string image = Utilities.SEOUrl(courses.Title) + extension;
+                courses.Thumb = await Utilities.UploadFile(fThumb, @"courses", image.ToLower());
             }
-
+            if (string.IsNullOrEmpty(courses.Thumb)) courses.Thumb = "default.jpg";
+            
             var update = Builders<Courses>.Update
                 .Set("Title", courses.Title)
                 .Set("Description", courses.Description)
-                .Set("Class", courses.Class)
-                .Set("YouTubeUrl", courses.YouTubeUrl)
-                .Set("YouTubeVideoId", courses.YouTubeVideoId)
                 .Set("Thumb", courses.Thumb)
                 .Set("Active", courses.Active);
 
@@ -224,13 +212,6 @@ namespace DemoMongoDB.Controllers
             }
 
             return RedirectToAction("Index");
-        }
-
-        private string ExtractYouTubeVideoId(string url)
-        {
-            var uri = new Uri(url);
-            var query = System.Web.HttpUtility.ParseQueryString(uri.Query);
-            return query["v"];
         }
     }
 }

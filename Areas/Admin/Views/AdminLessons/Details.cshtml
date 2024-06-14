@@ -1,4 +1,4 @@
-@model DemoMongoDB.Models.Courses
+@model DemoMongoDB.Models.Lessons
 
 @{
     ViewData["Title"] = "Thông tin lớp học" + Model.Title;
@@ -10,9 +10,8 @@
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
                     class="anticon anticon-home m-r-5"></i>Home</a>
-            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminCourses" asp-action="Index">Danh sách khóa
-                học</a>
-            <span class="breadcrumb-item active">Thông tin khóa học: @Model.Title</span>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminClasses" asp-action="Index">Danh sách bài giảng</a>
+            <span class="breadcrumb-item active">Thông tin bài giảng: @Model.Title</span>
         </nav>
     </div>
 </div>
@@ -35,9 +34,31 @@
                     <td>@Model.Description</td>
                 </tr>
                 <tr>
-                    <td>Ảnh đại diện:</td>
+                    <td>Khóa học:</td>
+                    <td>@Model.Course</td>
+                </tr>
+                <tr>
+                    <td>Youtube:</td>
                     <td>
-                        <img width="200" height="200" src="~/images/courses/@Model.Thumb" alt="@Model.Title" />
+                        <div id="youtube-preview">
+                            @if (!string.IsNullOrEmpty(Model.YouTubeUrl))
+                            {
+                                var videoId = ExtractYouTubeVideoId(Model.YouTubeUrl);
+                                if (!string.IsNullOrEmpty(videoId))
+                                {
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/@videoId"
+                                        frameborder="0" allowfullscreen></iframe>
+                                }
+                                else
+                                {
+                                    <span>Invalid YouTube URL</span>
+                                }
+                            }
+                            else
+                            {
+                                <span>No YouTube URL provided</span>
+                            }
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -67,3 +88,13 @@
         </table>
     </div>
 </div>
+
+@functions {
+    private string ExtractYouTubeVideoId(string url)
+    {
+        var regex = new
+        System.Text.RegularExpressions.Regex(@"(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})");
+        var match = regex.Match(url);
+        return match.Success ? match.Groups[1].Value : string.Empty;
+    }
+}
