@@ -24,6 +24,8 @@ namespace DemoMongoDB.Controllers
 
             var database = _client.GetDatabase("DemoMongoDb");
             var classesCollection = database.GetCollection<Classes>("Classes");
+            var couresCollection = database.GetCollection<Courses>("Courses");
+            var lsCourse = couresCollection.Find(_ => true).ToList();
             var classessQuery = classesCollection.AsQueryable();
             List<Classes> classessDetails = classesCollection.Find(_ => true).ToList();
             var pageNumber = page == null || page <= 0 ? 1 : page.Value;
@@ -31,6 +33,7 @@ namespace DemoMongoDB.Controllers
             //PagedList<classes> models = new PagedList<classes>(classesDetails, pageNumber, pageSize);
             var pagedClasses = classessQuery.ToPagedList(pageNumber, pageSize);
             ViewBag.CurrentPage = pageNumber;
+            ViewData["lsCourse"] = new SelectList(lsCourse, "Title");
             return View(pagedClasses);
         }
         // public ActionResult Index(int? page)
@@ -77,7 +80,7 @@ namespace DemoMongoDB.Controllers
             var course = coursesCollection.Find(c => c._id == idCourse).FirstOrDefault();
             if (course != null)
             {
-                classes.Courses = course.Title;
+                classes.Course = course.Title;
             }
 
             classes._id = null; // Assuming MongoDB generates the ID

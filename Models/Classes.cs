@@ -18,7 +18,7 @@ namespace DemoMongoDB.Models
 
         public string Description { get; set; }
 
-        public string Courses { get; set; }
+        public string Course { get; set; }
 
         [DataType(DataType.DateTime)]
         public DateTime? CreateDate { get; set; }
