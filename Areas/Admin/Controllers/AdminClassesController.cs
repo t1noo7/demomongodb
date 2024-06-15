@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 using DemoMongoDB.Models;
 using PagedList.Core;
 using DemoMongoDB.Helper;
@@ -19,41 +20,43 @@ namespace DemoMongoDB.Controllers
             _client = client;
         }
 
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string Course = null)
         {
-
             var database = _client.GetDatabase("DemoMongoDb");
             var classesCollection = database.GetCollection<Classes>("Classes");
-            var couresCollection = database.GetCollection<Courses>("Courses");
-            var lsCourse = couresCollection.Find(_ => true).ToList();
+            var coursesCollection = database.GetCollection<Courses>("Courses");
+            var lsCourse = coursesCollection.Find(_ => true).ToList();
             var classessQuery = classesCollection.AsQueryable();
-            List<Classes> classessDetails = classesCollection.Find(_ => true).ToList();
+
+            if (!string.IsNullOrEmpty(Course) && Course != "0")
+            {
+                var course = coursesCollection.Find(c => c._id == Course).FirstOrDefault();
+                if (course != null)
+                {
+                    classessQuery = classessQuery.Where(c => c.Course == course.Title);
+                }
+            }
+
             var pageNumber = page == null || page <= 0 ? 1 : page.Value;
             var pageSize = 20;
-            //PagedList<classes> models = new PagedList<classes>(classesDetails, pageNumber, pageSize);
             var pagedClasses = classessQuery.ToPagedList(pageNumber, pageSize);
+
             ViewBag.CurrentPage = pageNumber;
-            ViewData["lsCourse"] = new SelectList(lsCourse, "Title");
+            ViewBag.TotalPages = pagedClasses.PageCount;
+            ViewData["lsCourse"] = new SelectList(lsCourse, "_id", "Title", Course);
+
             return View(pagedClasses);
         }
-        // public ActionResult Index(int? page)
-        // {
-        //     var database = _client.GetDatabase("DemoMongoDb");
-        //     var classesCollection = database.GetCollection<classes>("classes");
-        //     var classesQuery = classesCollection.AsQueryable();
-        //     var pageSize = 20;
-        //     var pageNumber = page ?? 1;
-        //     var skipAmount = (pageNumber - 1) * pageSize;
 
-        //     // Fetch a page of classes items
-        //     var pagedclasses = classesQuery.Skip(skipAmount).Take(pageSize).ToList();
-
-        //     ViewBag.CurrentPage = pageNumber;
-        //     ViewBag.TotalPages = (int)Math.Ceiling(classesQuery.Count() / (double)pageSize);
-
-        //     return View(pagedclasses);
-        // }
-
+        public IActionResult CoursesFilter(string Course = null)
+        {
+            var url = $"/Admin/AdminClasses/Index?Course={Course}";
+            if (string.IsNullOrEmpty(Course) || Course == "0")
+            {
+                url = $"/Admin/AdminClasses/Index";
+            }
+            return Json(new { status = "success", redirectUrl = url });
+        }
 
         public async Task<ActionResult> Create()
         {

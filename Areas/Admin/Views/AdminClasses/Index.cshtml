@@ -4,7 +4,6 @@
     int CurrentPage = ViewBag.CurrentPage;
     ViewData["Title"] = "Danh sách lớp học";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
-    var lsCourse = ViewBag.lsCourse as List<DemoMongoDB.Models.Courses>;
 }
 
 <div class="page-header">
@@ -28,13 +27,10 @@
                         </div>
                     </div>
                     <div class="m-b-10 m-r-15">
-                        <select class="custom-select" id="txtCatID" name="txtCatID" style="min-width: 200px;"
-                            asp-items="lsCourse">
-                            <option selected>Chọn khóa học</option>
+                        <select class="custom-select" id="txtCourseID" name="txtCourseID" style="min-width: 200px;"
+                            asp-items="ViewBag.lsCourse">
                             <option value="0">Chọn tất cả</option>
                         </select>
-                    </div>
-                    <div class="m-b-10 m-r-15">
                     </div>
                 </div>
             </div>
@@ -77,8 +73,8 @@
                                     else
                                     {
                                         <div class="d-flex align-items-center">
-                                            <div class="badge badge-success badge-dot m-r-10"></div>
-                                            <div>Not Active</div>
+                                            <div class="badge badge-warning badge-dot m-r-10"></div>
+                                            <div>Inactive</div>
                                         </div>
                                     }
                                 </td>
@@ -119,20 +115,15 @@
 @section Scripts {
     <script>
         $(document).ready(function () {
-            jQuery("#txtCatID").change(function () {
-                var catID = jQuery(this).children(":selected").attr("value");
-                catID = parseFloat(catID);
-                $('#txtCatID option').removeAttr('selected');
-                $("#txtCatID > [value=" + catID + "]").attr("selected", "true");
-
+            $("#txtCourseID").change(function () {
+                var course = $(this).val();
                 $.ajax({
-                    url: '/Admin/AdminProducts/Filter',
-                    datatype: "json",
+                    url: '/Admin/AdminClasses/CoursesFilter',
+                    dataType: "json",
                     type: "GET",
                     data: {
-                        CatID: catID
+                        Course: course
                     },
-                    async: true,
                     success: function (results) {
                         if (results.status == "success") {
                             window.location.href = results.redirectUrl;
@@ -145,15 +136,13 @@
             });
 
             $("#keyword").keyup(function () {
-                var strkeyword = $('#keyword').val();
+                var strkeyword = $(this).val();
                 $.ajax({
                     url: '/Admin/Search/FindProduct/',
                     datatype: "json",
                     type: "POST",
                     data: { keyword: strkeyword },
-                    async: true,
                     success: function (results) {
-                        $("#records_table").html("");
                         $("#records_table").html(results);
                     },
                     error: function (xhr) {
@@ -162,6 +151,5 @@
                 });
             });
         });
-
     </script>
 }
