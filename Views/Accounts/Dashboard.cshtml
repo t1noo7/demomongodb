@@ -29,19 +29,28 @@
                 <div class="col-lg-3">
                     <ul class="nav myaccount-tab-trigger" id="account-page-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="account-dashboard-tab" data-bs-toggle="tab" href="#account-dashboard" role="tab" aria-controls="account-dashboard" aria-selected="true">Dashboard</a>
+                            <a class="nav-link active" id="account-dashboard-tab" data-bs-toggle="tab"
+                                href="#account-dashboard" role="tab" aria-controls="account-dashboard"
+                                aria-selected="true">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="account-details-tab" data-bs-toggle="tab" href="#account-details" role="tab" aria-controls="account-details" aria-selected="false">Change Password</a>
+                            <a class="nav-link" id="account-details-tab" data-bs-toggle="tab" href="#account-details"
+                                role="tab" aria-controls="account-details" aria-selected="false">Change Password</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="account-logout-tab" href="/accounts/logout.html" role="tab" aria-selected="false">Logout</a>
+                            <a class="nav-link" id="account-mycourse-tab" href="/mycourse/" role="tab"
+                                aria-selected="false">My Course</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="account-logout-tab" href="/accounts/logout.html" role="tab"
+                                aria-selected="false">Logout</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-lg-9">
                     <div class="tab-content myaccount-tab-content" id="account-page-tab-content">
-                        <div class="tab-pane fade show active" id="account-dashboard" role="tabpanel" aria-labelledby="account-dashboard-tab">
+                        <div class="tab-pane fade show active" id="account-dashboard" role="tabpanel"
+                            aria-labelledby="account-dashboard-tab">
                             <div class="myaccount-dashboard">
                                 <p>
                                     Hello <b>@Model.FullName</b>
@@ -51,7 +60,8 @@
                                 <p>Address: @Model.Address</p>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="account-address" role="tabpanel" aria-labelledby="account-address-tab">
+                        <div class="tab-pane fade" id="account-address" role="tabpanel"
+                            aria-labelledby="account-address-tab">
                             <div class="myaccount-address">
                                 <p>The following addresses will be used on the checkout page by default.</p>
                                 <div class="row">
@@ -70,7 +80,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="account-details" role="tabpanel" aria-labelledby="account-details-tab">
+                        <div class="tab-pane fade" id="account-details" role="tabpanel"
+                            aria-labelledby="account-details-tab">
                             @await Html.PartialAsync("_ChangePasswordPartialView", new ChangePasswordVM())
                         </div>
                     </div>

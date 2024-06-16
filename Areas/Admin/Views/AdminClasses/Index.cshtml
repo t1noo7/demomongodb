@@ -52,7 +52,7 @@
                         <th>#</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="records_table">
                     @if (Model != null)
                     {
                         foreach (var item in Model)
@@ -136,17 +136,19 @@
             });
 
             $("#keyword").keyup(function () {
-                var strkeyword = $(this).val();
+                var strkeyword = $('#keyword').val();
                 $.ajax({
-                    url: '/Admin/Search/FindProduct/',
-                    datatype: "json",
+                    url: '/Admin/Search/FindCourse/',
+                    dataType: "html",
                     type: "POST",
                     data: { keyword: strkeyword },
+                    async: true,
                     success: function (results) {
                         $("#records_table").html(results);
                     },
                     error: function (xhr) {
                         alert('error');
+                        console.error(xhr);
                     }
                 });
             });

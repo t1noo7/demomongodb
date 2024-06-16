@@ -70,7 +70,7 @@ namespace DemoMongoDB.Controllers
             return View();
         }
 
-        
+
 
         [HttpPost]
         [AllowAnonymous]
@@ -88,7 +88,7 @@ namespace DemoMongoDB.Controllers
                         ModelState.AddModelError(string.Empty, "Email already exists.");
                         return View(account);
                     }
-                    
+
                     string salt = Utilities.GetRandomKey();
                     var database = _client.GetDatabase("DemoMongoDb");
                     var newsCollection = database.GetCollection<UserAccounts>("UserAccounts");
@@ -156,7 +156,7 @@ namespace DemoMongoDB.Controllers
         [Route("ActivateAccountRequired")]
         public async Task<IActionResult> ActivateAccountRequired()
         {
-            
+
             return View();
         }
 
@@ -453,7 +453,7 @@ namespace DemoMongoDB.Controllers
         {
             var database = _client.GetDatabase("DemoMongoDb");
             var usersCollection = database.GetCollection<UserAccounts>("UserAccounts");
-            
+
             if (string.IsNullOrEmpty(email))
             {
                 ModelState.AddModelError("", "Email is required.");

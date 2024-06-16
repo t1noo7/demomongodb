@@ -25,12 +25,14 @@ namespace DemoMongoDB.Controllers
             var coursesCollection = database.GetCollection<Courses>("Courses");
             var coursessQuery = coursesCollection.AsQueryable();
             List<Courses> coursessDetails = coursesCollection.Find(_ => true).ToList();
+
             var pageNumber = page == null || page <= 0 ? 1 : page.Value;
             var pageSize = 20;
             //PagedList<courses> models = new PagedList<courses>(coursesDetails, pageNumber, pageSize);
-            var pagedcourses = coursessQuery.ToPagedList(pageNumber, pageSize);
+            var pagedCourses = coursessQuery.ToPagedList(pageNumber, pageSize);
             ViewBag.CurrentPage = pageNumber;
-            return View(pagedcourses);
+            ViewBag.TotalPages = pagedCourses.PageCount;
+            return View(pagedCourses);
         }
         // public ActionResult Index(int? page)
         // {
@@ -150,7 +152,7 @@ namespace DemoMongoDB.Controllers
                 courses.Thumb = await Utilities.UploadFile(fThumb, @"courses", image.ToLower());
             }
             if (string.IsNullOrEmpty(courses.Thumb)) courses.Thumb = "default.jpg";
-            
+
             var update = Builders<Courses>.Update
                 .Set("Title", courses.Title)
                 .Set("Description", courses.Description)

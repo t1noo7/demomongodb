@@ -38,6 +38,4 @@ public partial class UserAccounts
     public DateTime? LastLogin { get; set; }
 
     public bool Active { get; set; }
-
-
 }

@@ -167,12 +167,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/Areas/Admin/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+[/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/Areas/Admin/Views/Search/ListProductSearchPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2VhcmNoL0xpc3RQcm9kdWN0U2VhcmNoUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/Areas/Admin/Views/Shared/ListProductSearchPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL0xpc3RQcm9kdWN0U2VhcmNoUGFydGlhbC5jc2h0bWw=
+[/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/Areas/Admin/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/Areas/Admin/Views/Shared/_SideNavPartialView.cshtml]
@@ -229,6 +229,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/Views/MyCourse/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTXlDb3Vyc2UvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/Views/News/Details.cshtml]

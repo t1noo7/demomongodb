@@ -1,0 +1,42 @@
+@model List<Classes>
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <tr>
+    <td>@item._id</td>
+    <td>@item.Title</td>
+    <td>@item.Course</td>
+    <td>@item.CreateDate</td>
+    <td>
+        @if (item.Active == true)
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-success badge-dot m-r-10"></div>
+                        <div>Active</div>
+                    </div>
+                }
+                else
+                {
+                    <div class="d-flex align-items-center">
+                        <div class="badge badge-warning badge-dot m-r-10"></div>
+                        <div>Inactive</div>
+                    </div>
+                }
+            </td>
+
+            <td>
+                <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminClasses" asp-action="Details"
+                    asp-route-id="@item._id">View</a>
+
+                <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminClasses" asp-action="Edit"
+                    asp-route-id="@item._id">Edit</a>
+
+                <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminClasses" asp-action="Delete"
+                    asp-route-id="@item._id">Delete</a>
+
+            </td>
+        </tr>
+    }
+}

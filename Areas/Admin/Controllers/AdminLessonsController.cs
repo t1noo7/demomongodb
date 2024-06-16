@@ -29,9 +29,10 @@ namespace DemoMongoDB.Controllers
             var pageNumber = page == null || page <= 0 ? 1 : page.Value;
             var pageSize = 20;
             //PagedList<lessons> models = new PagedList<lessons>(lessonsDetails, pageNumber, pageSize);
-            var pagedlessons = lessonssQuery.ToPagedList(pageNumber, pageSize);
+            var pagedLessons = lessonssQuery.ToPagedList(pageNumber, pageSize);
             ViewBag.CurrentPage = pageNumber;
-            return View(pagedlessons);
+            ViewBag.TotalPages = pagedLessons.PageCount;
+            return View(pagedLessons);
         }
         // public ActionResult Index(int? page)
         // {
