@@ -4225,6 +4225,14 @@
       "PackagePath": "staticwebassets/images/banners/wind-up-toy.jpeg"
     },
     {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/wwwroot/images/cart/cart-full.png",
+      "PackagePath": "staticwebassets/images/cart/cart-full.png"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/wwwroot/images/cart/cart-null.png",
+      "PackagePath": "staticwebassets/images/cart/cart-null.png"
+    },
+    {
       "Id": "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/wwwroot/images/categories/danh-muc-1.jpg",
       "PackagePath": "staticwebassets/images/categories/danh-muc-1.jpg"
     },
@@ -4245,6 +4253,10 @@
       "PackagePath": "staticwebassets/images/courses/khoa-hoc-lua-tien-phan-1.jpg"
     },
     {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/wwwroot/images/courses/toi-tai-gioi-ban-phai-nghe-toi-v.jpg",
+      "PackagePath": "staticwebassets/images/courses/toi-tai-gioi-ban-phai-nghe-toi-v.jpg"
+    },
+    {
       "Id": "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/wwwroot/images/news/danh-tinh-14-nan-nhan-tu-vong-trong-vu-chay-nha-tro-o-ha-noi.webp",
       "PackagePath": "staticwebassets/images/news/danh-tinh-14-nan-nhan-tu-vong-trong-vu-chay-nha-tro-o-ha-noi.webp"
     },
@@ -4259,6 +4271,18 @@
     {
       "Id": "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/wwwroot/images/news/sos.jpg",
       "PackagePath": "staticwebassets/images/news/sos.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/wwwroot/images/payment/momo.png",
+      "PackagePath": "staticwebassets/images/payment/momo.png"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/wwwroot/images/payment/vnd.png",
+      "PackagePath": "staticwebassets/images/payment/vnd.png"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/wwwroot/images/payment/vnpay.png",
+      "PackagePath": "staticwebassets/images/payment/vnpay.png"
     },
     {
       "Id": "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/wwwroot/js/site.js",

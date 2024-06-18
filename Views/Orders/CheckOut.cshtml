@@ -1,0 +1,102 @@
+@model DemoMongoDB.Models.CheckoutViewModel
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="container">
+    <h2>Checkout</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Customer Information</h3>
+            <form asp-action="Checkout" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="CustomerName" class="control-label">Full Name</label>
+                    <input asp-for="CustomerName" class="form-control" />
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-3">
+                    <label asp-for="CustomerName" class="control-label">Gender</label>
+                    <select class="custom-select" style="min-width: 200px;">
+                        <option selected value="0">--Select--</option>
+                        <option value="0">Man</option>
+                        <option value="0">Female</option>
+                        <option value="0">Gay/Les</option>
+                    </select>
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CustomerName" class="control-label">Phone No</label>
+                    <input asp-for="CustomerName" class="form-control" />
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CustomerName" class="control-label">Delivery Address</label>
+                    <input asp-for="CustomerName" class="form-control" />
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="CustomerEmail" class="control-label">Email</label>
+                    <input asp-for="CustomerEmail" class="form-control" />
+                    <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for=" CustomerName" class="control-label">Payment Method</label>
+                    <div class="row col-md-9">
+                        <div class="col-md-3">
+                            <input class="form-check-input" type="radio" name="PaymentMethod">
+                            <img src="~/images/payment/vnd.png" />
+                        </div>
+                        &emsp;
+                        <div class="col-md-3">
+                            <input class="form-check-input" type="radio" name="PaymentMethod">
+                            <img src="~/images/payment/momo.png" />
+                        </div>
+                        &emsp;
+                        <div class="col-md-3">
+                            <input class="form-check-input" type="radio" name="PaymentMethod">
+                            <img src="~/images/payment/vnpay.png" />
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Place Order</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h3>Order Summary</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <tr>
+                            <td>@item.courses.Title</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.courses.Price</td>
+                            <td>@(item.Quantity * item.courses.Price)</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-right"><strong>Total Amount:</strong></td>
+                        <td>@Model.OrderTotal</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

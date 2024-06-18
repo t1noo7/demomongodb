@@ -8,5 +8,7 @@ namespace DemoMongoDB.ModelViews
         public List<Banners> Banners { get; set; }
         public List<Categories> Categories { get; set; }
 
+        public List<Courses> Courses { get; set; }
+
     }
 }

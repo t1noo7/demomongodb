@@ -23,14 +23,17 @@ public class HomeController : Controller
         var BannersCollection = database.GetCollection<Banners>("Banners");
         var NewsCollection = database.GetCollection<News>("News");
         var CategoriesCollection = database.GetCollection<Categories>("Categories");
+        var CoursesCollection = database.GetCollection<Courses>("Courses");
 
         List<Banners> BannersDetails = BannersCollection.Find(x => x.Active == true).SortBy(x => x.OrderIndex).ToList();
         List<News> NewsDetails = NewsCollection.Find(_ => true).ToList();
         List<Categories> CategoriesDetails = CategoriesCollection.Find(_ => true).ToList();
+        List<Courses> CoursesDetails = CoursesCollection.Find(_ => true).ToList();
 
         model.Banners = BannersDetails;
         model.News = NewsDetails;
         model.Categories = CategoriesDetails;
+        model.Courses = CoursesDetails;
 
         ViewBag.Categories = CategoriesDetails;
         return View(model);
