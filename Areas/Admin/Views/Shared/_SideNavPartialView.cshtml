@@ -54,36 +54,47 @@
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a class="dropdown-toggle" asp-area="Admin" asp-controller="AdminCourses" asp-action="Index">
+                <a class="dropdown-toggle">
+                    <span class="icon-holder">
+                        <i class="anticon anticon-build"></i>
+                    </span>
+                    <span class="title">Quản lý tài khoản quản trị</span>
+                    <span class="arrow">
+                        <i class="arrow-icon"></i>
+                    </span>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a asp-area="Admin" asp-controller="AdminAccounts" asp-action="Index">Quản lý tài khoản quản trị</a>
+                        </li>
+                        <li>
+                            <a asp-area="Admin" asp-controller="AdminRoles" asp-action="Index">Quản lý Role</a>
+                        </li>
+                        @* <li>
+                            <a asp-area="Admin" asp-controller="AdminPermissions" asp-action="Index">Quản lý quyền truy cập chức năng</a>
+                        </li> *@
+                    </ul>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="dropdown-toggle">
                     <span class="icon-holder">
                         <i class="anticon anticon-hdd"></i>
                     </span>
                     <span class="title">Quản lý khóa học</span>
                     <span class="arrow">
-
+                        <i class="arrow-icon"></i>
                     </span>
-                </a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" asp-area="Admin" asp-controller="AdminClasses" asp-action="Index">
-                    <span class="icon-holder">
-                        <i class="anticon anticon-hdd"></i>
-                    </span>
-                    <span class="title">Quản lý lớp học</span>
-                    <span class="arrow">
-
-                    </span>
-                </a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="dropdown-toggle" asp-area="Admin" asp-controller="AdminLessons" asp-action="Index">
-                    <span class="icon-holder">
-                        <i class="anticon anticon-hdd"></i>
-                    </span>
-                    <span class="title">Quản lý bài giảng</span>
-                    <span class="arrow">
-
-                    </span>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a asp-area="Admin" asp-controller="AdminCourses" asp-action="Index">Quản lý khóa học</a>
+                        </li>
+                        <li>
+                            <a asp-area="Admin" asp-controller="AdminClasses" asp-action="Index">Quản lý lớp học</a>
+                        </li>
+                        <li>
+                            <a asp-area="Admin" asp-controller="AdminLessons" asp-action="Index">Quản lý bài giảng</a>
+                        </li>
+                    </ul>
                 </a>
             </li>
             <li class="nav-item dropdown">

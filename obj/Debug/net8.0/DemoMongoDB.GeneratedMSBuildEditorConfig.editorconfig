@@ -9,288 +9,323 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = DemoMongoDB
 build_property.RootNamespace = DemoMongoDB
-build_property.ProjectDir = /Users/duongt1l0.ch0co/Projects/Git/demomongodb/
+build_property.ProjectDir = D:\Codes\demomongodb\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/duongt1l0.ch0co/Projects/Git/demomongodb
+build_property.MSBuildProjectDirectory = D:\Codes\demomongodb
 build_property._RazorSourceGeneratorDebug = 
-build_property.EffectiveAnalysisLevelStyle = 8.0
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminBanners/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5CYW5uZXJzL0NyZWF0ZS5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminAccounts/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5BY2NvdW50c1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminBanners/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5CYW5uZXJzL0RlbGV0ZS5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminAccounts/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5BY2NvdW50c1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminBanners/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5CYW5uZXJzL0RldGFpbHMuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminAccounts/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5BY2NvdW50c1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminBanners/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5CYW5uZXJzL0VkaXQuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminAccounts/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5BY2NvdW50c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminBanners/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5CYW5uZXJzL0luZGV4LmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminBanners/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5CYW5uZXJzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminBanners/Preview.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5CYW5uZXJzL1ByZXZpZXcuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminBanners/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5CYW5uZXJzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminCategories/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5DYXRlZ29yaWVzL0NyZWF0ZS5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminBanners/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5CYW5uZXJzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminCategories/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5DYXRlZ29yaWVzL0RlbGV0ZS5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminBanners/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5CYW5uZXJzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminCategories/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5DYXRlZ29yaWVzL0RldGFpbHMuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminBanners/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5CYW5uZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminCategories/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5DYXRlZ29yaWVzL0VkaXQuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminBanners/Preview.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5CYW5uZXJzXFByZXZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminCategories/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5DYXRlZ29yaWVzL0luZGV4LmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminCategories/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5DYXRlZ29yaWVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminClasses/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5DbGFzc2VzL0NyZWF0ZS5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminCategories/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5DYXRlZ29yaWVzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminClasses/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5DbGFzc2VzL0RlbGV0ZS5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminCategories/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5DYXRlZ29yaWVzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminClasses/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5DbGFzc2VzL0RldGFpbHMuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminCategories/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5DYXRlZ29yaWVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminClasses/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5DbGFzc2VzL0VkaXQuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminCategories/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5DYXRlZ29yaWVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminClasses/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5DbGFzc2VzL0luZGV4LmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminClasses/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5DbGFzc2VzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminCourses/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5Db3Vyc2VzL0NyZWF0ZS5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminClasses/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5DbGFzc2VzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminCourses/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5Db3Vyc2VzL0RlbGV0ZS5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminClasses/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5DbGFzc2VzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminCourses/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5Db3Vyc2VzL0RldGFpbHMuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminClasses/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5DbGFzc2VzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminCourses/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5Db3Vyc2VzL0VkaXQuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminClasses/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5DbGFzc2VzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminCourses/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5Db3Vyc2VzL0luZGV4LmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminCourses/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Db3Vyc2VzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminLessons/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5MZXNzb25zL0NyZWF0ZS5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminCourses/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Db3Vyc2VzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminLessons/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5MZXNzb25zL0RlbGV0ZS5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminCourses/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Db3Vyc2VzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminLessons/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5MZXNzb25zL0RldGFpbHMuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminCourses/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Db3Vyc2VzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminLessons/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5MZXNzb25zL0VkaXQuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminCourses/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Db3Vyc2VzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminLessons/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5MZXNzb25zL0luZGV4LmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminLessons/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5MZXNzb25zXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminNews/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5OZXdzL0NyZWF0ZS5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminLessons/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5MZXNzb25zXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminNews/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5OZXdzL0RlbGV0ZS5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminLessons/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5MZXNzb25zXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminNews/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5OZXdzL0RldGFpbHMuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminLessons/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5MZXNzb25zXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminNews/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5OZXdzL0VkaXQuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminLessons/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5MZXNzb25zXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminNews/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5OZXdzL0luZGV4LmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminNews/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5OZXdzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminOrders/ChangeStatus.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5PcmRlcnMvQ2hhbmdlU3RhdHVzLmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminNews/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5OZXdzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminOrders/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5PcmRlcnMvRGVsZXRlLmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminNews/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5OZXdzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminOrders/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5PcmRlcnMvSW5kZXguY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminNews/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5OZXdzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminUserAccounts/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5Vc2VyQWNjb3VudHMvRGVsZXRlLmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminNews/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5OZXdzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminUserAccounts/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5Vc2VyQWNjb3VudHMvRGV0YWlscy5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminOrders/ChangeStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5PcmRlcnNcQ2hhbmdlU3RhdHVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminUserAccounts/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5Vc2VyQWNjb3VudHMvRWRpdC5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminOrders/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5PcmRlcnNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminUserAccounts/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5Vc2VyQWNjb3VudHMvSW5kZXguY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminOrders/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5PcmRlcnNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminRoles/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb2xlc1xDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminRoles/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb2xlc1xEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/Search/ListProductSearchPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2VhcmNoL0xpc3RQcm9kdWN0U2VhcmNoUGFydGlhbC5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminRoles/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb2xlc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminRoles/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb2xlc1xFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/Shared/_SideNavPartialView.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL19TaWRlTmF2UGFydGlhbFZpZXcuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminRoles/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb2xlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminUserAccounts/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Vc2VyQWNjb3VudHNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminUserAccounts/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Vc2VyQWNjb3VudHNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminUserAccounts/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Vc2VyQWNjb3VudHNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Accounts/ActivateAccount.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudHMvQWN0aXZhdGVBY2NvdW50LmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/AdminUserAccounts/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Vc2VyQWNjb3VudHNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Accounts/ActivateAccountRequired.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudHMvQWN0aXZhdGVBY2NvdW50UmVxdWlyZWQuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Accounts/Dashboard.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudHMvRGFzaGJvYXJkLmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Accounts/ForgetPasswordCode.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudHMvRm9yZ2V0UGFzc3dvcmRDb2RlLmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/Search/ListProductSearchPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2VhcmNoXExpc3RQcm9kdWN0U2VhcmNoUGFydGlhbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Accounts/ForgetPasswordEmail.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudHMvRm9yZ2V0UGFzc3dvcmRFbWFpbC5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Accounts/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudHMvTG9naW4uY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/Shared/_SideNavPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9TaWRlTmF2UGFydGlhbFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Accounts/RegisterAccount.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudHMvUmVnaXN0ZXJBY2NvdW50LmNzaHRtbA==
+[D:/Codes/demomongodb/Areas/Admin/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Accounts/_ChangePasswordPartialView.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudHMvX0NoYW5nZVBhc3N3b3JkUGFydGlhbFZpZXcuY3NodG1s
+[D:/Codes/demomongodb/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Cart/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FydC9JbmRleC5jc2h0bWw=
+[D:/Codes/demomongodb/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+[D:/Codes/demomongodb/Views/Accounts/ActivateAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcQWN0aXZhdGVBY2NvdW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+[D:/Codes/demomongodb/Views/Accounts/ActivateAccountRequired.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcQWN0aXZhdGVBY2NvdW50UmVxdWlyZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/MyCourse/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTXlDb3Vyc2UvSW5kZXguY3NodG1s
+[D:/Codes/demomongodb/Views/Accounts/Dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcRGFzaGJvYXJkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/News/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTmV3cy9EZXRhaWxzLmNzaHRtbA==
+[D:/Codes/demomongodb/Views/Accounts/ForgetPasswordCode.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcRm9yZ2V0UGFzc3dvcmRDb2RlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Orders/CheckOut.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL0NoZWNrT3V0LmNzaHRtbA==
+[D:/Codes/demomongodb/Views/Accounts/ForgetPasswordEmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcRm9yZ2V0UGFzc3dvcmRFbWFpbC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Orders/ThankYou.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL1RoYW5rWW91LmNzaHRtbA==
+[D:/Codes/demomongodb/Views/Accounts/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+[D:/Codes/demomongodb/Views/Accounts/RegisterAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcUmVnaXN0ZXJBY2NvdW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Shared/_FooterPartialView.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Gb290ZXJQYXJ0aWFsVmlldy5jc2h0bWw=
+[D:/Codes/demomongodb/Views/Accounts/_ChangePasswordPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcX0NoYW5nZVBhc3N3b3JkUGFydGlhbFZpZXcuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Shared/_HeaderPartialView.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19IZWFkZXJQYXJ0aWFsVmlldy5jc2h0bWw=
+[D:/Codes/demomongodb/Views/Cart/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[D:/Codes/demomongodb/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[D:/Codes/demomongodb/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+[D:/Codes/demomongodb/Views/MyCourse/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTXlDb3Vyc2VcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/Shared/_AdminLayout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL19BZG1pbkxheW91dC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = b-mo09jdvc86
+[D:/Codes/demomongodb/Views/News/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/demomongodb/Views/Orders/CheckOut.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXENoZWNrT3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/demomongodb/Views/Orders/ThankYou.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJzXFRoYW5rWW91LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/demomongodb/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/demomongodb/Views/Shared/_FooterPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXJQYXJ0aWFsVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/demomongodb/Views/Shared/_HeaderPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9IZWFkZXJQYXJ0aWFsVmlldy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/demomongodb/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/demomongodb/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/demomongodb/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Codes/demomongodb/Areas/Admin/Views/Shared/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = b-2rpozdbo3t
 
-[/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-hdyxt8i8je
+[D:/Codes/demomongodb/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-mtpzd7l6if
