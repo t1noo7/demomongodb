@@ -2,6 +2,29 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "AspNetCoreHero.ToastNotification/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "12.0.3"
+        },
+        "compile": {
+          "lib/net5.0/AspNetCoreHero.ToastNotification.Views.dll": {},
+          "lib/net5.0/AspNetCoreHero.ToastNotification.dll": {}
+        },
+        "runtime": {
+          "lib/net5.0/AspNetCoreHero.ToastNotification.Views.dll": {},
+          "lib/net5.0/AspNetCoreHero.ToastNotification.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ],
+        "build": {
+          "buildTransitive/AspNetCoreHero.ToastNotification.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/AspNetCoreHero.ToastNotification.props": {}
+        }
+      },
       "AWSSDK.Core/3.7.100.14": {
         "type": "package",
         "compile": {
@@ -481,6 +504,30 @@
     }
   },
   "libraries": {
+    "AspNetCoreHero.ToastNotification/1.0.0": {
+      "sha512": "kzundxwHMdTQ6cMDPtTwx5YZG8qewW2t42ngK4cB+NZyaAPQ8gyf8QQMPlZyU/HqkznG0DIUjl5BQPoLwrLndQ==",
+      "type": "package",
+      "path": "aspnetcorehero.toastnotification/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Logo_600x600.png",
+        "aspnetcorehero.toastnotification.1.0.0.nupkg.sha512",
+        "aspnetcorehero.toastnotification.nuspec",
+        "build/AspNetCoreHero.ToastNotification.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/AspNetCoreHero.ToastNotification.props",
+        "buildTransitive/AspNetCoreHero.ToastNotification.props",
+        "lib/net5.0/AspNetCoreHero.ToastNotification.Views.dll",
+        "lib/net5.0/AspNetCoreHero.ToastNotification.dll",
+        "lib/netcoreapp3.1/AspNetCoreHero.ToastNotification.Views.dll",
+        "lib/netcoreapp3.1/AspNetCoreHero.ToastNotification.dll",
+        "staticwebassets/notyf.min.css",
+        "staticwebassets/notyf.min.js",
+        "staticwebassets/toastify.css",
+        "staticwebassets/toastify.js"
+      ]
+    },
     "AWSSDK.Core/3.7.100.14": {
       "sha512": "gnEgxBlk4PFEfdPE8Lkf4+D16MZFYSaW7/o6Wwe5e035QWUkTJX0Dn4LfTCdV5QSEL/fOFxu+yCAm55eIIBgog==",
       "type": "package",
@@ -1301,6 +1348,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "AspNetCoreHero.ToastNotification >= 1.0.0",
       "MailKit >= 4.6.0",
       "Microsoft.AspNetCore.Authentication.Facebook >= 8.0.4",
       "MimeKit >= 4.6.0",
@@ -1352,6 +1400,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "AspNetCoreHero.ToastNotification": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
           "MailKit": {
             "target": "Package",
             "version": "[4.6.0, )"

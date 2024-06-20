@@ -43,6 +43,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "AspNetCoreHero.ToastNotification": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
             "MailKit": {
               "target": "Package",
               "version": "[4.6.0, )"

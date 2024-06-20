@@ -19,7 +19,7 @@ namespace DemoMongoDB.Models
         public DateTime OrderDate { get; set; } = DateTime.Now;
         public double TotalAmount { get; set; }
         public List<OrderDetails> OrderDetails { get; set; }
-
+        public string Status { get; set; }
     }
 
     public class OrderDetails
@@ -28,7 +28,6 @@ namespace DemoMongoDB.Models
         public string CourseTitle { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
-        public bool Status { get; set; }
         public double Total => Price * Quantity;
     }
 }

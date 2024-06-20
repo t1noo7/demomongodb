@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "1WtavjC8CUM=",
+  "dgSpecHash": "I/UtQ8an89c=",
   "success": true,
   "projectFilePath": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/DemoMongoDB.csproj",
   "expectedPackageFiles": [
+    "/Users/duongt1l0.ch0co/.nuget/packages/aspnetcorehero.toastnotification/1.0.0/aspnetcorehero.toastnotification.1.0.0.nupkg.sha512",
     "/Users/duongt1l0.ch0co/.nuget/packages/awssdk.core/3.7.100.14/awssdk.core.3.7.100.14.nupkg.sha512",
     "/Users/duongt1l0.ch0co/.nuget/packages/awssdk.securitytoken/3.7.100.14/awssdk.securitytoken.3.7.100.14.nupkg.sha512",
     "/Users/duongt1l0.ch0co/.nuget/packages/bouncycastle.cryptography/2.3.1/bouncycastle.cryptography.2.3.1.nupkg.sha512",
@@ -33,9 +34,9 @@
     "/Users/duongt1l0.ch0co/.nuget/packages/system.security.cryptography.pkcs/8.0.0/system.security.cryptography.pkcs.8.0.0.nupkg.sha512",
     "/Users/duongt1l0.ch0co/.nuget/packages/system.security.principal.windows/5.0.0/system.security.principal.windows.5.0.0.nupkg.sha512",
     "/Users/duongt1l0.ch0co/.nuget/packages/zstdsharp.port/0.7.3/zstdsharp.port.0.7.3.nupkg.sha512",
-    "/Users/duongt1l0.ch0co/.nuget/packages/microsoft.netcore.app.ref/8.0.2/microsoft.netcore.app.ref.8.0.2.nupkg.sha512",
     "/Users/duongt1l0.ch0co/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.2/microsoft.aspnetcore.app.ref.8.0.2.nupkg.sha512",
-    "/Users/duongt1l0.ch0co/.nuget/packages/microsoft.netcore.app.host.osx-arm64/8.0.2/microsoft.netcore.app.host.osx-arm64.8.0.2.nupkg.sha512"
+    "/Users/duongt1l0.ch0co/.nuget/packages/microsoft.netcore.app.host.osx-arm64/8.0.2/microsoft.netcore.app.host.osx-arm64.8.0.2.nupkg.sha512",
+    "/Users/duongt1l0.ch0co/.nuget/packages/microsoft.netcore.app.ref/8.0.2/microsoft.netcore.app.ref.8.0.2.nupkg.sha512"
   ],
   "logs": []
 }

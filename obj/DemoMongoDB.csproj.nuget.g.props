@@ -12,6 +12,9 @@
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <SourceRoot Include="/Users/duongt1l0.ch0co/.nuget/packages/" />
   </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)aspnetcorehero.toastnotification/1.0.0/buildTransitive/AspNetCoreHero.ToastNotification.props" Condition="Exists('$(NuGetPackageRoot)aspnetcorehero.toastnotification/1.0.0/buildTransitive/AspNetCoreHero.ToastNotification.props')" />
+  </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <PkgAWSSDK_Core Condition=" '$(PkgAWSSDK_Core)' == '' ">/Users/duongt1l0.ch0co/.nuget/packages/awssdk.core/3.7.100.14</PkgAWSSDK_Core>
     <PkgAWSSDK_SecurityToken Condition=" '$(PkgAWSSDK_SecurityToken)' == '' ">/Users/duongt1l0.ch0co/.nuget/packages/awssdk.securitytoken/3.7.100.14</PkgAWSSDK_SecurityToken>
