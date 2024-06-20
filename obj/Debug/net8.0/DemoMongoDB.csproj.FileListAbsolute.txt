@@ -325,3 +325,9 @@ C:/Code/demomongodb/bin/Debug/net8.0/MimeKit.dll
 /Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/obj/Debug/net8.0/DemoMong.A73463F3.Up2Date
 /Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/obj/Debug/net8.0/DemoMongoDB.genruntimeconfig.cache
 /Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/obj/Debug/net8.0/ref/DemoMongoDB.dll
+/Users/duongt1l0.ch0co/Projects/Git/demomongodb/bin/Debug/net8.0/BouncyCastle.Cryptography.dll
+/Users/duongt1l0.ch0co/Projects/Git/demomongodb/bin/Debug/net8.0/MailKit.dll
+/Users/duongt1l0.ch0co/Projects/Git/demomongodb/bin/Debug/net8.0/Microsoft.Win32.SystemEvents.dll
+/Users/duongt1l0.ch0co/Projects/Git/demomongodb/bin/Debug/net8.0/MimeKit.dll
+/Users/duongt1l0.ch0co/Projects/Git/demomongodb/bin/Debug/net8.0/System.Drawing.Common.dll
+/Users/duongt1l0.ch0co/Projects/Git/demomongodb/bin/Debug/net8.0/runtimes/win/lib/net8.0/Microsoft.Win32.SystemEvents.dll

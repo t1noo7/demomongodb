@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/DemoMongoDB.csproj": {}
+    "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/DemoMongoDB.csproj": {}
   },
   "projects": {
-    "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/DemoMongoDB.csproj": {
+    "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/DemoMongoDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/DemoMongoDB.csproj",
+        "projectUniqueName": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/DemoMongoDB.csproj",
         "projectName": "DemoMongoDB",
-        "projectPath": "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/DemoMongoDB.csproj",
+        "projectPath": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/DemoMongoDB.csproj",
         "packagesPath": "/Users/duongt1l0.ch0co/.nuget/packages/",
-        "outputPath": "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/obj/",
+        "outputPath": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/duongt1l0.ch0co/.nuget/NuGet/NuGet.Config"

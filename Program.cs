@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using DemoMongoDB.Models;
+using DemoMongoDB.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
+builder.Services.AddScoped<IVnPayService, VnPayService>();
 
 
 var app = builder.Build();
@@ -47,7 +49,9 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
-}else{
+}
+else
+{
     app.UseDeveloperExceptionPage();
 }
 

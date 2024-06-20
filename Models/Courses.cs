@@ -24,6 +24,6 @@ namespace DemoMongoDB.Models
         public DateTime? CreateDate { get; set; }
 
         public bool Active { get; set; }
-        public int Price { get; set; }
+        public double Price { get; set; }
     }
 }

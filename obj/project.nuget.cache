@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "twzG25Ed6e4=",
+  "dgSpecHash": "1WtavjC8CUM=",
   "success": true,
-  "projectFilePath": "/Users/duongt1l0.ch0co/Projects/Git/Latest/demomongodb/DemoMongoDB.csproj",
+  "projectFilePath": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/DemoMongoDB.csproj",
   "expectedPackageFiles": [
     "/Users/duongt1l0.ch0co/.nuget/packages/awssdk.core/3.7.100.14/awssdk.core.3.7.100.14.nupkg.sha512",
     "/Users/duongt1l0.ch0co/.nuget/packages/awssdk.securitytoken/3.7.100.14/awssdk.securitytoken.3.7.100.14.nupkg.sha512",
