@@ -19,21 +19,51 @@ builder.Services.AddSingleton<IMongoClient>(serviceProvider =>
     });
 builder.Services.AddSession();
 builder.Services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
-            })
-            .AddCookie(p =>
-                {
-                    p.LoginPath = ("/login.html");
-                    p.AccessDeniedPath = ("/");
-                })
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;  // Default scheme for users
+    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+.AddCookie(p => // User login
+{
+    p.LoginPath = "/login.html";
+    p.AccessDeniedPath = "/";
+})
+.AddCookie("AdminAuthen", p =>  // Admin login
+{
+    p.LoginPath = "/admin-login.html";
+    p.AccessDeniedPath = "/access-denied.html";
+})
+.AddCookie("StaffAuthen", p =>  // Staff login
+{
+    p.LoginPath = "/admin-login.html";
+    p.AccessDeniedPath = "/access-denied.html";
+})
             .AddFacebook(options =>
                 {
                     options.AppId = builder.Configuration.GetSection("Authentication:Facebook:AppId").Value;
                     options.AppSecret = builder.Configuration.GetSection("Authentication:Facebook:AppSecret").Value;
                     options.CallbackPath = new PathString("/Accounts/FacebookCallback");
                 });
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy =>
+    {
+        policy.RequireRole("Admin");
+        policy.RequireAssertion(context => context.User.IsInRole("Admin"));
+    });
+    options.AddPolicy("StaffPolicy", policy =>
+    {
+        policy.RequireRole("Staff");
+        policy.RequireAssertion(context => context.User.IsInRole("Staff"));
+    });
+    options.AddPolicy("AdminAndStaffPolicy", policy =>
+    {
+        policy.RequireRole("Admin", "Staff");
+        policy.RequireAssertion(context => context.User.IsInRole("Admin") || context.User.IsInRole("Staff"));
+    });
+});
 
 
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));

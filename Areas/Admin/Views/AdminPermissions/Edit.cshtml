@@ -1,0 +1,100 @@
+@model DemoMongoDB.Models.Permissions
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var roles = ViewBag.Roles as List<DemoMongoDB.Models.Roles>;
+    var role = roles?.FirstOrDefault(r => r._id == Model.RoleId);
+    var functionsList = ViewBag.Functions as List<DemoMongoDB.Models.Functions>;
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item">
+                <i class="anticon anticon-home m-r-5"></i>Home
+            </a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminPermissions" asp-action="Index">
+                Danh sách quyền : page @ViewBag.CurrentPage
+            </a>
+            <span class="breadcrumb-item active">Chỉnh sửa quyền</span>
+        </nav>
+    </div>
+</div>
+
+<form asp-controller="AdminPermissions" asp-action="Edit" asp-route-id="@Model._id" method="post"
+    enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="_id" />
+    <input type="hidden" asp-for="RoleId" />
+    <div class="page-header no-gutters has-tab">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+            </div>
+            <div class="m-b-15">
+                <button class="btn btn-primary">
+                    <i class="anticon anticon-save"></i>
+                    <span>Save</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold">Role</label>
+                        <p class="form-control-plaintext">@role?.RoleName</p>
+                    </div>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Function Name</th>
+                                <th>Access</th>
+                                <th>Create</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                <th>Read</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (functionsList != null)
+                            {
+                                for (int i = 0; i < functionsList.Count; i++)
+                                {
+                                    var functionId = functionsList[i]._id;
+                                    var task = Model.FunctionPermissions?.FirstOrDefault(f => f.FunctionId == functionId) ?? new
+                                    DemoMongoDB.Models.Tasks();
+
+                                    <tr>
+                                        <td>@functionsList[i].FunctionName</td>
+                                        <td>
+                                            <input type="hidden" name="FunctionPermissions[@i].FunctionId"
+                                                value="@functionsList[i]._id" />
+                                            <input type="checkbox" name="FunctionPermissions[@i].AccessPermission" value="true"
+                                            @(task.AccessPermission ? "checked" : "") />
+                                        </td>
+                                        <td><input type="checkbox" name="FunctionPermissions[@i].CanCreate" value="true"
+                                            @(task.CanCreate ? "checked" : "") /></td>
+                                        <td><input type="checkbox" name="FunctionPermissions[@i].CanEdit" value="true"
+                                            @(task.CanEdit ? "checked" : "") /></td>
+                                        <td><input type="checkbox" name="FunctionPermissions[@i].CanDelete" value="true"
+                                            @(task.CanDelete ? "checked" : "") /></td>
+                                        <td><input type="checkbox" name="FunctionPermissions[@i].CanRead" value="true"
+                                            @(task.CanRead ? "checked" : "") /></td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

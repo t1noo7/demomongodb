@@ -79,6 +79,7 @@ namespace DemoMongoDB.Controllers
 
             string salt = Utilities.GetRandomKey();
             adminAccounts.CreateDate = DateTime.Now;
+            adminAccounts.RoleId = idRoles;
             adminAccounts.Salt = salt;
             adminAccounts.Password = (adminAccounts.Password + salt.Trim()).ToMD5();
             adminAccounts._id = null;
@@ -124,6 +125,11 @@ namespace DemoMongoDB.Controllers
 
             var database = _client.GetDatabase("DemoMongoDb");
             var adminAccountsCollection = database.GetCollection<AdminAccounts>("AdminAccounts");
+            var rolesCollection = database.GetCollection<Roles>("Roles");
+
+            var roles = rolesCollection.Find(_ => true).ToList();
+
+            ViewBag.Roles = roles;
 
             var adminAccounts = adminAccountsCollection.Find(n => n._id == id).FirstOrDefault();
 
@@ -138,17 +144,17 @@ namespace DemoMongoDB.Controllers
         // POST: Admin/AdminadminAccounts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(string id, AdminAccounts adminAccounts)
+        public async Task<ActionResult> Edit(string id, AdminAccounts adminAccounts, string idRoles)
         {
             if (string.IsNullOrEmpty(id))
             {
                 return BadRequest("adminAccounts ID is required.");
             }
 
-            if (!ModelState.IsValid)
-            {
-                return View(adminAccounts);
-            }
+            // if (!ModelState.IsValid)
+            // {
+            //     return View(adminAccounts);
+            // }
 
             var database = _client.GetDatabase("DemoMongoDb");
             var adminAccountsCollection = database.GetCollection<AdminAccounts>("AdminAccounts");
@@ -158,6 +164,14 @@ namespace DemoMongoDB.Controllers
             string salt = Utilities.GetRandomKey();
             adminAccounts.Salt = salt;
             adminAccounts.Password = (adminAccounts.Password + salt.Trim()).ToMD5();
+
+            var rolesCollection = database.GetCollection<Roles>("Roles");
+
+            var roleName = rolesCollection.Find(r => r._id == idRoles).FirstOrDefault();
+            if (roleName != null)
+            {
+                adminAccounts.Role = roleName.RoleName;
+            }
 
             var update = Builders<AdminAccounts>.Update
                 .Set("FullName", adminAccounts.FullName)
