@@ -7,6 +7,14 @@
     @* var classList = ViewBag.lsClass as List<DemoMongoDB.Models.Classes>; *@
 }
 
+@if (User.Identity.IsAuthenticated)
+{
+    bool QuanLyKhoaHoc = User.Claims.Any(c => c.Type == "FunctionId66763bd4b0fe10429a3f1512" && c.Value == "66763bd4b0fe10429a3f1512");
+    bool CanCreate = User.Claims.Any(c => c.Type == "CanCreate66763bd4b0fe10429a3f1512" && c.Value == "True");
+    bool CanEdit = User.Claims.Any(c => c.Type == "CanEdit66763bd4b0fe10429a3f1512" && c.Value == "True");
+    bool CanRead = User.Claims.Any(c => c.Type == "CanRead66763bd4b0fe10429a3f1512" && c.Value == "True");
+    bool CanDelete = User.Claims.Any(c => c.Type == "CanDelete66763bd4b0fe10429a3f1512" && c.Value == "True");
+
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
@@ -25,11 +33,13 @@
                     </div>
                 </div>
             </div>
+            @if(QuanLyKhoaHoc && CanCreate)
+            {
             <div class="col-lg-4 text-right">
                 <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminCourses" asp-action="Create"><i
                         class="anticon anticon-plus-circle m-r-5"></i> <span>Add Course</span></a>
             </div>
-
+            }
         </div>
         <div class="table-responsive">
             <table class="table table-hover e-commerce-table">
@@ -73,15 +83,21 @@
                                 </td>
 
                                 <td>
+                                    @if(QuanLyKhoaHoc && CanRead)
+                                    {
                                     <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminCourses"
                                         asp-action="Details" asp-route-id="@item._id">View</a>
-
+                                    }
+                                    @if(QuanLyKhoaHoc && CanEdit)
+                                    {
                                     <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminCourses"
                                         asp-action="Edit" asp-route-id="@item._id">Edit</a>
-
+                                    }
+                                    @if(QuanLyKhoaHoc && CanDelete)
+                                    {
                                     <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminCourses"
                                         asp-action="Delete" asp-route-id="@item._id">Delete</a>
-
+                                    }
                                 </td>
                             </tr>
                         }
@@ -104,3 +120,4 @@
         </div>
     </div>
 </div>
+}

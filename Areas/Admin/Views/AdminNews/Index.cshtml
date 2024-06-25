@@ -6,6 +6,14 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+@if (User.Identity.IsAuthenticated)
+{
+    bool QuanLyTinTuc = User.Claims.Any(c => c.Type == "FunctionId66763bbfb0fe10429a3f1511" && c.Value == "66763bbfb0fe10429a3f1511");
+    bool CanCreate = User.Claims.Any(c => c.Type == "CanCreate66763bbfb0fe10429a3f1511" && c.Value == "True");
+    bool CanEdit = User.Claims.Any(c => c.Type == "CanEdit66763bbfb0fe10429a3f1511" && c.Value == "True");
+    bool CanRead = User.Claims.Any(c => c.Type == "CanRead66763bbfb0fe10429a3f1511" && c.Value == "True");
+    bool CanDelete = User.Claims.Any(c => c.Type == "CanDelete66763bbfb0fe10429a3f1511" && c.Value == "True");
+
     <div class="page-header">
         <div class="header-sub-title">
             <nav class="breadcrumb breadcrumb-dash">
@@ -23,10 +31,12 @@
                         </div>
                     </div>
                 </div>
+                @if(QuanLyTinTuc && CanCreate)
+                {
                     <div class="col-lg-4 text-right">
                         <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminNews" asp-action="Create"><i class="anticon anticon-plus-circle m-r-5"></i> <span>Add New</span></a>
                     </div>
-                
+                }
             </div>
             <div class="table-responsive">
                 <table class="table table-hover e-commerce-table">
@@ -70,12 +80,18 @@
                                     </td>
                                 
                                     <td>
+                                        @if(QuanLyTinTuc && CanRead)
+                                        {
                                             <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminNews" asp-action="Details" asp-route-id="@item._id">View</a>
-                                        
+                                        }
+                                        @if(QuanLyTinTuc && CanEdit)
+                                        {
                                             <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminNews" asp-action="Edit" asp-route-id="@item._id">Edit</a>
-                                        
+                                        }
+                                        @if(QuanLyTinTuc && CanDelete)
+                                        {
                                             <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminNews" asp-action="Delete" asp-route-id="@item._id">Delete</a>
-                                        
+                                        }
                                     </td>
                                 </tr>
                             }
@@ -99,3 +115,4 @@
         </div>
     </div>
 
+}

@@ -6,6 +6,14 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+@if (User.Identity.IsAuthenticated)
+{
+    bool QuanLyTaiKhoanAdmin = User.Claims.Any(c => c.Type == "FunctionId66763c05b0fe10429a3f1516" && c.Value == "66763c05b0fe10429a3f1516");
+    bool CanCreate = User.Claims.Any(c => c.Type == "CanCreate66763c05b0fe10429a3f1516" && c.Value == "True");
+    bool CanEdit = User.Claims.Any(c => c.Type == "CanEdit66763c05b0fe10429a3f1516" && c.Value == "True");
+    bool CanRead = User.Claims.Any(c => c.Type == "CanRead66763c05b0fe10429a3f1516" && c.Value == "True");
+    bool CanDelete = User.Claims.Any(c => c.Type == "CanDelete66763c05b0fe10429a3f1516" && c.Value == "True");
+
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
@@ -24,11 +32,13 @@
                     </div>
                 </div>
             </div>
+            @if(QuanLyTaiKhoanAdmin && CanCreate)
+            {
             <div class="col-lg-4 text-right">
                 <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Create"><i
                         class="anticon anticon-plus-circle m-r-5"></i> <span>Add admin account</span></a>
             </div>
-
+            }
         </div>
         <div class="table-responsive">
             <table class="table table-hover e-commerce-table">
@@ -70,13 +80,16 @@
                                 </td>
 
                                 <td>
-
+                                    @if(QuanLyTaiKhoanAdmin && CanEdit)
+                                    {
                                     <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminAccounts"
                                         asp-action="Edit" asp-route-id="@item._id">Edit</a>
-
+                                    }
+                                    @if(QuanLyTaiKhoanAdmin && CanDelete)
+                                    {
                                     <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminAccounts"
                                         asp-action="Delete" asp-route-id="@item._id">Delete</a>
-
+                                    }
                                 </td>
                             </tr>
                         }
@@ -99,3 +112,4 @@
         </div>
     </div>
 </div>
+}

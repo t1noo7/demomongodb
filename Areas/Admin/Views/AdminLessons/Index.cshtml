@@ -6,12 +6,20 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+@if (User.Identity.IsAuthenticated)
+{
+    bool QuanLyBaiGiang = User.Claims.Any(c => c.Type == "FunctionId66763bf4b0fe10429a3f1514" && c.Value == "66763bf4b0fe10429a3f1514");
+    bool CanCreate = User.Claims.Any(c => c.Type == "CanCreate66763bf4b0fe10429a3f1514" && c.Value == "True");
+    bool CanEdit = User.Claims.Any(c => c.Type == "CanEdit66763bf4b0fe10429a3f1514" && c.Value == "True");
+    bool CanRead = User.Claims.Any(c => c.Type == "CanRead66763bf4b0fe10429a3f1514" && c.Value == "True");
+    bool CanDelete = User.Claims.Any(c => c.Type == "CanDelete66763bf4b0fe10429a3f1514" && c.Value == "True");
+
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
                     class="anticon anticon-home m-r-5"></i>Home</a>
-            <span class="breadcrumb-item active">Danh sách bài giảng : page @CurrentPage</span>
+            <span class="breadcrumb-item active">Danh sách bài giảng : page @CurrentPage</span>
         </nav>
     </div>
 </div>
@@ -24,11 +32,13 @@
                     </div>
                 </div>
             </div>
+            @if(QuanLyBaiGiang && CanCreate)
+            {
             <div class="col-lg-4 text-right">
                 <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminLessons" asp-action="Create"><i
                         class="anticon anticon-plus-circle m-r-5"></i> <span>Add Class</span></a>
             </div>
-
+            }
         </div>
         <div class="table-responsive">
             <table class="table table-hover e-commerce-table">
@@ -74,15 +84,21 @@
                                 </td>
 
                                 <td>
+                                    @if(QuanLyBaiGiang && CanRead)
+                                    {
                                     <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminLessons"
                                         asp-action="Details" asp-route-id="@item._id">View</a>
-
+                                    }
+                                    @if(QuanLyBaiGiang && CanEdit)
+                                    {
                                     <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminLessons"
                                         asp-action="Edit" asp-route-id="@item._id">Edit</a>
-
+                                    }
+                                    @if(QuanLyBaiGiang && CanDelete)
+                                    {
                                     <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminLessons"
                                         asp-action="Delete" asp-route-id="@item._id">Delete</a>
-
+                                    }
                                 </td>
                             </tr>
                         }
@@ -105,3 +121,4 @@
         </div>
     </div>
 </div>
+}

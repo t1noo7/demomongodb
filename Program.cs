@@ -32,12 +32,12 @@ builder.Services.AddAuthentication(options =>
 .AddCookie("AdminAuthen", p =>  // Admin login
 {
     p.LoginPath = "/admin-login.html";
-    p.AccessDeniedPath = "/access-denied.html";
+    p.AccessDeniedPath = "/admin";
 })
 .AddCookie("StaffAuthen", p =>  // Staff login
 {
     p.LoginPath = "/admin-login.html";
-    p.AccessDeniedPath = "/access-denied.html";
+    p.AccessDeniedPath = "/admin";
 })
             .AddFacebook(options =>
                 {

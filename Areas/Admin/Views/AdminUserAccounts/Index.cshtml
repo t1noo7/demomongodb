@@ -6,6 +6,14 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+@if (User.Identity.IsAuthenticated)
+{
+    bool QuanLyKhachHang = User.Claims.Any(c => c.Type == "FunctionId66763b9db0fe10429a3f150f" && c.Value == "66763b9db0fe10429a3f150f");
+    bool CanCreate = User.Claims.Any(c => c.Type == "CanCreate66763b9db0fe10429a3f150f" && c.Value == "True");
+    bool CanEdit = User.Claims.Any(c => c.Type == "CanEdit66763b9db0fe10429a3f150f" && c.Value == "True");
+    bool CanRead = User.Claims.Any(c => c.Type == "CanRead66763b9db0fe10429a3f150f" && c.Value == "True");
+    bool CanDelete = User.Claims.Any(c => c.Type == "CanDelete66763b9db0fe10429a3f150f" && c.Value == "True");
+
     <div class="page-header">
         <div class="header-sub-title">
             <nav class="breadcrumb breadcrumb-dash">
@@ -69,12 +77,18 @@
                                     <td>@item.LastLogin</td>
                                 
                                     <td>
+                                        @if(QuanLyKhachHang && CanRead)
+                                        {
                                             <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminUserAccounts" asp-action="Details" asp-route-id="@item._id">View</a>
-                                        
+                                        }
+                                        @if(QuanLyKhachHang && CanEdit)
+                                        {
                                             <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminUserAccounts" asp-action="Edit" asp-route-id="@item._id">Edit</a>
-                                        
+                                        }
+                                        @if(QuanLyKhachHang && CanDelete)
+                                        {
                                             <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminUserAccounts" asp-action="Delete" asp-route-id="@item._id">Delete</a>
-                                        
+                                        }
                                     </td>
                                 </tr>
                             }
@@ -98,3 +112,4 @@
         </div>
     </div>
 
+}

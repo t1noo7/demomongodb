@@ -6,9 +6,11 @@ using DemoMongoDB.Models;
 using PagedList.Core;
 using DemoMongoDB.Helper;
 using DemoMongoDB.ModelViews;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DemoMongoDB.Controllers
 {
+    [Authorize(Roles = "Admin, Staff", Policy = "AdminAndStaffPolicy", AuthenticationSchemes = "AdminAuthen, StaffAuthen")]
     [Area("Admin")]
     public class AdminBannersController : Controller
     {

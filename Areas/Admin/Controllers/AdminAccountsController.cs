@@ -6,9 +6,11 @@ using DemoMongoDB.Models;
 using PagedList.Core;
 using DemoMongoDB.Helper;
 using DemoMongoDB.Extension;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DemoMongoDB.Controllers
 {
+    [Authorize(Roles = "Admin, Staff", Policy = "AdminAndStaffPolicy", AuthenticationSchemes = "AdminAuthen, StaffAuthen")]
     [Area("Admin")]
     public class AdminAccountsController : Controller
     {
@@ -179,6 +181,7 @@ namespace DemoMongoDB.Controllers
                 .Set("Email", adminAccounts.Email)
                 .Set("Phone", adminAccounts.Phone)
                 .Set("Role", adminAccounts.Role)
+                .Set("RoleId", adminAccounts.RoleId)
                 .Set("Password", adminAccounts.Password)
                 .Set("Active", adminAccounts.Active);
 

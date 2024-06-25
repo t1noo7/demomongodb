@@ -6,6 +6,14 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+@if (User.Identity.IsAuthenticated)
+{
+    bool QuanLyDonHang = User.Claims.Any(c => c.Type == "FunctionId66763badb0fe10429a3f1510" && c.Value == "66763badb0fe10429a3f1510");
+    bool CanCreate = User.Claims.Any(c => c.Type == "CanCreate66763badb0fe10429a3f1510" && c.Value == "True");
+    bool CanEdit = User.Claims.Any(c => c.Type == "CanEdit66763badb0fe10429a3f1510" && c.Value == "True");
+    bool CanRead = User.Claims.Any(c => c.Type == "CanRead66763badb0fe10429a3f1510" && c.Value == "True");
+    bool CanDelete = User.Claims.Any(c => c.Type == "CanDelete66763badb0fe10429a3f1510" && c.Value == "True");
+
 <div class="page-header">
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
@@ -56,12 +64,16 @@
                                 <td>@order.OrderDate.ToString("yyyy-MM-dd")</td>
                                 <td>@order.Status</td>
                                 <td>
-
+                                    @if(QuanLyDonHang && CanEdit)
+                                    {
                                     <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminOrders"
                                         asp-action="ChangeStatus" asp-route-id="@order._id">Change Order's Status</a>
-
+                                    }
+                                    @if(QuanLyDonHang && CanDelete)
+                                    {
                                     <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminOrders"
                                         asp-action="Delete" asp-route-id="@order._id">Delete</a>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -83,3 +95,4 @@
         </div>
     </div>
 </div>
+}
