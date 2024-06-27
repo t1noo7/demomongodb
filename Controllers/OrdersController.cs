@@ -79,6 +79,7 @@ namespace DemoMongoDB.Controllers
                 {
                     CourseId = item.courses._id,
                     CourseTitle = item.courses.Title,
+                    Thumb = item.courses.Thumb,
                     Price = item.courses.Price,
                     Quantity = item.Quantity
                 }).ToList();

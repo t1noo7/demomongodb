@@ -26,6 +26,7 @@ namespace DemoMongoDB.Models
     {
         public string CourseId { get; set; }
         public string CourseTitle { get; set; }
+        public string Thumb { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
         public double Total => Price * Quantity;
