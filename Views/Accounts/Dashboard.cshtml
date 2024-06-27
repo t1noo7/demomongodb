@@ -41,13 +41,17 @@
                             href="#account-dashboard" role="tab" aria-controls="account-dashboard" aria-selected="true">
                             Dashboard
                         </a>
-                        <a class="nav-link" id="account-details-tab" data-bs-toggle="pill" href="#account-details"
-                            role="tab" aria-controls="account-details" aria-selected="false">
-                            Change Password
-                        </a>
                         <a class="nav-link" id="account-mycourse-tab" href="/mycourse/" role="tab"
                             aria-selected="false">
                             My Course
+                        </a>
+                        <a class="nav-link" id="account-myOrder" href="/accounts/myorder.html" role="tab"
+                            aria-controls="account-myOrder" aria-selected="false">
+                            My Order
+                        </a>
+                        <a class="nav-link" id="changePassword" data-bs-toggle="pill" href="#account-details"
+                            role="tab" aria-controls="account-details" aria-selected="false">
+                            Change Password
                         </a>
                         <a class="nav-link" id="account-logout-tab" href="/accounts/logout.html" role="tab"
                             aria-selected="false">
@@ -62,14 +66,20 @@
                             aria-labelledby="account-dashboard-tab">
                             <div class="myaccount-dashboard">
                                 <h4>Welcome, <b>@Model.FullName</b>!</h4>
+                                <p><strong>Name:</strong> @Model.FullName</p>
                                 <p><strong>Email:</strong> @Model.Email</p>
                                 <p><strong>Phone:</strong> @Model.Phone</p>
-                                <p><strong>Address:</strong> @Model.Address</p>
+                                
                             </div>
                         </div>
 
+                        <div class="tab-pane fade" id="account-Order" role="tabpanel"
+                            aria-labelledby="account-myOrder">
+                            @await Html.PartialAsync("_MyOrderPartialView")
+                        </div>
+
                         <div class="tab-pane fade" id="account-details" role="tabpanel"
-                            aria-labelledby="account-details-tab">
+                            aria-labelledby="changePassword">
                             @await Html.PartialAsync("_ChangePasswordPartialView", new ChangePasswordVM())
                         </div>
                     </div>
@@ -78,3 +88,5 @@
         </div>
     </div>
 </main>
+
+

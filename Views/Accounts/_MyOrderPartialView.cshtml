@@ -1,0 +1,96 @@
+@{
+    ViewData["Title"] = "My Orders";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var orders = ViewBag.Order as List<DemoMongoDB.Models.Orders>;
+}
+
+<main class="main-content">
+    <div class="container">
+        <h1>My Orders</h1>
+
+        @if (orders == null || !orders.Any())
+        {
+            <p>You have no orders.</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Order Date</th>
+                        <th>Total Amount</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in orders)
+                    {
+                        <tr>
+                            <td>@order._id</td>
+                            <td>@order.CustomerName</td>
+                            <td>@order.OrderDate.ToString("yyyy-MM-dd")</td>
+                            <td>@order.TotalAmount.ToString("C")</td>
+                            <td>@order.Status</td>
+                            <td>
+                                <button class="btn btn-primary view-more" data-order-id="@order._id">View More</button>
+                            </td>
+                        </tr>
+                        <tr id="details-@order._id" class="order-details-row" style="display:none;">
+                            <td colspan="6">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Course ID</th>
+                                            <th>Course Title</th>
+                                            <th>Thumb</th>
+                                            <th>Price</th>
+                                            <th>Quantity</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in order.OrderDetails)
+                                        {
+                                            <tr>
+                                                <td>@item.CourseId</td>
+                                                <td>@item.CourseTitle</td>
+                                                <td><img src="~/images/courses/@item.Thumb" alt="@item.CourseTitle" style="width:50px; height:auto;"></td>
+                                                <td>@item.Price.ToString("C")</td>
+                                                <td>@item.Quantity</td>
+                                                <td>@item.Total.ToString("C")</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</main>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var buttons = document.querySelectorAll('.view-more');
+            buttons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var orderId = this.getAttribute('data-order-id');
+                    var detailsRow = document.getElementById('details-' + orderId);
+                    if (detailsRow.style.display === 'none') {
+                        detailsRow.style.display = 'table-row';
+                        this.textContent = 'View Less';
+                    } else {
+                        detailsRow.style.display = 'none';
+                        this.textContent = 'View More';
+                    }
+                });
+            });
+        });
+    </script>
+}

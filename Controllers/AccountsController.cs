@@ -242,6 +242,8 @@ namespace DemoMongoDB.Controllers
                     //Lưu session vào MaKH
                     HttpContext.Session.SetString("_id", guest._id.ToString());
                     var accountID = HttpContext.Session.GetString("_id");
+                    HttpContext.Session.SetString("Email", guest.Email.ToString());
+                    var accountEmail = HttpContext.Session.GetString("Email");
                     //Identity
                     var claims = new List<Claim>
                     {
@@ -384,6 +386,45 @@ namespace DemoMongoDB.Controllers
             HttpContext.Session.Remove("Cart");
             return RedirectToAction("Index", "Home");
         }
+
+        [Route("myorder.html", Name = "Order")]
+        public async Task<IActionResult> MyOrder()
+        {
+            var database = _client.GetDatabase("DemoMongoDb");
+            var usersCollection = database.GetCollection<UserAccounts>("UserAccounts");
+            try
+            {
+                var accountID = HttpContext.Session.GetString("_id");
+                var accountEmail = HttpContext.Session.GetString("Email");
+
+                if (accountID == null)
+                {
+                    return RedirectToAction("Login", "Accounts");
+                }
+                if (ModelState.IsValid)
+                {
+
+                    var user = await usersCollection.Find(u => u.Email == accountEmail).FirstOrDefaultAsync();
+
+                    if (user == null)
+                    {
+                        return RedirectToAction("Login", "Accounts");
+                    }
+
+                    var ordersCollection = database.GetCollection<Orders>("Orders");
+                    var filter = Builders<Orders>.Filter.Eq("CustomerEmail", user.Email);
+                    var orders = await ordersCollection.Find(filter).ToListAsync();
+                    ViewBag.Order = orders;
+                    return PartialView("_MyOrderPartialView");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Dashboard", "Accounts");
+            }
+            return RedirectToAction("Dashboard", "Accounts");
+        }
+
 
         [HttpPost]
         public IActionResult ChangePassword(ChangePasswordVM model)
