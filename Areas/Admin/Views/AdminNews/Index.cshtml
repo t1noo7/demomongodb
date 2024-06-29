@@ -8,8 +8,12 @@
 
 @if (User.Identity.IsAuthenticated)
 {
+<<<<<<< HEAD
     bool QuanLyTinTuc = User.Claims.Any(c => c.Type == "FunctionId66763bbfb0fe10429a3f1511" && c.Value ==
     "66763bbfb0fe10429a3f1511");
+=======
+    bool QuanLyTinTuc = User.Claims.Any(c => c.Type == "FunctionId66763bbfb0fe10429a3f1511" && c.Value == "66763bbfb0fe10429a3f1511");
+>>>>>>> refs/remotes/origin/main
     bool CanCreate = User.Claims.Any(c => c.Type == "CanCreate66763bbfb0fe10429a3f1511" && c.Value == "True");
     bool CanEdit = User.Claims.Any(c => c.Type == "CanEdit66763bbfb0fe10429a3f1511" && c.Value == "True");
     bool CanRead = User.Claims.Any(c => c.Type == "CanRead66763bbfb0fe10429a3f1511" && c.Value == "True");
@@ -32,8 +36,12 @@
                     <div class="m-b-10 m-r-15">
                     </div>
                 </div>
+<<<<<<< HEAD
             </div>
             @if (QuanLyTinTuc && CanCreate)
+=======
+                @if(QuanLyTinTuc && CanCreate)
+>>>>>>> refs/remotes/origin/main
                 {
                     <div class="col-lg-4 text-right">
                         <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminNews" asp-action="Create"><i
@@ -83,6 +91,7 @@
                                     </td>
 
                                     <td>
+<<<<<<< HEAD
                                         @if (QuanLyTinTuc && CanRead)
                                         {
                                             <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminNews"
@@ -97,6 +106,19 @@
                                         {
                                             <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminNews"
                                                 asp-action="Delete" asp-route-id="@item._id">Delete</a>
+=======
+                                        @if(QuanLyTinTuc && CanRead)
+                                        {
+                                            <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminNews" asp-action="Details" asp-route-id="@item._id">View</a>
+                                        }
+                                        @if(QuanLyTinTuc && CanEdit)
+                                        {
+                                            <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminNews" asp-action="Edit" asp-route-id="@item._id">Edit</a>
+                                        }
+                                        @if(QuanLyTinTuc && CanDelete)
+                                        {
+                                            <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminNews" asp-action="Delete" asp-route-id="@item._id">Delete</a>
+>>>>>>> refs/remotes/origin/main
                                         }
                                     </td>
                                 </tr>

@@ -13,7 +13,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DemoMongoDB")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+02ffb0101efb5b5b174b8a9c3777ef5aa107cc98")]
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+381b6c126217f3b348cacf04ec2bfd429fe11511")]
+>>>>>>> refs/remotes/origin/main
 [assembly: System.Reflection.AssemblyProductAttribute("DemoMongoDB")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DemoMongoDB")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -8,14 +8,22 @@
 
 @if (User.Identity.IsAuthenticated)
 {
+<<<<<<< HEAD
     bool QuanLyDonHang = User.Claims.Any(c => c.Type == "FunctionId66763badb0fe10429a3f1510" && c.Value ==
     "66763badb0fe10429a3f1510");
+=======
+    bool QuanLyDonHang = User.Claims.Any(c => c.Type == "FunctionId66763badb0fe10429a3f1510" && c.Value == "66763badb0fe10429a3f1510");
+>>>>>>> refs/remotes/origin/main
     bool CanCreate = User.Claims.Any(c => c.Type == "CanCreate66763badb0fe10429a3f1510" && c.Value == "True");
     bool CanEdit = User.Claims.Any(c => c.Type == "CanEdit66763badb0fe10429a3f1510" && c.Value == "True");
     bool CanRead = User.Claims.Any(c => c.Type == "CanRead66763badb0fe10429a3f1510" && c.Value == "True");
     bool CanDelete = User.Claims.Any(c => c.Type == "CanDelete66763badb0fe10429a3f1510" && c.Value == "True");
 
+<<<<<<< HEAD
     <div class="page-header">
+=======
+<div class="page-header">
+>>>>>>> refs/remotes/origin/main
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
@@ -50,6 +58,7 @@
                 <tbody>
                     @if (Model != null)
                         {
+<<<<<<< HEAD
                             foreach (var order in Model)
                             {
                                 <tr>
@@ -78,6 +87,33 @@
                                     </td>
                                 </tr>
                             }
+=======
+                            <tr>
+                                <td>@order._id</td>
+                                <td>@order.CustomerName</td>
+                                <td>@order.CustomerEmail</td>
+                                <td>
+                                    @foreach (var detail in order.OrderDetails)
+                                    {
+                                        <div>- @detail.CourseTitle</div>
+                                    }
+                                </td>
+                                <td>@order.OrderDate.ToString("yyyy-MM-dd")</td>
+                                <td>@order.Status</td>
+                                <td>
+                                    @if(QuanLyDonHang && CanEdit)
+                                    {
+                                    <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminOrders"
+                                        asp-action="ChangeStatus" asp-route-id="@order._id">Change Order's Status</a>
+                                    }
+                                    @if(QuanLyDonHang && CanDelete)
+                                    {
+                                    <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminOrders"
+                                        asp-action="Delete" asp-route-id="@order._id">Delete</a>
+                                    }
+                                </td>
+                            </tr>
+>>>>>>> refs/remotes/origin/main
                         }
                     </tbody>
                 </table>
@@ -96,4 +132,9 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 }
+=======
+</div>
+}
+>>>>>>> refs/remotes/origin/main

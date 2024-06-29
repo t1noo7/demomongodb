@@ -8,14 +8,22 @@
 
 @if (User.Identity.IsAuthenticated)
 {
+<<<<<<< HEAD
     bool QuanLyTaiKhoanAdmin = User.Claims.Any(c => c.Type == "FunctionId66763c05b0fe10429a3f1516" && c.Value ==
     "66763c05b0fe10429a3f1516");
+=======
+    bool QuanLyTaiKhoanAdmin = User.Claims.Any(c => c.Type == "FunctionId66763c05b0fe10429a3f1516" && c.Value == "66763c05b0fe10429a3f1516");
+>>>>>>> refs/remotes/origin/main
     bool CanCreate = User.Claims.Any(c => c.Type == "CanCreate66763c05b0fe10429a3f1516" && c.Value == "True");
     bool CanEdit = User.Claims.Any(c => c.Type == "CanEdit66763c05b0fe10429a3f1516" && c.Value == "True");
     bool CanRead = User.Claims.Any(c => c.Type == "CanRead66763c05b0fe10429a3f1516" && c.Value == "True");
     bool CanDelete = User.Claims.Any(c => c.Type == "CanDelete66763c05b0fe10429a3f1516" && c.Value == "True");
 
+<<<<<<< HEAD
     <div class="page-header">
+=======
+<div class="page-header">
+>>>>>>> refs/remotes/origin/main
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
@@ -33,6 +41,7 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
             @if (QuanLyTaiKhoanAdmin && CanCreate)
                 {
                     <div class="col-lg-4 text-right">
@@ -55,6 +64,32 @@
                     </thead>
                     <tbody>
                         @if (Model != null)
+=======
+            @if(QuanLyTaiKhoanAdmin && CanCreate)
+            {
+            <div class="col-lg-4 text-right">
+                <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminAccounts" asp-action="Create"><i
+                        class="anticon anticon-plus-circle m-r-5"></i> <span>Add admin account</span></a>
+            </div>
+            }
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên người dùng</th>
+                        <th>Role</th>
+                        <th>Lần đăng nhập cuối</th>
+                        <th>Trạng thái</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+>>>>>>> refs/remotes/origin/main
                         {
                             foreach (var item in Model)
                             {
@@ -80,6 +115,7 @@
                                         }
                                     </td>
 
+<<<<<<< HEAD
                                     <td>
                                         @if (QuanLyTaiKhoanAdmin && CanEdit)
                                         {
@@ -94,6 +130,21 @@
                                     </td>
                                 </tr>
                             }
+=======
+                                <td>
+                                    @if(QuanLyTaiKhoanAdmin && CanEdit)
+                                    {
+                                    <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminAccounts"
+                                        asp-action="Edit" asp-route-id="@item._id">Edit</a>
+                                    }
+                                    @if(QuanLyTaiKhoanAdmin && CanDelete)
+                                    {
+                                    <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminAccounts"
+                                        asp-action="Delete" asp-route-id="@item._id">Delete</a>
+                                    }
+                                </td>
+                            </tr>
+>>>>>>> refs/remotes/origin/main
                         }
                     </tbody>
 
@@ -113,4 +164,9 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 }
+=======
+</div>
+}
+>>>>>>> refs/remotes/origin/main

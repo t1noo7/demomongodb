@@ -8,14 +8,22 @@
 
 @if (User.Identity.IsAuthenticated)
 {
+<<<<<<< HEAD
     bool QuanLyBanner = User.Claims.Any(c => c.Type == "FunctionId66763b87b0fe10429a3f150e" && c.Value ==
     "66763b87b0fe10429a3f150e");
+=======
+    bool QuanLyBanner = User.Claims.Any(c => c.Type == "FunctionId66763b87b0fe10429a3f150e" && c.Value == "66763b87b0fe10429a3f150e");
+>>>>>>> refs/remotes/origin/main
     bool CanCreate = User.Claims.Any(c => c.Type == "CanCreate66763b87b0fe10429a3f150e" && c.Value == "True");
     bool CanEdit = User.Claims.Any(c => c.Type == "CanEdit66763b87b0fe10429a3f150e" && c.Value == "True");
     bool CanRead = User.Claims.Any(c => c.Type == "CanRead66763b87b0fe10429a3f150e" && c.Value == "True");
     bool CanDelete = User.Claims.Any(c => c.Type == "CanDelete66763b87b0fe10429a3f150e" && c.Value == "True");
 
+<<<<<<< HEAD
     <div class="page-header">
+=======
+<div class="page-header">
+>>>>>>> refs/remotes/origin/main
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item">
@@ -36,7 +44,81 @@
             <div class="col-lg-4 text-right">
                 @* Thay đổi nút Preview Banner để sử dụng id và href *@
                 @{
+<<<<<<< HEAD
                         var previewUrl = Url.Action("Preview", "AdminBanners", new { area = "Admin" });
+=======
+                    var previewUrl = Url.Action("Preview", "AdminBanners", new { area = "Admin" });
+                }
+                <a id="showBannerPreview" class="btn btn-primary" href="@previewUrl">
+                    <i class="anticon anticon-plus-circle m-r-5"></i>
+                    <span>Preview Banner</span>
+                </a>
+                @if(QuanLyBanner && CanCreate)
+                {
+                <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminBanners" asp-action="Create">
+                    <i class="anticon anticon-plus-circle m-r-5"></i>
+                    <span>Add Banner</span>
+                </a>
+                }
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên banner</th>
+                        <th>Thumb</th>
+                        <th>Ngày sửa</th>
+                        <th>Thứ tự</th>
+                        <th>Trạng thái</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item._id</td>
+                                <td>@item.BannerName</td>
+                                <td>
+                                    <img width="100" height="75" src="~/images/banners/@item.Thumb" alt="@item.BannerName" />
+                                </td>
+                                <td>@item.DateModified</td>
+                                <td>@item.OrderIndex</td>
+                                <td>
+                                    @if (item.Active == true)
+                                    {
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-success badge-dot m-r-10"></div>
+                                            <div>Active</div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="d-flex align-items-center">
+                                            <div class="badge badge-success badge-dot m-r-10"></div>
+                                            <div>Not Active</div>
+                                        </div>
+                                    }
+                                </td>
+                                <td>
+                                    @if(QuanLyBanner && CanEdit)
+                                    {
+                                    <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminBanners"
+                                        asp-action="Edit" asp-route-id="@item._id">Edit</a>
+                                    }
+                                    @if(QuanLyBanner && CanDelete)
+                                    {
+                                    <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminBanners"
+                                        asp-action="Delete" asp-route-id="@item._id">Delete</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+>>>>>>> refs/remotes/origin/main
                     }
                     <a id="showBannerPreview" class="btn btn-primary" href="@previewUrl">
                         <i class="anticon anticon-plus-circle m-r-5"></i>
