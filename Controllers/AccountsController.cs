@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using MongoDB.Bson;
 
 
 namespace DemoMongoDB.Controllers
@@ -424,6 +425,47 @@ namespace DemoMongoDB.Controllers
             }
             return RedirectToAction("Dashboard", "Accounts");
         }
+
+        [HttpPost]
+        [Route("myorder.html", Name = "Order")]
+        public async Task<IActionResult> MyOrder(string orderId, IFormFile verifyImage)
+        {
+            var database = _client.GetDatabase("DemoMongoDb");
+            var ordersCollection = database.GetCollection<Orders>("Orders");
+
+            if (verifyImage != null)
+            {
+                try
+                {
+                    string extension = Path.GetExtension(verifyImage.FileName);
+                    string image = Utilities.SEOUrl(verifyImage.FileName) + extension;
+                    string imagePath = await Utilities.ResizeAndUploadImage(verifyImage, "verify", desiredWidth: 200, desiredHeight: 450, image.ToLower());
+
+                    var filter = Builders<Orders>.Filter.Eq("_id", ObjectId.Parse(orderId));
+                    var update = Builders<Orders>.Update.Set("VerifyImage", imagePath);
+
+                    var result = await ordersCollection.UpdateOneAsync(filter, update);
+
+                    if (result.ModifiedCount > 0)
+                    {
+                        return Json(new { success = true, message = "Verify image uploaded successfully." });
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = "Failed to update verify image." });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, message = $"An error occurred: {ex.Message}" });
+                }
+            }
+            else
+            {
+                return Json(new { success = false, message = "No image uploaded." });
+            }
+        }
+
 
 
         [HttpPost]

@@ -19,12 +19,14 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb-item text-center">
                         <h2 class="breadcrumb-title">My Account</h2>
-                        @* <ul>
-                            <li>
-                                <a href="/">Home <i class="pe-7s-angle-right"></i></a>
-                            </li>
-                            <li>Dashboard</li>
-                        </ul> *@
+                        @* <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                                <li class="breadcrumb-item active" id="currentBreadcrumb" aria-current="page">Dashboard
+                                </li>
+                            </ol>
+                        </nav> *@
                     </div>
                 </div>
             </div>
@@ -73,9 +75,10 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade" id="account-Order" role="tabpanel"
-                            aria-labelledby="account-myOrder">
-                            @await Html.PartialAsync("_MyOrderPartialView")
+                        <div class="tab-pane fade" id="account-Order" role="tabpanel" aria-labelledby="account-myOrder">
+                            <div id="myOrderContainer">
+                                @* @await Html.PartialAsync("_MyOrderPartialView") *@
+                            </div>
                         </div>
 
                         <div class="tab-pane fade" id="account-details" role="tabpanel"
@@ -88,5 +91,6 @@
         </div>
     </div>
 </main>
+
 
 

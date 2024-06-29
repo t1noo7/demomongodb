@@ -18,7 +18,8 @@ namespace DemoMongoDB.Models
         public string CustomerEmail { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.Now;
         public double TotalAmount { get; set; }
-        
+        public string VerifyImage { get; set; }
+
         public List<OrderDetails> OrderDetails { get; set; }
         public string Status { get; set; }
         public string MomoAmount { get; set; }

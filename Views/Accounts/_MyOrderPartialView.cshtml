@@ -6,6 +6,14 @@
 
 <main class="main-content">
     <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item"><a href="/my-account.html">My Account</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Orders</li>
+            </ol>
+        </nav>
+
         <h1>My Orders</h1>
 
         @if (orders == null || !orders.Any())
@@ -23,6 +31,7 @@
                         <th>Total Amount</th>
                         <th>Status</th>
                         <th>Details</th>
+                        <th>Verify Image</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -36,6 +45,13 @@
                             <td>@order.Status</td>
                             <td>
                                 <button class="btn btn-primary view-more" data-order-id="@order._id">View More</button>
+                            </td>
+                            <td>
+                                <form id="uploadForm" method="post" enctype="multipart/form-data">
+                                    <input type="file" id="verifyImage" name="verifyImage" style="display: none;" />
+                                    <button class="btn btn-primary verify-image" type="button" id="uploadButton"
+                                        data-order-id="@order._id">Upload</button>
+                                </form>
                             </td>
                         </tr>
                         <tr id="details-@order._id" class="order-details-row" style="display:none;">
@@ -57,7 +73,8 @@
                                             <tr>
                                                 <td>@item.CourseId</td>
                                                 <td>@item.CourseTitle</td>
-                                                <td><img src="~/images/courses/@item.Thumb" alt="@item.CourseTitle" style="width:50px; height:auto;"></td>
+                                                <td><img src="~/images/courses/@item.Thumb" alt="@item.CourseTitle"
+                                                        style="width:50px; height:auto;"></td>
                                                 <td>@item.Price.ToString("C")</td>
                                                 <td>@item.Quantity</td>
                                                 <td>@item.Total.ToString("C")</td>
@@ -89,6 +106,43 @@
                         detailsRow.style.display = 'none';
                         this.textContent = 'View More';
                     }
+                });
+            });
+
+            // Handle the "Upload" button click event
+            var uploadButtons = document.querySelectorAll('.verify-image');
+            uploadButtons.forEach(function (button) {
+                button.addEventListener('click', function () {
+                    var fileInput = this.previousElementSibling;
+                    fileInput.click();
+                });
+            });
+
+            // Handle the file input change event
+            var fileInputs = document.querySelectorAll('input[type="file"]');
+            fileInputs.forEach(function (input) {
+                input.addEventListener('change', function () {
+                    var form = this.closest('form');
+                    var formData = new FormData(form);
+                    var orderId = this.getAttribute('data-order-id');
+                    formData.append('orderId', orderId);
+
+                    fetch('/Accounts/MyOrder', {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert('Verify image uploaded successfully.');
+                            } else {
+                                alert('Failed to upload verify image: ' + data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error uploading verify image:', error);
+                            alert('An error occurred while uploading the image.');
+                        });
                 });
             });
         });
