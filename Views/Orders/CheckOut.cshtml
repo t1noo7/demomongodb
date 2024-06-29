@@ -56,13 +56,14 @@
             <h3>Customer Information</h3>
             <!-- Tab links -->
             <div class="tabs">
-                <button class="tablinks active" data-electronic="allproducts">Cash on Delivery</button>
-                <button class="tablinks" data-electronic="Microcontrollers">Online Payment</button>
+                <button class="tablinks active" data-electronic="allProducts">Cash on Delivery</button>
+                <button class="tablinks" data-electronic="vnpayPayment">VN Pay</button>
+                <button class="tablinks" data-electronic="momoPayment">MoMo</button>
             </div>
 
             <!-- Tab content -->
             <div class="wrapper_tabcontent">
-                <div id="allproducts" class="tabcontent active">
+                <div id="allProducts" class="tabcontent active">
                     <form asp-action="Checkout" method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
@@ -113,8 +114,8 @@
                     </form>
                 </div>
 
-                <div id="Microcontrollers" class="tabcontent">
-                    <form asp-action="CreatePaymentUrl" method="post">
+                <div id="vnpayPayment" class="tabcontent">
+                    <form asp-action="vnPayCreatePaymentUrl" method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
                             <label asp-for="CustomerName" class="control-label">Full Name</label>
@@ -132,9 +133,9 @@
                             <span asp-validation-for="CustomerName" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <label asp-for="CustomerName" class="control-label">Phone No</label>
-                            <input asp-for="CustomerName" class="form-control" />
-                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                            <label asp-for="CustomerEmail" class="control-label">Email</label>
+                            <input asp-for="CustomerEmail" class="form-control" />
+                            <span asp-validation-for="CustomerEmail" class="text-danger"></span>
                         </div>
                         <div class="form-group">
                             <label asp-for="CustomerName" class="control-label">Delivery Address</label>
@@ -160,16 +161,62 @@
                             <div class="row col-md-9">
                                 <div class="col-md-3">
                                     <a href=""><input class="form-check-input" type="radio" name="PaymentMethod">
-                                        <img src="~/images/payment/momo.png" /></a>
-                                </div>
-                                &emsp;
-                                <div class="col-md-3">
-                                    <a href=""><input class="form-check-input" type="radio" name="PaymentMethod">
                                         <img src="~/images/payment/vnpay.png" /></a>
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">Checkout Online</button>
+                        <button type="submit" class="btn btn-primary">Checkout using VNPay</button>
+                    </form>
+                </div>
+
+                <div id="momoPayment" class="tabcontent">
+                    <form asp-action="MoMoCreatePaymentUrl" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="CustomerName" class="control-label">Full Name</label>
+                            <input asp-for="CustomerName" class="form-control" />
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label asp-for="CustomerName" class="control-label">Gender</label>
+                            <select class="custom-select" style="min-width: 200px;">
+                                <option selected value="0">--Select--</option>
+                                <option value="0">Man</option>
+                                <option value="0">Female</option>
+                                <option value="0">Gay/Les</option>
+                            </select>
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CustomerEmail" class="control-label">Email</label>
+                            <input asp-for="CustomerEmail" class="form-control" />
+                            <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CustomerName" class="control-label">Delivery Address</label>
+                            <input asp-for="CustomerName" class="form-control" />
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" asp-for="OrderTotal" class="form-control" value="@Model.OrderTotal" />
+                            <span asp-validation-for="OrderTotal" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="OrderInfo" class="control-label">Payment Content</label>
+                            <textarea asp-for="OrderInfo" class="form-control" id="OrderDescription" name="OrderInfo"
+                                placeholder="Nội dung thanh toán"></textarea>
+                            <span asp-validation-for="OrderInfo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for=" CustomerName" class="control-label">Payment Method</label>
+                            <div class="row col-md-9">
+                                <div class="col-md-3">
+                                    <a href=""><input class="form-check-input" type="radio" name="PaymentMethod">
+                                        <img src="~/images/payment/momo.png" /></a>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Checkout using MoMo</button>
                     </form>
                 </div>
             </div>

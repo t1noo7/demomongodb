@@ -18,14 +18,19 @@ namespace DemoMongoDB.Models
         public string CustomerEmail { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.Now;
         public double TotalAmount { get; set; }
+        public string VerifyImage { get; set; }
+
         public List<OrderDetails> OrderDetails { get; set; }
         public string Status { get; set; }
+        public string MomoAmount { get; set; }
+        public string PaymentContent { get; set; }
     }
 
     public class OrderDetails
     {
         public string CourseId { get; set; }
         public string CourseTitle { get; set; }
+        public string Thumb { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
         public double Total => Price * Quantity;

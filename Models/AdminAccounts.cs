@@ -30,6 +30,7 @@ public partial class AdminAccounts
     public string? Salt { get; set; }
 
     public DateTime? LastLogin { get; set; }
+    public string RoleId { get; set; }
 
     public string Role { get; set; }
 

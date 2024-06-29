@@ -6,9 +6,11 @@ using DemoMongoDB.Models;
 using PagedList.Core;
 using DemoMongoDB.Helper;
 using DemoMongoDB.ModelViews;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DemoMongoDB.Controllers
 {
+    [Authorize(Roles = "Admin, Staff", Policy = "AdminAndStaffPolicy", AuthenticationSchemes = "AdminAuth, StaffAuth")]
     [Area("Admin")]
     public class AdminBannersController : Controller
     {
@@ -70,8 +72,8 @@ namespace DemoMongoDB.Controllers
                 string image = Utilities.SEOUrl(Banners.BannerName) + extension;
                 // Banners.Thumb = await Utilities.UploadFile(fThumb, @"banners", image.ToLower());
 
-             Banners.Thumb = await Utilities.ResizeAndUploadImage(fThumb, "banners", desiredWidth: 942, desiredHeight: 600, image.ToLower());
-            
+                Banners.Thumb = await Utilities.ResizeAndUploadImage(fThumb, "banners", desiredWidth: 942, desiredHeight: 600, image.ToLower());
+
             }
             if (string.IsNullOrEmpty(Banners.Thumb))
                 Banners.Thumb = "default.jpg";

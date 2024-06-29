@@ -6,9 +6,11 @@ using DemoMongoDB.Models;
 using PagedList.Core;
 using DemoMongoDB.Helper;
 using DemoMongoDB.Extension;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DemoMongoDB.Controllers
 {
+    [Authorize(Roles = "Admin, Staff", Policy = "AdminAndStaffPolicy", AuthenticationSchemes = "AdminAuth, StaffAuth")]
     [Area("Admin")]
     public class AdminAccountsController : Controller
     {
@@ -79,6 +81,7 @@ namespace DemoMongoDB.Controllers
 
             string salt = Utilities.GetRandomKey();
             adminAccounts.CreateDate = DateTime.Now;
+            adminAccounts.RoleId = idRoles;
             adminAccounts.Salt = salt;
             adminAccounts.Password = (adminAccounts.Password + salt.Trim()).ToMD5();
             adminAccounts._id = null;
@@ -124,6 +127,10 @@ namespace DemoMongoDB.Controllers
 
             var database = _client.GetDatabase("DemoMongoDb");
             var adminAccountsCollection = database.GetCollection<AdminAccounts>("AdminAccounts");
+            var rolesCollection = database.GetCollection<Roles>("Roles");
+            var roles = rolesCollection.Find(_ => true).ToList();
+
+            ViewBag.Roles = roles;
 
             var adminAccounts = adminAccountsCollection.Find(n => n._id == id).FirstOrDefault();
 
@@ -138,7 +145,7 @@ namespace DemoMongoDB.Controllers
         // POST: Admin/AdminadminAccounts/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(string id, AdminAccounts adminAccounts)
+        public async Task<ActionResult> Edit(string id, AdminAccounts adminAccounts, string idRoles)
         {
             if (string.IsNullOrEmpty(id))
             {
@@ -159,12 +166,20 @@ namespace DemoMongoDB.Controllers
             adminAccounts.Salt = salt;
             adminAccounts.Password = (adminAccounts.Password + salt.Trim()).ToMD5();
 
+            var rolesCollection = database.GetCollection<Roles>("Roles");
+            var roleName = rolesCollection.Find(r => r._id == idRoles).FirstOrDefault();
+            if (roleName != null)
+            {
+                adminAccounts.Role = roleName.RoleName;
+            }
+
             var update = Builders<AdminAccounts>.Update
                 .Set("FullName", adminAccounts.FullName)
                 .Set("Address", adminAccounts.Address)
                 .Set("Email", adminAccounts.Email)
                 .Set("Phone", adminAccounts.Phone)
                 .Set("Role", adminAccounts.Role)
+                .Set("RoleId", adminAccounts.RoleId)
                 .Set("Password", adminAccounts.Password)
                 .Set("Active", adminAccounts.Active);
 

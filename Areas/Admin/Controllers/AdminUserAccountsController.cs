@@ -5,9 +5,11 @@ using MongoDB.Driver;
 using DemoMongoDB.Models;
 using PagedList.Core;
 using DemoMongoDB.Helper;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DemoMongoDB.Controllers
 {
+    [Authorize(Roles = "Admin, Staff", Policy = "AdminAndStaffPolicy", AuthenticationSchemes = "AdminAuth, StaffAuth")]
     [Area("Admin")]
     public class AdminUserAccountsController : Controller
     {

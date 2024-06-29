@@ -11,13 +11,7 @@ namespace DemoMongoDB.Models
         public string CustomerName { get; set; }
         public string CustomerEmail { get; set; }
         public string OrderDescription { get; set; }
+        public string OrderId { get; set; }
+        public string OrderInfo { get; set; }
     }
-
-    //     public class PaymentInformationModel
-    // {
-    //     public string OrderType { get; set; }
-    //     public double Amount { get; set; }
-    //     public string OrderDescription { get; set; }
-    //     public string Name { get; set; }
-    // }
 }

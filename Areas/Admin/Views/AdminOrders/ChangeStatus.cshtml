@@ -56,7 +56,7 @@
                     <div class="form-group">
                         <label class="font-weight-semibold" for="Status">Trạng thái đơn hàng</label>
                         <select id="OrderStatus" class="form-control" asp-for="Status" onchange="updateStatus()">
-                            
+
                             <option value="Chờ xác nhận">Chờ xác nhận</option>
                             <option value="Đã thanh toán">Đã thanh toán</option>
                             <option value="Chưa thanh toán">Chưa thanh toán</option>
@@ -77,6 +77,7 @@
                         <thead>
                             <tr>
                                 <th>Course Title</th>
+                                <th>Thumb</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Total</th>
@@ -87,6 +88,9 @@
                             {
                                 <tr>
                                     <td>@item.CourseTitle</td>
+                                    <td>
+                                        <img src="~/images/courses/@item.Thumb">
+                                    </td>
                                     <td>@item.Price VND</td>
                                     <td>@item.Quantity</td>
                                     <td>@item.Total VND</td>

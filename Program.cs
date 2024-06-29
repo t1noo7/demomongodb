@@ -6,12 +6,18 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using DemoMongoDB.Models;
 using DemoMongoDB.Services;
+using AspNetCoreHero.ToastNotification;
+using DemoMongoDB.Models.Momo;
+using DemoMongoDB.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddNotyf(config => { config.DurationInSeconds = 3; config.IsDismissable = true; config.Position = NotyfPosition.TopRight; });
 builder.Configuration.AddJsonFile("appsettings.json");
+builder.Services.Configure<MomoOptionModel>(builder.Configuration.GetSection("MomoAPI"));
+builder.Services.AddScoped<IMomoService, MomoService>();
 builder.Services.AddSingleton<IMongoClient>(serviceProvider =>
     {
         var connectionString = "mongodb+srv://demovscodemongodb:FIahPWMjS2QLt8P6@demomongodb.yhofc7g.mongodb.net/";
@@ -21,12 +27,23 @@ builder.Services.AddSession();
 builder.Services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
             })
             .AddCookie(p =>
                 {
                     p.LoginPath = ("/login.html");
                     p.AccessDeniedPath = ("/");
+                })
+            .AddCookie("AdminAuth", opt =>
+                {
+                    opt.LoginPath = "/admin-login.html";
+                    opt.AccessDeniedPath = "/admin";
+                })
+            .AddCookie("StaffAuth", opt =>
+                {
+                    opt.LoginPath = "/admin-login.html";
+                    opt.AccessDeniedPath = "/staff";
                 })
             .AddFacebook(options =>
                 {
@@ -35,6 +52,24 @@ builder.Services.AddAuthentication(options =>
                     options.CallbackPath = new PathString("/Accounts/FacebookCallback");
                 });
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy =>
+    {
+        policy.RequireRole("Admin");
+        policy.RequireAssertion(context => context.User.IsInRole("Admin"));
+    });
+    options.AddPolicy("StaffPolicy", policy =>
+    {
+        policy.RequireRole("Staff");
+        policy.RequireAssertion(context => context.User.IsInRole("Staff"));
+    });
+    options.AddPolicy("AdminAndStaffPolicy", policy =>
+    {
+        policy.RequireRole("Admin", "Staff");
+        policy.RequireAssertion(context => context.User.IsInRole("Admin") || context.User.IsInRole("Staff"));
+    });
+});
 
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
@@ -61,6 +96,7 @@ app.UseSession();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+// app.UseNotyf();
 
 app.MapControllerRoute(
     name: "areas",

@@ -31,7 +31,13 @@ public class VnPayLibrary
         var vnpSecureHash =
             collection.FirstOrDefault(k => k.Key == "vnp_SecureHash").Value; //hash của dữ liệu trả về
         var orderInfo = vnPay.GetResponseData("vnp_OrderInfo");
+        var orderDate = vnPay.GetResponseData("vnp_CreateDate");
 
+        var orderInfoParts = orderInfo.Split(',');
+        var customerName = orderInfoParts[0];
+        var customerEmail = orderInfoParts[1];
+
+        var totalAmount = (Convert.ToDecimal(vnPay.GetResponseData("vnp_Amount")) / 100).ToString();
         var checkSignature =
             vnPay.ValidateSignature(vnpSecureHash, hashSecret); //check Signature
 
@@ -47,6 +53,10 @@ public class VnPayLibrary
             PaymentMethod = "VnPay",
             OrderDescription = orderInfo,
             OrderId = orderId.ToString(),
+            OrderDate = DateTime.ParseExact(orderDate, "yyyyMMddHHmmss", CultureInfo.InvariantCulture),
+            CustomerName = customerName,
+            CustomerEmail = customerEmail,
+            TotalAmount = totalAmount,
             PaymentId = vnPayTranId.ToString(),
             TransactionId = vnPayTranId.ToString(),
             Token = vnpSecureHash,

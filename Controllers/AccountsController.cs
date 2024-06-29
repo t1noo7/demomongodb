@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using MongoDB.Bson;
 
 
 namespace DemoMongoDB.Controllers
@@ -242,6 +243,8 @@ namespace DemoMongoDB.Controllers
                     //Lưu session vào MaKH
                     HttpContext.Session.SetString("_id", guest._id.ToString());
                     var accountID = HttpContext.Session.GetString("_id");
+                    HttpContext.Session.SetString("Email", guest.Email.ToString());
+                    var accountEmail = HttpContext.Session.GetString("Email");
                     //Identity
                     var claims = new List<Claim>
                     {
@@ -384,6 +387,86 @@ namespace DemoMongoDB.Controllers
             HttpContext.Session.Remove("Cart");
             return RedirectToAction("Index", "Home");
         }
+
+        [Route("myorder.html", Name = "Order")]
+        public async Task<IActionResult> MyOrder()
+        {
+            var database = _client.GetDatabase("DemoMongoDb");
+            var usersCollection = database.GetCollection<UserAccounts>("UserAccounts");
+            try
+            {
+                var accountID = HttpContext.Session.GetString("_id");
+                var accountEmail = HttpContext.Session.GetString("Email");
+
+                if (accountID == null)
+                {
+                    return RedirectToAction("Login", "Accounts");
+                }
+                if (ModelState.IsValid)
+                {
+
+                    var user = await usersCollection.Find(u => u.Email == accountEmail).FirstOrDefaultAsync();
+
+                    if (user == null)
+                    {
+                        return RedirectToAction("Login", "Accounts");
+                    }
+
+                    var ordersCollection = database.GetCollection<Orders>("Orders");
+                    var filter = Builders<Orders>.Filter.Eq("CustomerEmail", user.Email);
+                    var orders = await ordersCollection.Find(filter).ToListAsync();
+                    ViewBag.Order = orders;
+                    return PartialView("_MyOrderPartialView");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Dashboard", "Accounts");
+            }
+            return RedirectToAction("Dashboard", "Accounts");
+        }
+
+        [HttpPost]
+        [Route("myorder.html", Name = "Order")]
+        public async Task<IActionResult> MyOrder(string orderId, IFormFile verifyImage)
+        {
+            var database = _client.GetDatabase("DemoMongoDb");
+            var ordersCollection = database.GetCollection<Orders>("Orders");
+
+            if (verifyImage != null)
+            {
+                try
+                {
+                    string extension = Path.GetExtension(verifyImage.FileName);
+                    string image = Utilities.SEOUrl(verifyImage.FileName) + extension;
+                    string imagePath = await Utilities.ResizeAndUploadImage(verifyImage, "verify", desiredWidth: 200, desiredHeight: 450, image.ToLower());
+
+                    var filter = Builders<Orders>.Filter.Eq("_id", ObjectId.Parse(orderId));
+                    var update = Builders<Orders>.Update.Set("VerifyImage", imagePath);
+
+                    var result = await ordersCollection.UpdateOneAsync(filter, update);
+
+                    if (result.ModifiedCount > 0)
+                    {
+                        return Json(new { success = true, message = "Verify image uploaded successfully." });
+                    }
+                    else
+                    {
+                        return Json(new { success = false, message = "Failed to update verify image." });
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { success = false, message = $"An error occurred: {ex.Message}" });
+                }
+            }
+            else
+            {
+                return Json(new { success = false, message = "No image uploaded." });
+            }
+        }
+
+
 
         [HttpPost]
         public IActionResult ChangePassword(ChangePasswordVM model)

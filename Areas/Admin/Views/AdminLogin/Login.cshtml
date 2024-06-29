@@ -1,0 +1,106 @@
+﻿@model DemoMongoDB.ModelViews.LoginViewModel
+@{
+    ViewData["Title"] = "Login Admin Account";
+    Layout = null;
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://kit.fontawesome.com/8502367fe4.js" crossorigin="anonymous"></script>
+    <link href="adminassets/css/bulma/fontawesome/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet" />
+    <link rel="stylesheet" href="Adminassets/css/bulma/bulma@0.9.0_css_bulma.min.css">
+    <link rel="stylesheet" href="Adminassets/css/bulma/all.min.css">
+    <link rel="stylesheet" href="Adminassets/css/bulma/styles.css" />
+</head>
+
+<body>
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <div class="column is-4 is-offset-4">
+                    <div class="box">
+                        <p class="subtitle is-4">Please login to proceed.</p>
+                        <br />
+                        <form asp-action="Login" method="post">
+                            <div class="field">
+                                <p class="control has-icons-left has-icons-right">
+                                    <input class="input is-medium" asp-for="UserName" type="email"
+                                        placeholder="Email" />
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                    <span class="icon is-medium is-left">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                    <span class="icon is-medium is-right">
+                                        <i class="fas fa-check"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <p class="control has-icons-left">
+                                    <input class="input is-medium" type="password" asp-for="Password"
+                                        placeholder="Password" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </p>
+                            </div>
+                            <div class="field">
+                                <label class="checkbox">
+                                    <input type="checkbox" />
+                                    Remember me
+                                </label>
+                            </div>
+                            <button class="button is-block is-info is-large is-fullwidth">Login</button><br />
+                            <input type="hidden" name="ReturnUrl" value="/admin" />
+                            <p class="subtitle is-5">Login using Social Media</p>
+                            <div class="buttons is-centered" style="margin-bottom: 0;">
+                                <a class="button is-medium is-facebook" href="/signin-facebook">
+                                    <span class="icon">
+                                        <i class="fab fa-facebook-f fa-lg"></i>
+                                    </span>
+                                </a>
+                                <a class="button is-medium is-twitter" href="/signin-twitter">
+                                    <span class="icon">
+                                        <i class="fab fa-twitter fa-lg"></i>
+                                    </span>
+                                </a>
+                                <a class="button is-medium is-github">
+                                    <span class="icon">
+                                        <i class="fab fa-github fa-lg"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                    <p class="has-text-grey">
+                        <a href="#">Sign Up</a> &nbsp;·&nbsp; <a href="#">Forgot Password</a> &nbsp;·&nbsp;
+                        <a href="#">Need Help?</a>
+                    </p>
+                    <div class="languages select is-small is-rounded">
+                        <select>
+                            <option selected>English</option>
+                            <option>French</option>
+                            <option>German</option>
+                            <option>Italian</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-foot">
+            <div class="container has-text-centered">
+                <p class="footer-text">
+                    Designed with <i class="fa fa-heart fa-fw" style="font-size: 10px; color: red;"></i> by TiNOo
+                </p>
+            </div>
+        </div>
+    </section>
+</body>

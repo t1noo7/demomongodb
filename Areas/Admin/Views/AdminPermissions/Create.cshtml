@@ -1,0 +1,108 @@
+@model DemoMongoDB.Models.Permissions
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+    var functionsList = ViewBag.FunctionsList as List<DemoMongoDB.Models.Functions>;
+    var rolesList = ViewBag.Roles as List<DemoMongoDB.Models.Roles>;
+}
+
+@section Styles {
+    <link href="~/Adminassets/summernote/summernote-bs4.css" rel="stylesheet" />
+    <link href="~/Adminassets/summernote/summernote.css" rel="stylesheet" />
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item">
+                <i class="anticon anticon-home m-r-5"></i>Home
+            </a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminClasses" asp-action="Index">
+                Danh sách quyền : page @ViewBag.CurrentPage
+            </a>
+            <span class="breadcrumb-item active">Tạo mới quyền</span>
+        </nav>
+    </div>
+</div>
+<form asp-controller="AdminPermissions" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="page-header no-gutters has-tab">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+            </div>
+            <div class="m-b-15">
+                <button class="btn btn-primary">
+                    <i class="anticon anticon-save"></i>
+                    <span>Save</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="RoleId">Role</label>
+                        <select class="form-control" asp-for="RoleId">
+                            <option value="">Select Role</option>
+                            @foreach (var role in rolesList)
+                            {
+                                <option value="@role._id">@role.RoleName</option>
+                            }
+                        </select>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Function Name</th>
+                                <th>Access</th>
+                                <th>Create</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                                <th>Read</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (functionsList != null)
+                            {
+                                for (int i = 0; i < functionsList.Count; i++)
+                                {
+                                    var functionId = functionsList[i]._id;
+                                    var task = Model.FunctionPermissions?.FirstOrDefault(f => f.FunctionId == functionId) ?? new
+                                    DemoMongoDB.Models.Tasks();
+
+                                    <tr>
+                                        <td>@functionsList[i].FunctionName</td>
+                                        <td>
+                                            <input type="hidden" name="functionIds[@i]" value="@functionsList[i]._id" />
+                                            <input type="checkbox" name="accessPermissions[@i]" value="true" @(task.AccessPermission ? "checked" : "") />
+                                            <input type="hidden" name="accessPermissions[@i]" value="false" />
+                                        </td>
+                                        <td>
+                                            <input type="hidden" name="canCreates[@i]" value="false" />
+                                            <input type="checkbox" name="canCreates[@i]" value="true" @(task.CanCreate ? "checked" : "") />
+                                        </td>
+                                        <td>
+                                            <input type="hidden" name="canEdits[@i]" value="false" />
+                                            <input type="checkbox" name="canEdits[@i]" value="true" @(task.CanEdit ? "checked" : "") />
+                                        </td>
+                                        <td>
+                                            <input type="hidden" name="canDeletes[@i]" value="false" />
+                                            <input type="checkbox" name="canDeletes[@i]" value="true" @(task.CanDelete ? "checked" : "") />
+                                        </td>
+                                        <td>
+                                            <input type="hidden" name="canReads[@i]" value="false" />
+                                            <input type="checkbox" name="canReads[@i]" value="true" @(task.CanRead ? "checked" : "") />
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
