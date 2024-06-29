@@ -25,7 +25,6 @@ builder.Services.AddSingleton<IMongoClient>(serviceProvider =>
     });
 builder.Services.AddSession();
 builder.Services.AddAuthentication(options =>
-<<<<<<< HEAD
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -46,28 +45,6 @@ builder.Services.AddAuthentication(options =>
                     opt.LoginPath = "/admin-login.html";
                     opt.AccessDeniedPath = "/staff";
                 })
-=======
-{
-    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;  // Default scheme for users
-    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-})
-.AddCookie(p => // User login
-{
-    p.LoginPath = "/login.html";
-    p.AccessDeniedPath = "/";
-})
-.AddCookie("AdminAuthen", p =>  // Admin login
-{
-    p.LoginPath = "/admin-login.html";
-    p.AccessDeniedPath = "/admin";
-})
-.AddCookie("StaffAuthen", p =>  // Staff login
-{
-    p.LoginPath = "/admin-login.html";
-    p.AccessDeniedPath = "/admin";
-})
->>>>>>> refs/remotes/origin/main
             .AddFacebook(options =>
                 {
                     options.AppId = builder.Configuration.GetSection("Authentication:Facebook:AppId").Value;
@@ -93,10 +70,6 @@ builder.Services.AddAuthorization(options =>
         policy.RequireAssertion(context => context.User.IsInRole("Admin") || context.User.IsInRole("Staff"));
     });
 });
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/main
 
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddSingleton<IEmailSender, EmailSender>();

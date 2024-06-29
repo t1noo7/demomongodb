@@ -8,34 +8,20 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-<<<<<<< HEAD
     bool QuanLyDanhMuc = User.Claims.Any(c => c.Type == "FunctionId66763c2fb0fe10429a3f1518" && c.Value ==
     "66763c2fb0fe10429a3f1518");
-=======
-    bool QuanLyDanhMuc = User.Claims.Any(c => c.Type == "FunctionId66763c2fb0fe10429a3f1518" && c.Value == "66763c2fb0fe10429a3f1518");
->>>>>>> refs/remotes/origin/main
     bool CanCreate = User.Claims.Any(c => c.Type == "CanCreate66763c2fb0fe10429a3f1518" && c.Value == "True");
     bool CanEdit = User.Claims.Any(c => c.Type == "CanEdit66763c2fb0fe10429a3f1518" && c.Value == "True");
     bool CanRead = User.Claims.Any(c => c.Type == "CanRead66763c2fb0fe10429a3f1518" && c.Value == "True");
     bool CanDelete = User.Claims.Any(c => c.Type == "CanDelete66763c2fb0fe10429a3f1518" && c.Value == "True");
 
     <div class="page-header">
-<<<<<<< HEAD
     <div class="header-sub-title">
         <nav class="breadcrumb breadcrumb-dash">
             <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
                     class="anticon anticon-home m-r-5"></i>Home</a>
             <span class="breadcrumb-item active">Danh sách danh mục : page @CurrentPage</span>
         </nav>
-=======
-        <div class="header-sub-title">
-            <nav class="breadcrumb breadcrumb-dash">
-                <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
-                        class="anticon anticon-home m-r-5"></i>Home</a>
-                <span class="breadcrumb-item active">Danh sách danh mục : page @CurrentPage</span>
-            </nav>
-        </div>
->>>>>>> refs/remotes/origin/main
     </div>
 </div>
     <div class="card">
@@ -46,7 +32,6 @@
                     <div class="m-b-10 m-r-15">
                     </div>
                 </div>
-<<<<<<< HEAD
             </div>
             @if (QuanLyDanhMuc && CanCreate)
                 {
@@ -54,14 +39,6 @@
                         <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminCategories" asp-action="Create"><i
                                 class="anticon anticon-plus-circle m-r-5"></i> <span>Add Category</span></a>
                     </div>
-=======
-                @if(QuanLyDanhMuc && CanCreate)
-                {
-                <div class="col-lg-4 text-right">
-                    <a class="btn btn-primary" asp-area="Admin" asp-controller="AdminCategories" asp-action="Create"><i
-                            class="anticon anticon-plus-circle m-r-5"></i> <span>Add Category</span></a>
-                </div>
->>>>>>> refs/remotes/origin/main
                 }
             </div>
             <div class="table-responsive">
@@ -104,7 +81,6 @@
                                     </td>
 
                                     <td>
-<<<<<<< HEAD
                                         @if (QuanLyDanhMuc && CanRead)
                                         {
                                             <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminCategories"
@@ -119,22 +95,6 @@
                                         {
                                             <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminCategories"
                                                 asp-action="Delete" asp-route-id="@item._id">Delete</a>
-=======
-                                        @if(QuanLyDanhMuc && CanRead)
-                                        {
-                                        <a class="btn btn-primary m-r-5" asp-area="Admin" asp-controller="AdminCategories"
-                                            asp-action="Details" asp-route-id="@item._id">View</a>
-                                        }
-                                        @if(QuanLyDanhMuc && CanEdit)
-                                        {
-                                        <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminCategories"
-                                            asp-action="Edit" asp-route-id="@item._id">Edit</a>
-                                        }
-                                        @if(QuanLyDanhMuc && CanDelete)
-                                        {
-                                        <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminCategories"
-                                            asp-action="Delete" asp-route-id="@item._id">Delete</a>
->>>>>>> refs/remotes/origin/main
                                         }
                                     </td>
                                 </tr>
@@ -144,11 +104,7 @@
 
                 </table>
                 <div class="text-center">
-<<<<<<< HEAD
 
-=======
-                    
->>>>>>> refs/remotes/origin/main
                     <nav aria-label="Page navigation">
                         <ul class="pagination">
                             @for (int i = 1; i <= ViewBag.TotalPages; i++)

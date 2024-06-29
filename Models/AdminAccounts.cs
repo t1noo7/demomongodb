@@ -32,8 +32,6 @@ public partial class AdminAccounts
     public DateTime? LastLogin { get; set; }
     public string RoleId { get; set; }
 
-    public string RoleId { get; set; }
-
     public string Role { get; set; }
 
     public bool Active { get; set; }

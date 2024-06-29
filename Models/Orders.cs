@@ -20,9 +20,8 @@ namespace DemoMongoDB.Models
         public double TotalAmount { get; set; }
         public string VerifyImage { get; set; }
 
-        public List<OrderDetails> OrderDetails { get; set; }
+        public List<OrderDetails>? OrderDetails { get; set; }
         public string Status { get; set; }
-        public string MomoAmount { get; set; }
         public string PaymentContent { get; set; }
     }
 

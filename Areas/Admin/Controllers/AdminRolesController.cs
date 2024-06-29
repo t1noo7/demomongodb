@@ -9,11 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DemoMongoDB.Controllers
 {
-<<<<<<< HEAD
     [Authorize(Roles = "Admin, Staff", Policy = "AdminAndStaffPolicy", AuthenticationSchemes = "AdminAuth, StaffAuth")]
-=======
-    [Authorize(Roles = "Admin, Staff", Policy = "AdminAndStaffPolicy", AuthenticationSchemes = "AdminAuthen, StaffAuthen")]
->>>>>>> refs/remotes/origin/main
     [Area("Admin")]
     public class AdminRolesController : Controller
     {

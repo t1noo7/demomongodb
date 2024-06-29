@@ -9,7 +9,7 @@ namespace DemoMongoDB.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string _id { get; set; }
-        
+
         public string RoleId { get; set; }
 
         public List<Tasks> FunctionPermissions { get; set; } = new List<Tasks>();

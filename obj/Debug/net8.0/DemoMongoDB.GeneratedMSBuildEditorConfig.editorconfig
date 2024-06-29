@@ -139,21 +139,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5MZXNzb25zL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-<<<<<<< HEAD
 [/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminLogin/AccessDenied.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5Mb2dpbi9BY2Nlc3NEZW5pZWQuY3NodG1s
-=======
-[D:/Codes/demomongodb/Areas/Admin/Views/AdminLogin/AccessDenied.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Mb2dpblxBY2Nlc3NEZW5pZWQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Codes/demomongodb/Areas/Admin/Views/AdminLogin/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Mb2dpblxMb2dpbi5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Codes/demomongodb/Areas/Admin/Views/AdminNews/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5OZXdzXENyZWF0ZS5jc2h0bWw=
->>>>>>> refs/remotes/origin/main
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminLogin/Login.cshtml]
@@ -184,29 +171,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5PcmRlcnMvQ2hhbmdlU3RhdHVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-<<<<<<< HEAD
 [/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminOrders/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQWRtaW5PcmRlcnMvRGVsZXRlLmNzaHRtbA==
-=======
-[D:/Codes/demomongodb/Areas/Admin/Views/AdminPermissions/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5QZXJtaXNzaW9uc1xDcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Codes/demomongodb/Areas/Admin/Views/AdminPermissions/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5QZXJtaXNzaW9uc1xEZWxldGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Codes/demomongodb/Areas/Admin/Views/AdminPermissions/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5QZXJtaXNzaW9uc1xFZGl0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Codes/demomongodb/Areas/Admin/Views/AdminPermissions/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5QZXJtaXNzaW9uc1xJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Codes/demomongodb/Areas/Admin/Views/AdminRoles/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQWRtaW5Sb2xlc1xDcmVhdGUuY3NodG1s
->>>>>>> refs/remotes/origin/main
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Areas/Admin/Views/AdminOrders/Index.cshtml]
@@ -305,17 +271,8 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudHMvQWN0aXZhdGVBY2NvdW50UmVxdWlyZWQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-<<<<<<< HEAD
 [/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Accounts/Dashboard.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudHMvRGFzaGJvYXJkLmNzaHRtbA==
-=======
-[D:/Codes/demomongodb/Views/Accounts/_MyOrderPartialView.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudHNcX015T3JkZXJQYXJ0aWFsVmlldy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[D:/Codes/demomongodb/Views/Cart/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxJbmRleC5jc2h0bWw=
->>>>>>> refs/remotes/origin/main
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/duongt1l0.ch0co/Projects/Git/demomongodb/Views/Accounts/ForgetPasswordCode.cshtml]

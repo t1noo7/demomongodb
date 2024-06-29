@@ -90,9 +90,9 @@ namespace DemoMongoDB.Areas.Admin.Controllers
                             }
                         }
 
-                        ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "AdminAuthen");
+                        ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "AdminAuth");
                         ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                        await HttpContext.SignInAsync("AdminAuthen", claimsPrincipal);
+                        await HttpContext.SignInAsync("AdminAuth", claimsPrincipal);
 
                         if (!string.IsNullOrEmpty(model.ReturnUrl))
                         {
@@ -121,8 +121,4 @@ namespace DemoMongoDB.Areas.Admin.Controllers
             return View();
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> refs/remotes/origin/main

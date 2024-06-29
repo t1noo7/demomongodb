@@ -13,12 +13,6 @@ namespace DemoMongoDB.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string _id { get; set; }
-
         public string FunctionName { get; set; }
-
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/main
     }
 }

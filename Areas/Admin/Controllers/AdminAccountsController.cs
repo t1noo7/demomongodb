@@ -10,11 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DemoMongoDB.Controllers
 {
-<<<<<<< HEAD
     [Authorize(Roles = "Admin, Staff", Policy = "AdminAndStaffPolicy", AuthenticationSchemes = "AdminAuth, StaffAuth")]
-=======
-    [Authorize(Roles = "Admin, Staff", Policy = "AdminAndStaffPolicy", AuthenticationSchemes = "AdminAuthen, StaffAuthen")]
->>>>>>> refs/remotes/origin/main
     [Area("Admin")]
     public class AdminAccountsController : Controller
     {
@@ -132,10 +128,6 @@ namespace DemoMongoDB.Controllers
             var database = _client.GetDatabase("DemoMongoDb");
             var adminAccountsCollection = database.GetCollection<AdminAccounts>("AdminAccounts");
             var rolesCollection = database.GetCollection<Roles>("Roles");
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/main
             var roles = rolesCollection.Find(_ => true).ToList();
 
             ViewBag.Roles = roles;
@@ -160,10 +152,10 @@ namespace DemoMongoDB.Controllers
                 return BadRequest("adminAccounts ID is required.");
             }
 
-            // if (!ModelState.IsValid)
-            // {
-            //     return View(adminAccounts);
-            // }
+            if (!ModelState.IsValid)
+            {
+                return View(adminAccounts);
+            }
 
             var database = _client.GetDatabase("DemoMongoDb");
             var adminAccountsCollection = database.GetCollection<AdminAccounts>("AdminAccounts");
@@ -175,10 +167,6 @@ namespace DemoMongoDB.Controllers
             adminAccounts.Password = (adminAccounts.Password + salt.Trim()).ToMD5();
 
             var rolesCollection = database.GetCollection<Roles>("Roles");
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/main
             var roleName = rolesCollection.Find(r => r._id == idRoles).FirstOrDefault();
             if (roleName != null)
             {

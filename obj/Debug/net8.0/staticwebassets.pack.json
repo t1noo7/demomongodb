@@ -225,8 +225,212 @@
       "PackagePath": "staticwebassets/adminassets/images/logo/logo.png"
     },
     {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/adobe-thumb.png",
+      "PackagePath": "staticwebassets/adminassets/images/others/adobe-thumb.png"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/amazon-thumb.png",
+      "PackagePath": "staticwebassets/adminassets/images/others/amazon-thumb.png"
+    },
+    {
       "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/background.jpg",
       "PackagePath": "staticwebassets/adminassets/images/others/background.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/cambridge-thumb.png",
+      "PackagePath": "staticwebassets/adminassets/images/others/cambridge-thumb.png"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/coffee-app-thumb.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/coffee-app-thumb.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/error-1.png",
+      "PackagePath": "staticwebassets/adminassets/images/others/error-1.png"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/error-2.png",
+      "PackagePath": "staticwebassets/adminassets/images/others/error-2.png"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/file-manager.png",
+      "PackagePath": "staticwebassets/adminassets/images/others/file-manager.png"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/img-1.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/img-1.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/img-10.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/img-10.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/img-11.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/img-11.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/img-12.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/img-12.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/img-13.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/img-13.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/img-14.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/img-14.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/img-2.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/img-2.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/img-3.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/img-3.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/img-4.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/img-4.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/img-5.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/img-5.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/img-6.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/img-6.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/img-7.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/img-7.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/img-8.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/img-8.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/img-9.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/img-9.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/local-image.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/local-image.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/login-1.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/login-1.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/login-2.png",
+      "PackagePath": "staticwebassets/adminassets/images/others/login-2.png"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/login-3.png",
+      "PackagePath": "staticwebassets/adminassets/images/others/login-3.png"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/music-app-thumb.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/music-app-thumb.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/nvidia-thumb.png",
+      "PackagePath": "staticwebassets/adminassets/images/others/nvidia-thumb.png"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/phillips-academy-thumb.png",
+      "PackagePath": "staticwebassets/adminassets/images/others/phillips-academy-thumb.png"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/product-1.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/product-1.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/product-2.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/product-2.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/product-3.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/product-3.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/sign-up-1.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/sign-up-1.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/sign-up-2.png",
+      "PackagePath": "staticwebassets/adminassets/images/others/sign-up-2.png"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-1.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-1.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-10.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-10.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-11.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-11.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-12.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-12.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-13.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-13.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-14.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-14.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-15.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-15.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-16.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-16.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-2.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-2.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-3.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-3.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-4.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-4.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-5.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-5.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-6.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-6.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-7.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-7.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-8.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-8.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/thumb-9.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/thumb-9.jpg"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/visa.png",
+      "PackagePath": "staticwebassets/adminassets/images/others/visa.png"
+    },
+    {
+      "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/images/others/weather-app-thumb.jpg",
+      "PackagePath": "staticwebassets/adminassets/images/others/weather-app-thumb.jpg"
     },
     {
       "Id": "/Users/duongt1l0.ch0co/Projects/Git/demomongodb/wwwroot/adminassets/js/app.min.js",
