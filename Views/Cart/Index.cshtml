@@ -12,40 +12,52 @@
     }
     else
     {
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Image</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Total</th>
-                    <th>Actions</th> <!-- Column for Delete button -->
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+        <form action="javascript:void(0)">
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>@item.courses.Title</td>
-                        <td><img src="~/images/courses/@item.courses.Thumb" alt="@item.courses.Title"></td>
-                        <td>
-                            <input type="number" class="form-control quantity-input" value="@item.Quantity"
-                                data-product-id="@item.courses._id" min="1" />
-                        </td>
-                        <td>@item.courses.Price</td>
-                        <td>@(item.Quantity * item.courses.Price)</td>
-                        <td>
-                            <button class="btn btn-danger btn-delete" data-product-id="@item.courses._id">Delete</button>
-                        </td>
+                        <th>Product</th>
+                        <th>Image</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Actions</th> <!-- Column for Delete button -->
                     </tr>
-                }
-            </tbody>
-        </table>
-        <div class="text-right">
-            <h4>Total: @Model.Sum(item => item.Quantity * item.courses.Price)</h4>
-            <a href="#" id="checkoutBtn" class="btn btn-primary">Checkout</a>
-        </div>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.courses.Title</td>
+                            <td><img src="~/images/courses/@item.courses.Thumb" alt="@item.courses.Title"></td>
+                            <td>
+                                <input type="number" class="form-control quantity-input" value="@item.Quantity"
+                                    data-product-id="@item.courses._id" min="1" />
+                            </td>
+                            <td>@item.courses.Price</td>
+                            <td>@(item.Quantity * item.courses.Price)</td>
+                            <td>
+                                <button class="btn btn-danger btn-delete" data-product-id="@item.courses._id">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="text-right">
+                <h4>Total: @Model.Sum(item => item.Quantity * item.courses.Price)</h4>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="@Url.Action("Index", "Checkout")" class="btn btn-primary">Thanh toán</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Login", "Accounts", new { returnUrl = "/checkout.html" })"
+                            class="btn btn-primary">Thanh toán</a>
+                    }
+
+            </div>
+        </form>
+
     }
 </div>
 
@@ -92,10 +104,22 @@
                 });
             });
 
-            $('#checkoutBtn').on('click', function (e) {
-                e.preventDefault();
-                window.location.href = '@Url.Action("Checkout", "Orders")';
+        @* $('#checkoutBtn').on('click', function (e) {
+            e.preventDefault();
+            $.ajax({
+            url: '/Orders/CheckAuthentication', // Endpoint to check authentication
+            method: 'GET',
+            success: function (response) {
+            if (response.authenticated) {
+            window.location.href = '/Orders/Checkout'; // Proceed to checkout
+            } else {
+            window.location.href = '/Accounts/Login'; // Redirect to login page
+            }
+            },
+            error: function () {
+            alert('Failed to check authentication.');
+            }
             });
-        });
+            }); *@
     </script>
 }

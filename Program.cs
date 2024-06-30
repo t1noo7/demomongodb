@@ -28,22 +28,18 @@ builder.Services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = FacebookDefaults.AuthenticationScheme;
             })
             .AddCookie(p =>
                 {
-                    p.LoginPath = ("/login.html");
-                    p.AccessDeniedPath = ("/");
+                    p.LoginPath = "/login.html";
+                    p.AccessDeniedPath = "/";
                 })
             .AddCookie("AdminAuth", opt =>
                 {
                     opt.LoginPath = "/admin-login.html";
                     opt.AccessDeniedPath = "/admin";
-                })
-            .AddCookie("StaffAuth", opt =>
-                {
-                    opt.LoginPath = "/admin-login.html";
-                    opt.AccessDeniedPath = "/staff";
                 })
             .AddFacebook(options =>
                 {

@@ -30,8 +30,13 @@ namespace DemoMongoDB.Controllers
         }
 
         // GET: Orders/Checkout
+        [Route("checkout.html", Name="CheckOut")]
         public IActionResult Checkout()
         {
+            // if (!User.Identity.IsAuthenticated)
+            // {
+            //     return RedirectToAction("Login", "Account"); // Redirect to your login action
+            // }
             // Retrieve cart items from session
             List<CartItem> cartItems = HttpContext.Session.Get<List<CartItem>>("CartItems");
             if (cartItems == null || cartItems.Count == 0)
@@ -64,6 +69,7 @@ namespace DemoMongoDB.Controllers
 
         // POST: Orders/Checkout
         [HttpPost]
+        [Route("checkout.html", Name = "CheckOut")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Checkout([Bind("CustomerName,CustomerEmail")] Orders order)
         {

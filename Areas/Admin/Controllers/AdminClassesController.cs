@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DemoMongoDB.Controllers
 {
-    [Authorize(Roles = "Admin, Staff", Policy = "AdminAndStaffPolicy", AuthenticationSchemes = "AdminAuth, StaffAuth")]
+    [Authorize(Roles = "Admin", Policy = "AdminPolicy", AuthenticationSchemes = "AdminAuth")]
     [Area("Admin")]
     public class AdminClassesController : Controller
     {

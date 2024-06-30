@@ -47,9 +47,10 @@
                                 <button class="btn btn-primary view-more" data-order-id="@order._id">View More</button>
                             </td>
                             <td>
-                                <form id="uploadForm" method="post" enctype="multipart/form-data">
-                                    <input type="file" id="verifyImage" name="verifyImage" style="display: none;" />
-                                    <button class="btn btn-primary verify-image" type="button" id="uploadButton"
+                                <form id="uploadForm-@order._id" method="post" enctype="multipart/form-data">
+                                    <input type="file" id="verifyImage-@order._id" name="verifyImage" data-order-id="@order._id"
+                                        style="display: none;" />
+                                    <button class="btn btn-primary verify-image" type="button"
                                         data-order-id="@order._id">Upload</button>
                                 </form>
                             </td>
@@ -113,7 +114,8 @@
             var uploadButtons = document.querySelectorAll('.verify-image');
             uploadButtons.forEach(function (button) {
                 button.addEventListener('click', function () {
-                    var fileInput = this.previousElementSibling;
+                    var orderId = this.getAttribute('data-order-id');
+                    var fileInput = document.getElementById('verifyImage-' + orderId);
                     fileInput.click();
                 });
             });
@@ -122,27 +124,42 @@
             var fileInputs = document.querySelectorAll('input[type="file"]');
             fileInputs.forEach(function (input) {
                 input.addEventListener('change', function () {
-                    var form = this.closest('form');
-                    var formData = new FormData(form);
                     var orderId = this.getAttribute('data-order-id');
-                    formData.append('orderId', orderId);
+                    var file = this.files[0]; // Get the selected file
 
-                    fetch('/Accounts/MyOrder', {
-                        method: 'POST',
-                        body: formData
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                alert('Verify image uploaded successfully.');
-                            } else {
-                                alert('Failed to upload verify image: ' + data.message);
+                    var formData = new FormData();
+                    formData.append('orderId', orderId);
+                    formData.append('verifyImage', file);
+
+                    // Send AJAX request
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '/accounts/myorder.html', true);
+
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            try {
+                                var response = JSON.parse(xhr.responseText);
+                                if (response.success) {
+                                    alert('Verify image uploaded successfully.');
+                                } else {
+                                    alert('Failed to upload verify image: ' + response.message);
+                                }
+                            } catch (error) {
+                                console.error('Error parsing JSON:', error);
+                                alert('An error occurred while uploading the image.');
                             }
-                        })
-                        .catch(error => {
-                            console.error('Error uploading verify image:', error);
+                        } else {
+                            console.error('Error uploading verify image. Status:', xhr.status);
                             alert('An error occurred while uploading the image.');
-                        });
+                        }
+                    };
+
+                    xhr.onerror = function () {
+                        console.error('Network error occurred while uploading the image.');
+                        alert('Network error occurred while uploading the image.');
+                    };
+
+                    xhr.send(formData);
                 });
             });
         });

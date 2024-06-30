@@ -147,7 +147,7 @@ namespace DemoMongoDB.Helper
                 string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", sDirectory);
                 CreateIfMissing(path);
                 string pathFile = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", sDirectory, newname);
-                var supportedTypes = new[] { "jpg", "jpeg", "png", "gif", "webp" };
+                var supportedTypes = new[] { "jpg", "jpeg", "png", "gif", "webp", "jfif" };
                 var fileExt = System.IO.Path.GetExtension(file.FileName).Substring(1);
                 if (!supportedTypes.Contains(fileExt.ToLower())) /// Khác các file định nghĩa
                 {
@@ -177,7 +177,7 @@ namespace DemoMongoDB.Helper
                 CreateIfMissing(path);
                 string pathFile = Path.Combine(path, newname);
 
-                var supportedTypes = new[] { "jpg", "jpeg", "png", "gif", "webp" };
+                var supportedTypes = new[] { "jpg", "jpeg", "png", "gif", "webp", "jfif" };
                 var fileExt = Path.GetExtension(file.FileName).Substring(1);
                 if (!supportedTypes.Contains(fileExt.ToLower())) // If not a supported type
                 {

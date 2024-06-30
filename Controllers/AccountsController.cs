@@ -254,13 +254,19 @@ namespace DemoMongoDB.Controllers
                     ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "login");
                     ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                     await HttpContext.SignInAsync(claimsPrincipal);
-                    return RedirectToAction("Dashboard", "Accounts");
+                    if (customer.ReturnUrl == "/checkout.html")
+                    {
+                        return RedirectToAction("Checkout", "Orders");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Dashboard", "Accounts");
+                    }
                 }
             }
             catch (Exception ex)
             {
-                // return RedirectToAction("RegisterAccount", "Accounts");
-                return View(ex);
+                return RedirectToAction("RegisterAccount", "Accounts");
             }
             return View(customer);
         }
@@ -465,8 +471,44 @@ namespace DemoMongoDB.Controllers
                 return Json(new { success = false, message = "No image uploaded." });
             }
         }
+        
+        [Route("mycourse.html", Name = "MyCourse")]
+        public async Task<IActionResult> MyCourse()
+        {
+            var database = _client.GetDatabase("DemoMongoDb");
+            var usersCollection = database.GetCollection<UserAccounts>("UserAccounts");
+            try
+            {
+                var accountID = HttpContext.Session.GetString("_id");
+                var accountEmail = HttpContext.Session.GetString("Email");
 
+                if (accountID == null)
+                {
+                    return RedirectToAction("Login", "Accounts");
+                }
+                if (ModelState.IsValid)
+                {
 
+                    var user = await usersCollection.Find(u => u.Email == accountEmail).FirstOrDefaultAsync();
+
+                    if (user == null)
+                    {
+                        return RedirectToAction("Login", "Accounts");
+                    }
+
+                    var ordersCollection = database.GetCollection<Orders>("Orders");
+                    var filter = Builders<Orders>.Filter.Eq("CustomerEmail", user.Email);
+                    var orders = await ordersCollection.Find(filter).ToListAsync();
+                    ViewBag.Order = orders;
+                    return View("MyCourse");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Dashboard", "Accounts");
+            }
+            return RedirectToAction("Dashboard", "Accounts");
+        }
 
         [HttpPost]
         public IActionResult ChangePassword(ChangePasswordVM model)

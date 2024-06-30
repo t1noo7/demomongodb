@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DemoMongoDB.Controllers
 {
-    [Authorize(Roles = "Admin, Staff", Policy = "AdminAndStaffPolicy", AuthenticationSchemes = "AdminAuth, StaffAuth")]
+    [Authorize(Roles = "Admin", Policy = "AdminPolicy", AuthenticationSchemes = "AdminAuth")]
     [Area("Admin")]
     public class AdminCoursesController : Controller
     {
@@ -70,7 +70,7 @@ namespace DemoMongoDB.Controllers
             {
                 string extension = Path.GetExtension(fThumb.FileName);
                 string image = Utilities.SEOUrl(courses.Title) + extension;
-                courses.Thumb = await Utilities.UploadFile(fThumb, @"courses", image.ToLower());
+                courses.Thumb = await Utilities.ResizeAndUploadImage(fThumb, "courses", desiredWidth: 350, desiredHeight: 250, image.ToLower());
             }
             if (string.IsNullOrEmpty(courses.Thumb)) courses.Thumb = "default.jpg";
             courses.CreateDate = DateTime.Now;
@@ -151,7 +151,7 @@ namespace DemoMongoDB.Controllers
             {
                 string extension = Path.GetExtension(fThumb.FileName);
                 string image = Utilities.SEOUrl(courses.Title) + extension;
-                courses.Thumb = await Utilities.UploadFile(fThumb, @"courses", image.ToLower());
+                courses.Thumb = await Utilities.ResizeAndUploadImage(fThumb, "courses", desiredWidth: 350, desiredHeight: 250, image.ToLower());
             }
             if (string.IsNullOrEmpty(courses.Thumb)) courses.Thumb = "default.jpg";
 
@@ -164,7 +164,7 @@ namespace DemoMongoDB.Controllers
             var result = coursesCollection.UpdateOne(filter, update);
             if (result.ModifiedCount == 0)
             {
-                return NotFound();
+                return RedirectToAction("Index");
             }
 
             return RedirectToAction("Index");

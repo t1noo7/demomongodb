@@ -5,7 +5,7 @@ namespace DemoMongoDB.Areas.Admin.Controllers
 {
     public class HomeController : Controller
     {
-        [Authorize(Roles = "Admin, Staff", Policy = "AdminAndStaffPolicy", AuthenticationSchemes = "AdminAuth, StaffAuth")]
+        [Authorize(Roles = "Admin", Policy = "AdminPolicy", AuthenticationSchemes = "AdminAuth")]
         [Area("Admin")]
         [Route("/admin", Name = "Admin")]
         public IActionResult Index()
