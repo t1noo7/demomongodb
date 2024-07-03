@@ -107,11 +107,12 @@ namespace DemoMongoDB.Areas.Admin.Controllers
             return View(model);
         }
 
-        [Authorize]
-        [HttpPost]
-        public async Task<IActionResult> Logout()
+        [HttpGet]
+        //[Route("log-out-admin.html", Name = "DangXuat")]
+        public IActionResult Logout()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.SignOutAsync();
+            HttpContext.Session.Remove("_id");
             return RedirectToAction("Login", "AdminLogin");
         }
 

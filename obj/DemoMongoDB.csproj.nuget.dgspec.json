@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Codes\\demomongodb\\DemoMongoDB.csproj": {}
+    "C:\\Code\\demomongodb\\DemoMongoDB.csproj": {}
   },
   "projects": {
-    "D:\\Codes\\demomongodb\\DemoMongoDB.csproj": {
+    "C:\\Code\\demomongodb\\DemoMongoDB.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Codes\\demomongodb\\DemoMongoDB.csproj",
+        "projectUniqueName": "C:\\Code\\demomongodb\\DemoMongoDB.csproj",
         "projectName": "DemoMongoDB",
-        "projectPath": "D:\\Codes\\demomongodb\\DemoMongoDB.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Codes\\demomongodb\\obj\\",
+        "projectPath": "C:\\Code\\demomongodb\\DemoMongoDB.csproj",
+        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
+        "outputPath": "C:\\Code\\demomongodb\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -96,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

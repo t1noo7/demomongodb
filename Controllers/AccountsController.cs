@@ -254,7 +254,7 @@ namespace DemoMongoDB.Controllers
                     ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "login");
                     ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
                     await HttpContext.SignInAsync(claimsPrincipal);
-                    if (customer.ReturnUrl == "/checkout.html")
+                    if (!string.IsNullOrEmpty(customer.ReturnUrl))
                     {
                         return RedirectToAction("Checkout", "Orders");
                     }

@@ -47,7 +47,7 @@
                 <h4>Total: @Model.Sum(item => item.Quantity * item.courses.Price)</h4>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <a href="@Url.Action("Index", "Checkout")" class="btn btn-primary">Thanh toán</a>
+                        <a href="@Url.Action("Checkout", "Orders")" class="btn btn-primary">Thanh toán</a>
                     }
                     else
                     {

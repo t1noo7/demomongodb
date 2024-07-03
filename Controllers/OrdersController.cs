@@ -42,7 +42,7 @@ namespace DemoMongoDB.Controllers
             if (cartItems == null || cartItems.Count == 0)
             {
                 // Redirect to cart or handle empty cart scenario
-                return RedirectToAction("Cart", "Cart");
+                return RedirectToAction("DashBoard", "Accounts");
             }
 
             // Map cart items to OrderDetails
