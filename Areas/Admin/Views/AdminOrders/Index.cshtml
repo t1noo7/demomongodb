@@ -1,0 +1,100 @@
+@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<DemoMongoDB.Models.Orders>
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Danh sách đơn hàng";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    bool QuanLyDonHang = User.Claims.Any(c => c.Type == "FunctionId66763badb0fe10429a3f1510" && c.Value ==
+    "66763badb0fe10429a3f1510");
+    bool CanCreate = User.Claims.Any(c => c.Type == "CanCreate66763badb0fe10429a3f1510" && c.Value == "True");
+    bool CanEdit = User.Claims.Any(c => c.Type == "CanEdit66763badb0fe10429a3f1510" && c.Value == "True");
+    bool CanRead = User.Claims.Any(c => c.Type == "CanRead66763badb0fe10429a3f1510" && c.Value == "True");
+    bool CanDelete = User.Claims.Any(c => c.Type == "CanDelete66763badb0fe10429a3f1510" && c.Value == "True");
+
+    <div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item">
+                <i class="anticon anticon-home m-r-5"></i>Home
+            </a>
+            <span class="breadcrumb-item active">Danh sách đơn hàng : page @CurrentPage</span>
+        </nav>
+    </div>
+</div>
+    <div class="card">
+    <div class="card-body">
+        <div class="row m-b-30">
+            <div class="col-lg-8">
+                <div class="d-md-flex">
+                    <div class="m-b-10 m-r-15">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover e-commerce-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên khách hàng</th>
+                        <th>Email</th>
+                        <th>Khoá học đã mua</th>
+                        <th>Ngày mua hàng</th>
+                        <th>Trạng thái đơn hàng</th>
+                        <th>#</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null)
+                        {
+                            foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td>@order._id</td>
+                                    <td>@order.CustomerName</td>
+                                    <td>@order.CustomerEmail</td>
+                                    <td>
+                                        @foreach (var detail in order.OrderDetails ?? new List<DemoMongoDB.Models.OrderDetails>())
+                                        {
+                                            <div>- @detail.CourseTitle</div>
+                                        }
+                                    </td>
+                                    <td>@order.OrderDate.ToString("yyyy-MM-dd")</td>
+                                    <td>@order.Status</td>
+                                    <td>
+                                        @if (QuanLyDonHang && CanEdit)
+                                        {
+                                            <a class="btn btn-secondary m-r-5" asp-area="Admin" asp-controller="AdminOrders"
+                                                asp-action="ChangeStatus" asp-route-id="@order._id">Change Order's Status</a>
+                                        }
+                                        @if (QuanLyDonHang && CanDelete)
+                                        {
+                                            <a class="btn btn-success m-r-5" asp-area="Admin" asp-controller="AdminOrders"
+                                                asp-action="Delete" asp-route-id="@order._id">Delete</a>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                            {
+                                <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                                    <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                                </li>
+                            }
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,144 @@
+@model DemoMongoDB.Models.Orders
+
+@{
+    ViewData["Title"] = "Thông tin Order";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
+                    class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminOrders" asp-action="Index">Danh sách
+                Order</a>
+            <span class="breadcrumb-item active">Thông tin Order:</span>
+        </nav>
+    </div>
+</div>
+
+<form asp-controller="AdminCourses" asp-action="ChangeStatus" asp-route-id="@Model._id" method="post"
+    enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="_id" />
+    <div class="page-header no-gutters has-tab">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+            </div>
+            <div class="m-b-15">
+                <button class="btn btn-primary">
+                    <i class="anticon anticon-save"></i>
+                    <span>Save</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="Title">Customer Name</label>
+                        <input type="text" class="form-control" asp-for="CustomerName">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="Title">Customer Email</label>
+                        <input type="text" class="form-control" asp-for="CustomerEmail">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="Title">Ngày đặt hàng</label>
+                        <input type="text" class="form-control" asp-for="OrderDate">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="Title">Tổng giá trị đơn hàng</label>
+                        <input type="text" class="form-control" asp-for="TotalAmount">
+                    </div>
+                    <div class="tab-pane fade show active" id="payment-proof">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Ảnh thanh toán</h5>
+                                @if (!string.IsNullOrEmpty(Model.VerifyImage))
+                                {
+                                    <img src="~/images/verify/@Model.VerifyImage" class="img-fluid">
+                                }
+                                else
+                                {
+                                    <p>Chưa có ảnh thanh toán được cập nhật.</p>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="Status">Trạng thái đơn hàng</label>
+                        <select id="OrderStatus" class="form-control" asp-for="Status" onchange="updateStatus()">
+
+                            <option value="Chờ xác nhận">Chờ xác nhận</option>
+                            <option value="Đã thanh toán">Đã thanh toán</option>
+                            <option value="Chưa thanh toán">Chưa thanh toán</option>
+                            <option value="Đơn hàng đã hủy">Đơn hàng đã hủy</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="order-details">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Order Details</h5>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Course Title</th>
+                                <th>Thumb</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderDetails)
+                            {
+                                <tr>
+                                    <td>@item.CourseTitle</td>
+                                    <td>
+                                        <img src="~/images/courses/@item.Thumb">
+                                    </td>
+                                    <td>@item.Price VND</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.Total VND</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        function updateStatus() {
+            var orderId = '@Model._id';
+            var status = document.getElementById('OrderStatus').value;
+
+            $.ajax({
+                url: '@Url.Action("ChangeStatus", "AdminOrders", new { area = "Admin" })',
+                type: 'POST',
+                data: {
+                    id: orderId,
+                    status: status
+                },
+                success: function (response) {
+                    alert('Trạng thái đơn hàng đã được cập nhật!');
+                },
+                error: function (error) {
+                    console.error('Error updating status:', error);
+                }
+            });
+        }
+    </script>
+}

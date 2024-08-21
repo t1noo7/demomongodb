@@ -1,0 +1,304 @@
+@model DemoMongoDB.Models.Banners
+
+@{
+    ViewData["Title"] = "Chỉnh sửa Banner " + Model.BannerName;
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Adminassets/summernote/summernote-bs4.css" rel="stylesheet" />
+    <link href="~/Adminassets/summernote/summernote.css" rel="stylesheet" />
+    <style>
+        .draggable {
+            cursor: move;
+            /* Indicates that the element can be moved */
+            position: absolute;
+            /* Required to change the position */
+        }
+    </style>
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>ECOURSES - Online Courses HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="~/assets/img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="~/assets/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    @* <link href="~/assets/css/style.css" rel="stylesheet"> *@
+</head>
+
+</html>
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item">
+                <i class="anticon anticon-home m-r-5"></i>Home
+            </a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminPosts" asp-action="Index">Danh sách Banner:
+                page @ViewBag.CurrentPage</a>
+            <span class="breadcrumb-item active">Chỉnh sửa Banner</span>
+        </nav>
+    </div>
+</div>
+<form asp-controller="AdminBanners" asp-action="Edit" asp-route-id="@Model._id" method="post"
+    enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="_id" />
+    <input type="hidden" asp-for="Thumb" />
+    <input type="hidden" id="bannerHeaderTextPosition" name="bannerHeaderTextPosition"
+        value="@Model.BannerHeaderTextTop,@Model.BannerHeaderTextLeft" />
+    <input type="hidden" id="bannerTextPosition" name="bannerTextPosition"
+        value="@Model.BannerTextTop,@Model.BannerTextLeft" />
+    <input type="hidden" id="bannerButtonPosition" name="bannerButtonPosition"
+        value="@Model.BannerButtonTop,@Model.BannerButtonLeft" />
+    <div class="page-header1 no-gutters has-tab">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15"></div>
+            <div class="m-b-15">
+                <button class="btn btn-primary">
+                    <i class="anticon anticon-save"></i>
+                    <span>Save</span>
+                </button>
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#product-edit-basic">Thông tin Banner</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="container-fluid p-0 pb-5 mb-5">
+                    <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" style="min-height: 300px;">
+                                <img id="bannerImage" class="position-relative w-100"
+                                    src="~/images/banners/@Model.Thumb" style="min-height: 300px; object-fit: cover;">
+                                <div class="carousel-caption d-flex align-items-center justify-content-center">
+                                    <div id="bannerHeaderText" class="p-5 draggable"
+                                        style="width: 100%; max-width: 900px">
+                                        <h1 class="display-3 text-white text-uppercase mb-md-4">@Model.BannerHeaderText
+                                        </h1>
+                                    </div>
+                                    <div id="bannerText" class="p-5 draggable" style="width: 100%; max-width: 900px">
+                                        <h5 class="text-white mb-md-3">@Model.BannerText</h5>
+                                    </div>
+                                    @if (Model.ActiveButton)
+                                    {
+                                        <div id="bannerButton" class="p-5 draggable" style="width: 100%; max-width: 900px">
+                                            <a href=""
+                                                class="btn btn-primary1 py-md-2 px-md-4 font-weight-semi-bold mt-2">@Model.ButtonText</a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productName">Tên banner</label>
+                        <input type="text" class="form-control" asp-for="BannerName">
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="font-weight-semibold" for="productBrand">Ảnh đại diện</label>
+                            <input id="fileInput" name="fThumb" type="file" class="form-control-file" asp-for="Thumb">
+                            <span asp-validation-for="Thumb" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productName">Thứ tự</label>
+                        <input type="text" class="form-control" asp-for="OrderIndex">
+                        <input type="hidden" id="oldOrderIndex" name="oldOrderIndex" value="@ViewBag.OldOrderIndex" />
+                    </div>
+                    <div class="row">
+                        <div class="m-t-25">
+                            <div class="form-group d-flex align-items-center">
+                                <div class="switch m-r-10">
+                                    <input type="checkbox" asp-for="Active">
+                                    <label for="Active"></label>
+                                </div>
+                                <label>Active</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productName">Banner Header Text</label>
+                        <input type="text" class="form-control" asp-for="BannerHeaderText">
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productName">Banner Text</label>
+                        <input type="text" class="form-control" asp-for="BannerText">
+                    </div>
+                    <div class="row">
+                        <div class="m-t-25">
+                            <div class="form-group d-flex align-items-center">
+                                <div class="switch m-r-10">
+                                    <input type="checkbox" asp-for="ActiveButton">
+                                    <label for="ActiveButton"></label>
+                                </div>
+                                <label>Active Button</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="productName">Button Text</label>
+                        <input type="text" class="form-control" asp-for="ButtonText">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+
+    <!-- page js -->
+    <script src="~/Adminassets/vendors/select2/select2.min.js"></script>
+    <script src="~/Adminassets/js/pages/e-commerce-product-edit.js"></script>
+
+    <!-- Core js -->
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="~/Adminassets/summernote/summernote-bs4.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $('.summnernote').summernote({
+                fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                height: 200, // set editor height
+                minHeight: null, // set minimum height of editor
+                maxHeight: null, // set maximum height of editor
+                focus: true // set focus to editable area after intitializing summernote
+            });
+
+            // Function to handle file input change and update the image preview
+            document.getElementById('fileInput').addEventListener('change', function (event) {
+                var file = event.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById('bannerImage').src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+    </script>
+
+    <script>
+        function dragElement(elmnt, positionInputId) {
+            var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+
+            elmnt.onmousedown = dragMouseDown;
+
+            function dragMouseDown(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                document.onmouseup = closeDragElement;
+                document.onmousemove = elementDrag;
+            }
+
+            function elementDrag(e) {
+                e = e || window.event;
+                e.preventDefault();
+                pos1 = pos3 - e.clientX;
+                pos2 = pos4 - e.clientY;
+                pos3 = e.clientX;
+                pos4 = e.clientY;
+                elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+                elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+            }
+
+            function closeDragElement() {
+                document.onmouseup = null;
+                document.onmousemove = null;
+                updatePositionInput();
+            }
+
+            function updatePositionInput() {
+                var parentWidth = elmnt.parentElement.offsetWidth;
+                var parentHeight = elmnt.parentElement.offsetHeight;
+                var leftPercentage = Math.round((elmnt.offsetLeft / parentWidth) * 100);
+                var topPercentage = Math.round((elmnt.offsetTop / parentHeight) * 100);
+                document.getElementById(positionInputId).value = `${topPercentage}%,${leftPercentage}%`;
+            }
+
+            // Update position input when the dragging starts
+            updatePositionInput();
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Initialize positions if they exist
+            var headerTextPosition = "@Model.BannerHeaderTextTop,@Model.BannerHeaderTextLeft".split(',');
+            var textPosition = "@Model.BannerTextTop,@Model.BannerTextLeft".split(',');
+            var buttonPosition = "@Model.BannerButtonTop,@Model.BannerButtonLeft".split(',');
+
+            var headerTextElement = document.getElementById("bannerHeaderText");
+            var textElement = document.getElementById("bannerText");
+            var buttonElement = document.getElementById("bannerButton");
+
+            if (headerTextElement) {
+                headerTextElement.style.top = headerTextPosition[0];
+                headerTextElement.style.left = headerTextPosition[1];
+                dragElement(headerTextElement, "bannerHeaderTextPosition");
+            }
+            if (textElement) {
+                textElement.style.top = textPosition[0];
+                textElement.style.left = textPosition[1];
+                dragElement(textElement, "bannerTextPosition");
+            }
+            if (buttonElement) {
+                buttonElement.style.top = buttonPosition[0];
+                buttonElement.style.left = buttonPosition[1];
+                dragElement(buttonElement, "bannerButtonPosition");
+            }
+
+            // When the form is submitted, send the positions to the server via AJAX
+            document.getElementById("positionForm").addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                var formData = new FormData(this);
+
+                fetch('/savePositions', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Positions saved successfully!');
+                        } else {
+                            alert('Failed to save positions.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+        });
+    </script>
+}

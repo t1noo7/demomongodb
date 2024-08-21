@@ -1,0 +1,93 @@
+@using DemoMongoDB.ModelViews
+@model DemoMongoDB.Models.UserAccounts
+
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .account-spacing {
+        margin-top: 30px;
+    }
+</style>
+
+<main class="main-content">
+    <div class="breadcrumb-area breadcrumb-height" data-bg-image="assets/images/breadcrumb/bg/1-1-1920x373.jpg">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-item text-center">
+                        <h2 class="breadcrumb-title">My Account</h2>
+                        @* <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                        <li class="breadcrumb-item active" id="currentBreadcrumb" aria-current="page">Dashboard
+                        </li>
+                        </ol>
+                        </nav> *@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="account-page-area section-space-y-axis-100 account-spacing">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3" style="border-right: 1px solid #ddd;">
+                    <div class="nav flex-column nav-pills myaccount-tab-trigger" id="account-page-tab" role="tablist"
+                        aria-orientation="vertical">
+                        <a class="nav-link active" id="account-dashboard-tab" data-bs-toggle="pill"
+                            href="#account-dashboard" role="tab" aria-controls="account-dashboard" aria-selected="true">
+                            Dashboard
+                        </a>
+                        <a class="nav-link" id="account-mycourse-tab" href="accounts/mycourse.html" role="tab"
+                            aria-selected="false">
+                            My Course
+                        </a>
+                        <a class="nav-link" id="account-myOrder" href="/accounts/myorder.html" role="tab"
+                            aria-controls="account-myOrder" aria-selected="false">
+                            My Order
+                        </a>
+                        <a class="nav-link" id="changePassword" data-bs-toggle="pill" href="#account-details" role="tab"
+                            aria-controls="account-details" aria-selected="false">
+                            Change Password
+                        </a>
+                        <a class="nav-link" id="account-logout-tab" href="/accounts/logout.html" role="tab"
+                            aria-selected="false">
+                            Logout
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-9 account-spacing">
+                    <div class="tab-content myaccount-tab-content" id="account-page-tab-content">
+                        <div class="tab-pane fade show active" id="account-dashboard" role="tabpanel"
+                            aria-labelledby="account-dashboard-tab">
+                            <div class="myaccount-dashboard">
+                                <h4>Welcome, <b>@Model.FullName</b>!</h4>
+                                <p><strong>Name:</strong> @Model.FullName</p>
+                                <p><strong>Email:</strong> @Model.Email</p>
+                                <p><strong>Phone:</strong> @Model.Phone</p>
+
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="account-Order" role="tabpanel" aria-labelledby="account-myOrder">
+                            <div id="myOrderContainer">
+                                @* @await Html.PartialAsync("_MyOrderPartialView") *@
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="account-details" role="tabpanel"
+                            aria-labelledby="changePassword">
+                            @await Html.PartialAsync("_ChangePasswordPartialView", new ChangePasswordVM())
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,76 @@
+@model DemoMongoDB.ModelViews.LoginViewModel
+@{
+    ViewData["Title"] = "Login Account";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+
+<div class="container-fluid bg-registration py-5" style="margin: 90px 0;">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <form asp-action="Login">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="card border-0">
+                        <div class="card-header bg-light text-center p-4">
+                            <h1 class="m-0">Sign In Account</h1>
+                        </div>
+                        <div class="card-body rounded-bottom bg-primary p-5">
+                            <form>
+                                <div class="form-group">
+                                    <input type="email" asp-for="UserName" class="form-control border-0 p-4"
+                                        placeholder="User name" required="required" />
+                                    <span asp-validation-for="UserName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" asp-for="Password" class="form-control border-0 p-4"
+                                        placeholder="Your password" required="required" />
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                                <div>
+                                    <button class="btn btn-dark btn-block border-0 py-3" type="submit">Sign In</button>
+                                    <input type="hidden" name="ReturnUrl" value="/my-account.html" />
+                                </div>
+                                <div>
+                                    <a href="@Url.Action("ExternalLogin", "Accounts", new { provider = "Facebook", returnUrl = "/my-account.html" })"
+                                        class="btn btn-primary btn-block">Login with Facebook</a>
+                                </div>
+                                <div>
+                                    <a href="@Url.Action("ForgetPasswordEmail", "Accounts")"
+                                        class="btn btn-dark btn-block border-0 py-3">Forgot password?</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1544182549485068',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v12.0'
+            });
+        };
+
+        function checkLoginState() {
+            FB.getLoginStatus(function (response) {
+                if (response.status === 'connected') {
+                    window.location.href = '/Accounts/ExternalLogin?provider=Facebook&returnUrl=/Accounts/FacebookCallback';
+                } else if (response.status === 'not_authorized') {
+                    console.log('User is not authorized for your app');
+                } else {
+                    console.log('User is not logged into Facebook or your app');
+                }
+            });
+        }
+    </script>
+}

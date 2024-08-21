@@ -1,0 +1,261 @@
+@model DemoMongoDB.Models.Banners
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Styles {
+    <link href="~/Adminassets/summernote/summernote-bs4.css" rel="stylesheet" />
+    <link href="~/Adminassets/summernote/summernote.css" rel="stylesheet" />
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+
+    <style>
+        #header-carousel {
+            position: relative;
+        }
+
+        #bannerHeaderText,
+        #bannerText,
+        #bannerButton {
+            position: absolute;
+            cursor: move;
+            top: 0;
+            left: 0;
+            transform: translate(0%, 0%);
+        }
+
+        #bannerHeaderText {
+            cursor: move;
+        }
+
+        #bannerText {
+            cursor: move;
+        }
+
+        #bannerButton {
+            cursor: pointer;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+}
+
+<div class="page-header">
+    <div class="header-sub-title">
+        <nav class="breadcrumb breadcrumb-dash">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="breadcrumb-item"><i
+                    class="anticon anticon-home m-r-5"></i>Home</a>
+            <a class="breadcrumb-item" asp-area="Admin" asp-controller="AdminPosts" asp-action="Index">Danh sách Banner
+                :
+                page @ViewBag.CurrentPage</a>
+            <span class="breadcrumb-item active">Tạo mới Banner</span>
+        </nav>
+    </div>
+</div>
+<form asp-controller="AdminBanners" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="page-header1 no-gutters has-tab">
+        <div class="d-md-flex m-b-15 align-items-center justify-content-between">
+            <div class="media align-items-center m-b-15">
+            </div>
+            <div class="m-b-15">
+                <button class="btn btn-primary">
+                    <i class="anticon anticon-save"></i>
+                    <span>Save</span>
+                </button>
+            </div>
+        </div>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#product-edit-basic">Thông tin Banner</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="tab-content m-t-15">
+        <div class="tab-pane fade show active" id="product-edit-basic">
+            <div class="card">
+                <div class="container-fluid p-0 pb-5 mb-5">
+                    <div id="header-carousel" class="carousel slide carousel-fade" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active" style="min-height: 300px;">
+                                <img id="bannerImage" class="position-relative w-100" src="~/images/banners/default.jpg"
+                                    style="min-height: 300px; object-fit: cover;">
+                                <div class="carousel-caption d-flex align-items-center justify-content-center">
+                                    <div class="p-5" style="width: 100%; max-width: 900px">
+                                        <h1 id="bannerHeaderText" class="display-3 text-white mb-md-4"
+                                            style="cursor: move;">Preview Header
+                                            Text</h1>
+                                        <h5 id="bannerText" class="text-white mb-md-3" style="cursor: move;">Preview
+                                            Banner Text</h5>
+                                        <a id="bannerButton" href=""
+                                            class="btn btn-primary1 py-md-2 px-md-4 font-weight-semi-bold mt-2"
+                                            style="display:none; cursor: pointer;">Button Text</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="form-group">
+                        <label class="font-weight-semibold" for="bannerNameInput">Tên banner</label>
+                        <input type="text" class="form-control" asp-for="BannerName" id="bannerNameInput">
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <label class="font-weight-semibold" for="fileInput">Ảnh đại diện</label>
+                            <input id="fileInput" name="fThumb" type="file" class="form-control-file" asp-for="Thumb">
+                            <span asp-validation-for="Thumb" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="m-t-25">
+                            <div class="form-group d-flex align-items-center">
+                                <label class="font-weight-semibold m-r-10"> Kích hoạt </label>
+                                <div class="switch">
+                                    <input type="checkbox" id="activeSwitch" asp-for="Active">
+                                    <label for="activeSwitch"></label>
+                                </div>
+                            </div>
+                            <div class="form-group d-flex align-items-center">
+                                <label class="font-weight-semibold m-r-10"> Button </label>
+                                <div class="switch">
+                                    <input type="checkbox" id="activeButtonInput" asp-for="ActiveButton">
+                                    <label for="activeButtonInput"></label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-sm-4">
+                                    <label class="font-weight-semibold" for="bannerHeaderTextInput">Banner Header
+                                        Text</label>
+                                    <input id="bannerHeaderTextInput" type="text" class="form-control"
+                                        asp-for="BannerHeaderText">
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="font-weight-semibold" for="bannerTextInput">Banner Text</label>
+                                    <input id="bannerTextInput" type="text" class="form-control" asp-for="BannerText">
+                                </div>
+                                <div class="form-group col-sm-4">
+                                    <label class="font-weight-semibold" for="buttonTextInput">Button Text</label>
+                                    <input id="buttonTextInput" type="text" class="form-control" asp-for="ButtonText">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" id="headerTextPosX" name="BannerHeaderTextLeft" />
+                    <input type="hidden" id="headerTextPosY" name="BannerHeaderTextTop" />
+                    <input type="hidden" id="bannerTextPosX" name="BannerTextLeft" />
+                    <input type="hidden" id="bannerTextPosY" name="BannerTextTop" />
+                    <input type="hidden" id="buttonPosX" name="BannerButtonLeft" />
+                    <input type="hidden" id="buttonPosY" name="BannerButtonTop" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <!-- page js -->
+    <script src="~/Adminassets/vendors/select2/select2.min.js"></script>
+    <script src="~/Adminassets/js/pages/e-commerce-product-edit.js"></script>
+    <script src="~/Adminassets/js/vendors.min.js"></script>
+    <script src="~/Adminassets/js/app.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="~/Adminassets/summernote/summernote-bs4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        jQuery(document).ready(function () {
+            $('.summnernote').summernote({
+                fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
+                styleTags: ['p', 'h1', 'h2', 'h3', 'h4', 'h5'],
+                height: 200,
+                minHeight: null,
+                maxHeight: null,
+                focus: true
+            });
+
+            document.getElementById('fileInput').addEventListener('change', function (event) {
+                var file = event.target.files[0];
+                if (file) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById('bannerImage').src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            function updatePositionFields() {
+                var carouselInner = $(".carousel-inner");
+
+                var headerTextPosX = $("#bannerHeaderText").position().left / carouselInner.width() * 100;
+                var headerTextPosY = $("#bannerHeaderText").position().top / carouselInner.height() * 100;
+
+                var bannerTextPosX = $("#bannerText").position().left / carouselInner.width() * 100;
+                var bannerTextPosY = $("#bannerText").position().top / carouselInner.height() * 100;
+
+                var buttonPosX = $("#bannerButton").position().left / carouselInner.width() * 100;
+                var buttonPosY = $("#bannerButton").position().top / carouselInner.height() * 100;
+
+                $("#headerTextPosX").val(headerTextPosX);
+                $("#headerTextPosY").val(headerTextPosY);
+
+                $("#bannerTextPosX").val(bannerTextPosX);
+                $("#bannerTextPosY").val(bannerTextPosY);
+
+                $("#buttonPosX").val(buttonPosX);
+                $("#buttonPosY").val(buttonPosY);
+            }
+
+            function applyPositionFromFields() {
+                var headerTextPosX = $("#headerTextPosX").val();
+                var headerTextPosY = $("#headerTextPosY").val();
+
+                var bannerTextPosX = $("#bannerTextPosX").val();
+                var bannerTextPosY = $("#bannerTextPosY").val();
+
+                var buttonPosX = $("#buttonPosX").val();
+                var buttonPosY = $("#buttonPosY").val();
+
+                $("#bannerHeaderText").css({
+                    left: headerTextPosX + '%',
+                    top: headerTextPosY + '%'
+                });
+
+                $("#bannerText").css({
+                    left: bannerTextPosX + '%',
+                    top: bannerTextPosY + '%'
+                });
+
+                $("#bannerButton").css({
+                    left: buttonPosX + '%',
+                    top: buttonPosY + '%'
+                });
+            }
+
+            applyPositionFromFields();
+
+            $("#bannerHeaderText, #bannerText, #bannerButton").draggable({
+                containment: ".carousel-inner",
+                stop: updatePositionFields
+            });
+
+            document.getElementById('bannerHeaderTextInput').addEventListener('input', function () {
+                document.getElementById('bannerHeaderText').innerText = this.value;
+            });
+            document.getElementById('bannerTextInput').addEventListener('input', function () {
+                document.getElementById('bannerText').innerText = this.value;
+            });
+            document.getElementById('buttonTextInput').addEventListener('input', function () {
+                var button = document.getElementById('bannerButton');
+                button.innerText = this.value;
+                button.style.display = this.value ? 'inline-block' : 'none';
+            });
+        });
+    </script>
+}

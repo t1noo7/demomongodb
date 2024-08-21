@@ -1,0 +1,291 @@
+@model DemoMongoDB.Models.CheckoutViewModel
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+<style>
+    /* Tab Links */
+    .tabs {
+        display: flex;
+    }
+
+    .tablinks {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        width: 100%;
+        padding: 1rem;
+        font-size: 13px;
+        text-transform: uppercase;
+        font-weight: 600;
+        transition: 0.2s ease;
+    }
+
+    .tablinks:hover {
+        background: blue;
+        color: #fff;
+    }
+
+    /* Tab active */
+    .tablinks.active {
+        background: blue;
+        color: #fff;
+    }
+
+    /* tab content */
+    .tabcontent {
+        display: none;
+    }
+
+    /* Text*/
+    .tabcontent p {
+        color: #333;
+        font-size: 16px;
+    }
+
+    /* tab content active */
+    .tabcontent.active {
+        display: block;
+    }
+</style>
+
+<div class="container">
+    <h2>Checkout</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Customer Information</h3>
+            <!-- Tab links -->
+            <div class="tabs">
+                <button class="tablinks active" data-electronic="allProducts">Cash on Delivery</button>
+                <button class="tablinks" data-electronic="vnpayPayment">VN Pay</button>
+                <button class="tablinks" data-electronic="momoPayment">MoMo</button>
+            </div>
+
+            <!-- Tab content -->
+            <div class="wrapper_tabcontent">
+                <div id="allProducts" class="tabcontent active">
+                    <form asp-action="Checkout" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="CustomerName" class="control-label">Full Name</label>
+                            <input asp-for="CustomerName" class="form-control" />
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label asp-for="CustomerName" class="control-label">Gender</label>
+                            <select class="custom-select" style="min-width: 200px;">
+                                <option selected value="0">--Select--</option>
+                                <option value="0">Man</option>
+                                <option value="0">Female</option>
+                                <option value="0">Gay/Les</option>
+                            </select>
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CustomerName" class="control-label">Phone No</label>
+                            <input asp-for="CustomerName" class="form-control" />
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CustomerName" class="control-label">Delivery Address</label>
+                            <input asp-for="CustomerName" class="form-control" />
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CustomerEmail" class="control-label">Email</label>
+                            <input asp-for="CustomerEmail" class="form-control" />
+                            <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CustomerEmail" class="control-label">Payment Content</label>
+                            <textarea asp-for="CustomerEmail" class="form-control"></textarea>
+                            <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for=" CustomerName" class="control-label">Payment Method</label>
+                            <div class="row col-md-9">
+                                <div class="col-md-3">
+                                    <a href=""><input class="form-check-input" type="radio" name="PaymentMethod">
+                                        <img src="~/images/payment/vnd.png" /></a>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Checkout Cash</button>
+                    </form>
+                </div>
+
+                <div id="vnpayPayment" class="tabcontent">
+                    <form asp-action="vnPayCreatePaymentUrl" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="CustomerName" class="control-label">Full Name</label>
+                            <input asp-for="CustomerName" class="form-control" />
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label asp-for="CustomerName" class="control-label">Gender</label>
+                            <select class="custom-select" style="min-width: 200px;">
+                                <option selected value="0">--Select--</option>
+                                <option value="0">Man</option>
+                                <option value="0">Female</option>
+                                <option value="0">Gay/Les</option>
+                            </select>
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CustomerEmail" class="control-label">Email</label>
+                            <input asp-for="CustomerEmail" class="form-control" />
+                            <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CustomerName" class="control-label">Delivery Address</label>
+                            <input asp-for="CustomerName" class="form-control" />
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" asp-for="OrderType" class="form-control" value="ECourses" />
+                            <span asp-validation-for="OrderType" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" asp-for="OrderTotal" class="form-control" value="@Model.OrderTotal" />
+                            <span asp-validation-for="OrderTotal" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="OrderDescription" class="control-label">Payment Content</label>
+                            <textarea asp-for="OrderDescription" class="form-control" id="OrderDescription"
+                                name="OrderDescription" placeholder="Nội dung thanh toán"></textarea>
+                            <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for=" CustomerName" class="control-label">Payment Method</label>
+                            <div class="row col-md-9">
+                                <div class="col-md-3">
+                                    <a href=""><input class="form-check-input" type="radio" name="PaymentMethod">
+                                        <img src="~/images/payment/vnpay.png" /></a>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Checkout using VNPay</button>
+                    </form>
+                </div>
+
+                <div id="momoPayment" class="tabcontent">
+                    <form asp-action="MoMoCreatePaymentUrl" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="CustomerName" class="control-label">Full Name</label>
+                            <input asp-for="CustomerName" class="form-control" />
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <label asp-for="CustomerName" class="control-label">Gender</label>
+                            <select class="custom-select" style="min-width: 200px;">
+                                <option selected value="0">--Select--</option>
+                                <option value="0">Man</option>
+                                <option value="0">Female</option>
+                                <option value="0">Gay/Les</option>
+                            </select>
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CustomerEmail" class="control-label">Email</label>
+                            <input asp-for="CustomerEmail" class="form-control" />
+                            <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="CustomerName" class="control-label">Delivery Address</label>
+                            <input asp-for="CustomerName" class="form-control" />
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" asp-for="OrderTotal" class="form-control" value="@Model.OrderTotal" />
+                            <span asp-validation-for="OrderTotal" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="OrderInfo" class="control-label">Payment Content</label>
+                            <textarea asp-for="OrderInfo" class="form-control" id="OrderDescription" name="OrderInfo"
+                                placeholder="Nội dung thanh toán"></textarea>
+                            <span asp-validation-for="OrderInfo" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for=" CustomerName" class="control-label">Payment Method</label>
+                            <div class="row col-md-9">
+                                <div class="col-md-3">
+                                    <a href=""><input class="form-check-input" type="radio" name="PaymentMethod">
+                                        <img src="~/images/payment/momo.png" /></a>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Checkout using MoMo</button>
+                    </form>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="col-md-6">
+            <h3>Order Summary</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.CartItems)
+                    {
+                        <tr>
+                            <td>@item.courses.Title</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.courses.Price</td>
+                            <td>@(item.Quantity * item.courses.Price)</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-right"><strong>Total Amount:</strong></td>
+                        <td>@Model.OrderTotal</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        var tabLinks = document.querySelectorAll(".tablinks");
+        var tabContent = document.querySelectorAll(".tabcontent");
+
+        tabLinks.forEach(function (el) {
+            el.addEventListener("click", openTabs);
+        });
+
+
+        function openTabs(el) {
+            var btn = el.currentTarget; // lắng nghe sự kiện và hiển thị các element
+            var electronic = btn.dataset.electronic; // lấy giá trị trong data-electronic
+
+            tabContent.forEach(function (el) {
+                el.classList.remove("active");
+            }); //lặp qua các tab content để remove class active
+
+            tabLinks.forEach(function (el) {
+                el.classList.remove("active");
+            }); //lặp qua các tab links để remove class active
+
+            document.querySelector("#" + electronic).classList.add("active");
+            // trả về phần tử đầu tiên có id="" được add class active
+
+            btn.classList.add("active");
+            // các button mà chúng ta click vào sẽ được add class active
+        }
+    </script>
+}

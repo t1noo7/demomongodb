@@ -1,0 +1,125 @@
+@model List<DemoMongoDB.ModelViews.CartItem>
+
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<div class="container mt-4">
+    <h2>Your Shopping Cart</h2>
+    @if (Model == null || !Model.Any())
+    {
+        <p>Your cart is empty.</p>
+    }
+    else
+    {
+        <form action="javascript:void(0)">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Image</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Actions</th> <!-- Column for Delete button -->
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.courses.Title</td>
+                            <td><img src="~/images/courses/@item.courses.Thumb" alt="@item.courses.Title"></td>
+                            <td>
+                                <input type="number" class="form-control quantity-input" value="@item.Quantity"
+                                    data-product-id="@item.courses._id" min="1" />
+                            </td>
+                            <td>@item.courses.Price</td>
+                            <td>@(item.Quantity * item.courses.Price)</td>
+                            <td>
+                                <button class="btn btn-danger btn-delete" data-product-id="@item.courses._id">Delete</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="text-right">
+                <h4>Total: @Model.Sum(item => item.Quantity * item.courses.Price)</h4>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="@Url.Action("Checkout", "Orders")" class="btn btn-primary">Thanh toán</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Login", "Accounts", new { returnUrl = "/checkout.html" })"
+                            class="btn btn-primary">Thanh toán</a>
+                    }
+
+            </div>
+        </form>
+
+    }
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.quantity-input').on('change', function () {
+                var productId = $(this).data('product-id');
+                var quantity = $(this).val();
+
+                // Send update request using Ajax
+                $.ajax({
+                    url: '/api/cart/update',
+                    method: 'POST',
+                    data: {
+                        productId: productId,
+                        quantity: quantity
+                    },
+                    success: function () {
+                        location.reload(); // Reload page after successful update
+                    },
+                    error: function () {
+                        alert('Failed to update cart.'); // Handle error scenario
+                    }
+                });
+            });
+
+            $('.btn-delete').on('click', function () {
+                var productId = $(this).data('product-id');
+
+                // Send delete request using Ajax
+                $.ajax({
+                    url: '/api/cart/remove',
+                    method: 'POST',
+                    data: {
+                        productId: productId
+                    },
+                    success: function () {
+                        location.reload(); // Reload page after successful delete
+                    },
+                    error: function () {
+                        alert('Failed to delete item from cart.'); // Handle error scenario
+                    }
+                });
+            });
+
+        @* $('#checkoutBtn').on('click', function (e) {
+            e.preventDefault();
+            $.ajax({
+            url: '/Orders/CheckAuthentication', // Endpoint to check authentication
+            method: 'GET',
+            success: function (response) {
+            if (response.authenticated) {
+            window.location.href = '/Orders/Checkout'; // Proceed to checkout
+            } else {
+            window.location.href = '/Accounts/Login'; // Redirect to login page
+            }
+            },
+            error: function () {
+            alert('Failed to check authentication.');
+            }
+            });
+            }); *@
+    </script>
+}
